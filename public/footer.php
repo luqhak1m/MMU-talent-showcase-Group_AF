@@ -1,4 +1,5 @@
 <link rel="stylesheet" href="css/styles.css">
+<title>MMU Talent Showcase Portal</title>
 
 	<footer>
 		<div class="footer-container">
