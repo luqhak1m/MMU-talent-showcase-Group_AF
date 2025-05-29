@@ -7,7 +7,7 @@ session_start();
 	<title>Welcome to My Website</title>
 	<link rel="stylesheet" type="text/css" href="css/styles.css">
 </head>
-<body>
+<body class="index-body">
 	<h1>Welcome to MMU Talent Portal</h1>
 	<p>Your one-stop portal for stuff.</p>
 	<a href="login.php" class="button">Login</a>
