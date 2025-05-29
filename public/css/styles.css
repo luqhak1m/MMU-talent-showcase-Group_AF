@@ -1,4 +1,14 @@
-body {
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+
+html, body {
+	width: 100%;
+}
+
+.index-body {
 	background-color: #F9F9FF;
 	color: #5D5A88;
 	font-family: Arial, sans-serif;
@@ -6,9 +16,153 @@ body {
 	padding-top: 100px;
 }
 
+.index-body p {
+	padding-bottom: 20px;
+}
+
 h1 {
 	color: #5D5A88;
 }
+
+
+/* ---------------------------------header.php--------------------------------- */
+
+.navbar {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	padding: 5px 20px;
+	flex-wrap: wrap; 
+	font-family: Arial, sans-serif;
+}
+
+.navbar-left, 
+.navbar-right {
+	display: flex;
+	align-items: center;
+	gap: 15px;
+}
+
+.navbar h1 {
+	font-size: 30px;
+	font-weight: bold;
+	color: #5D5A88;
+	margin: 0 20px 0 0;
+}
+
+.navbar a {
+	text-decoration: none;
+	font-size: 18px;
+	color: #5D5A88;
+	padding: 0px;
+}
+
+.navbar-img {
+	width: 20px;
+	height: 20px;
+}
+
+.navbar-prof {
+	width: 50px;
+	height: 50px;
+}
+
+
+/* ---------------------------------footer.php--------------------------------- */
+
+footer {
+	padding-top: 20px;
+	background-color: #4a4770;
+	color: white;
+	font-family: Arial, sans-serif;
+	width: 100%;
+
+}
+
+.footer-container {
+	display: flex;
+	justify-content: space-between;
+	flex-wrap: wrap; 
+}
+
+.footer-left,
+.footer-right {
+	display: flex;
+	gap: 5px;
+	margin: 10px;
+}
+
+.footer-left {
+	background-color: #5D5A88;
+	font-size: 40px;
+	width: 40%;
+	margin-left: 10%;
+	border-radius: 10px;
+	align-items: center;
+	justify-content: center;
+}
+
+.footer-right {
+	flex-direction: column;
+	width: 40%;
+}
+
+.footer-right a {
+	text-decoration: none;
+	font-size: 18px;
+	color: white;
+	padding-left: 30px;
+	font-weight: bold;
+}
+
+footer p {
+	text-align: center;
+	padding: 10px;
+}
+
+
+/* ---------------------------------group.php--------------------------------- */
+
+.group-container {
+	display: grid;
+	grid-template-columns: repeat(2, 1fr);
+	gap: 40px;
+	padding: 40px;
+	max-width: 1000px;
+	margin: auto;
+	justify-items: center;
+}
+
+/* Style each group card */
+.group-container > div {
+	background-color: #E7E6F2;
+	padding: 20px;
+	border-radius: 10px;
+	box-shadow: 10px 10px 8px rgba(0, 0, 0, 0.1);
+	text-align: center;
+	width: 100%;
+	max-width: 400px;
+}
+
+.group-container img {
+	width: 150px;
+	height: 150px;
+	object-fit: cover;
+	border-radius: 50%;
+	margin-bottom: 20px;
+}
+
+.group-container p {
+	font-size: 16px;
+	font-family: Arial, sans-serif;
+	margin-bottom: 10px;
+}
+
+.group-container a {
+	color: #4a4770;
+	text-decoration: none;
+}
+
 
 .button {
 	background-color: #5D5A88;
