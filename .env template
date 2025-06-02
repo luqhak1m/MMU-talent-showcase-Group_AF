@@ -1,0 +1,15 @@
+### Create the mmu_talent_portal database from your local MySQL server from terminal:
+
+# mysql -u root -p
+
+# Enter your password when prompted 
+
+# CREATE DATABASE mmu_talent_portal;
+# EXIT;
+
+DB_HOST=127.0.0.1
+DB_NAME=mmu_talent_portal
+DB_USER=root
+DB_PASS=
+
+

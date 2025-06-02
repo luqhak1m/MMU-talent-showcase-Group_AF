@@ -1,0 +1,17 @@
+{
+    "name": "luq/talent-portal",
+    "autoload": {
+        "psr-4": {
+            "Luq\\TalentPortal\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Luqman Hakim",
+            "email": "123793185+luqhak1m@users.noreply.github.com"
+        }
+    ],
+    "require": {
+        "vlucas/phpdotenv": "^5.6"
+    }
+}
