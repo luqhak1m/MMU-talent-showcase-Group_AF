@@ -179,3 +179,135 @@ footer p {
 .button:hover {
 	background-color: #4a4770;
 }
+
+.auth-container {
+    background-color: #FFFFFF; /* White - Main Colour */
+    padding: 40px;
+    border-radius: 8px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    display: flex;
+    max-width: 900px; /* Adjusted for two-column layout */
+    width: 100%;
+}
+
+.auth-image-section {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-right: 40px; /* Space between image and form */
+    border-right: 1px solid #E7E6F2; /* Purple border */
+}
+
+.auth-image-placeholder {
+    width: 100%;
+    max-width: 300px;
+    height: auto;
+    background-color: #E7E6F2; /* Purple - Main Colour */
+    border-radius: 8px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 20px;
+    color: #5D5A88; /* Dark Purple text */
+    min-height: 200px; /* Ensure it has some height */
+}
+
+.auth-form-section {
+    flex: 1;
+    padding-left: 40px; /* Space between border and form */
+}
+
+.auth-form-section h1 {
+    color: #5D5A88; /* Dark Purple - Main Action Button (used for titles) */
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.website-name {
+    font-size: 24px;
+    font-weight: bold;
+    color: #5D5A88; /* Dark Purple */
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: bold;
+    color: #555555;
+}
+
+.form-group input[type="text"],
+.form-group input[type="email"],
+.form-group input[type="password"] {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #E7E6F2; /* Purple border */
+    border-radius: 5px;
+    box-sizing: border-box;
+    background-color: #F9F9FF; /* Lighter Purple input background */
+}
+
+.form-group input[type="text"]:focus,
+.form-group input[type="email"]:focus,
+.form-group input[type="password"]:focus {
+    outline: none;
+    border-color: #5D5A88; /* Dark Purple */
+    box-shadow: 0 0 0 2px rgba(93, 90, 136, 0.2);
+}
+
+.btn-submit {
+    background-color: #5D5A88; /* Dark Purple - Main Action Button Colour */
+    color: #FFFFFF;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: bold;
+    width: 100%;
+    transition: background-color 0.3s ease;
+}
+
+.btn-submit:hover {
+    background-color: #4c4a70; /* Slightly darker purple */
+}
+
+.form-link {
+    display: block;
+    text-align: center;
+    margin-top: 20px;
+    color: #5D5A88;
+    text-decoration: none;
+}
+
+.form-link:hover {
+    text-decoration: underline;
+}
+
+.error-message {
+    color: red;
+    font-size: 0.9em;
+    margin-top: 5px;
+}
+
+@media (max-width: 768px) {
+    .auth-container {
+        flex-direction: column;
+        padding: 20px;
+    }
+    .auth-image-section {
+        padding-right: 0;
+        border-right: none;
+        margin-bottom: 20px;
+    }
+    .auth-form-section {
+        padding-left: 0;
+    }
+}

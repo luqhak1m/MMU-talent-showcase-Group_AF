@@ -67,25 +67,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_FILES['mediaFile'])) {
 	<link rel="stylesheet" type="text/css" href="css/styles.css">
 </head>
 <body class="index-body">
-
-	<div>
-		<h1>Welcome to MMU Talent Portal</h1>
-		<p>Your one-stop portal for stuff.</p>
-		<a href="login.php" class="button">Login</a>
-		<a href="register.php" class="button">Register</a>
-	</div>
-
-
-	<br>
-
-	<div>
-		<h2>try upload a media</h2>
-		<form method="post" enctype="multipart/form-data">
-		<label for="mediaFile">Choose a file to upload:</label>
-		<input type="file" name="mediaFile" required>
-		<button type="submit" name="submit">Upload</button>
-	</div>
-</form>
-
+	<h1>Welcome to MMU Talent Portal</h1>
+	<p>Your one-stop portal for stuff.</p>
+	<a href="/View/auth/login.php" class="button">Login</a>
+	<a href="/View/auth/register.php" class="button">Register</a>
 </body>
 </html>
