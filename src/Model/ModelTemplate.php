@@ -1,4 +1,7 @@
 <?php
+
+require_once __DIR__ . '/../../config/database.php'; // get the databse connection using $pdo
+
 class ObjectModel {
 	private $db;
 

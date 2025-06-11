@@ -1,3 +1,9 @@
+<?php
+
+echo "[INFO] Loaded register.php <br>";
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -24,7 +30,8 @@
                 echo '</div>';
             }
             ?>
-            <form action="/user/register" method="POST" id="registerForm">
+            <!-- route eeverything back to index.php?page=register with a POST request containing this form details-->
+            <form action="/talent-portal/public/index.php?page=register" method="POST" id="registerForm">
                 <div class="form-group">
                     <label for="name">Name</label>
                     <input type="text" id="name" name="name" value="<?= htmlspecialchars($_POST['name'] ?? '') ?>" required>
@@ -43,7 +50,7 @@
                 </div>
                 <button type="submit" class="btn-submit">Register</button>
             </form>
-            <a href="/auth/login" class="form-link">Already have an account? Login</a>
+            <a href="login.php" class="form-link">Already have an account? Login</a>
         </div>
     </div>
     <script src="/js/script.js"></script> </body>
