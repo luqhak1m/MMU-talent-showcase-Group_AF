@@ -2,6 +2,7 @@
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
 require_once __DIR__ . '/../config/database.php';
+session_start();
 
 if(isset($_GET['page'])){
     $page=$_GET['page'];
@@ -23,6 +24,12 @@ switch ($page) {
 		require_once __DIR__ . '/../src/Controller/AuthController.php';
 		$userController=new UserController($dbCredentials);
 		$userController->login();
+		break;
+
+	case 'profile':
+		require_once __DIR__ . '/../src/Controller/ProfileController.php';
+		$profileController=new ProfileController($dbCredentials);
+		$profileController->viewProfile();
 		break;
 		
 	default:

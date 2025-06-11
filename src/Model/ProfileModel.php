@@ -1,8 +1,16 @@
+<!-- 
+ 
+Author(s): 
+ 
+    1) Luqman
+
+-->
+
 <?php
 
 require_once __DIR__ . '/../../config/database.php'; // get the databse connection using $pdo
 
-class ObjectModel {
+class ProfileModel {
 	private $db;
 
     # Constructor to initialize the database connection
@@ -12,17 +20,7 @@ class ObjectModel {
         $this->db=connectToDatabase($dbCredentials);
 	}
 
-    # Include the functions that interact with the database, CREATE, READ, UPDATE, DELETE (CRUD)
-    # ...
-    public function getData(){
-    }
-
-    public function setData(){
-    }
-
-    public function deleteData(){
-    }
-
-    public function modifyData(){
+    public function viewProfile(){
+        
     }
 }
