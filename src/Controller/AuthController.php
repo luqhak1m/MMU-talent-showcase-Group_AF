@@ -61,8 +61,18 @@ class UserController {
                 ];
 
                 if ($this->userModel->createUser($userData)) {
-                    // Redirect to login page or a success message page
-                    header("Location: /user/login?registration=success");
+
+                    $user = $this->userModel->findUserByEmail($email);
+                    if ($user) {
+                        session_start();
+                        $_SESSION['user_id'] = $user['UserID'];
+                        $_SESSION['username'] = $user['Username'];
+                        $_SESSION['role'] = $user['Role'];
+
+                        // Redirect to dashboard or homepage
+                        header("Location: /talent-portal/public/index.php?page=home");
+                        exit;
+                    }
                     exit;
                 } else {
                     $errors[] = "Registration failed. Please try again.";
@@ -75,6 +85,30 @@ class UserController {
 
     public function login(){
         echo "[INFO] Inside of login() in AuthController.php <br>";
+
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            $email = trim($_POST['email'] ?? '');
+            $user = $this->userModel->findUserByEmail($email);
+            if ($user) {
+                echo "[INFO] Found user during login <br>";
+
+                session_start();
+                $_SESSION['user_id'] = $user['UserID'];
+                $_SESSION['username'] = $user['Username'];
+                $_SESSION['role'] = $user['Role'];
+    
+                // Redirect to dashboard or homepage
+                header("Location: /talent-portal/public/index.php?page=home");
+                exit;
+            }else{
+                echo "[INFO] Cannot find user during login <br>";
+
+            }
+            exit;
+        }
+        include __DIR__ . '/../View/login.php'; 
+
+
     }
 
 }

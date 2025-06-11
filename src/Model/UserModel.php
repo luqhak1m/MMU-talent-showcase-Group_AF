@@ -39,7 +39,9 @@ class UserModel {
     }
 
     public function findUserByEmail($email) {
-        $stmt = $this->db->prepare("SELECT UserID FROM User WHERE Email = :email"); // [cite: 40] (User table, Email column)
+        echo "[INFO] Inside of findUserByEmail() in UserModel.php <br>";
+
+        $stmt = $this->db->prepare("SELECT UserID, Username, Email, `Role` FROM User WHERE Email = :email"); // [cite: 40] (User table, Email column)
         $stmt->bindParam(':email', $email);
         $stmt->execute();
         return $stmt->fetch(PDO::FETCH_ASSOC);

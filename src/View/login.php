@@ -22,7 +22,7 @@
                 echo '<p class="error-message" style="text-align:center;">' . htmlspecialchars($login_error) . '</p>';
             }
             ?>
-            <form action="/user/login" method="POST">
+            <form action="/talent-portal/public/index.php?page=login" method="POST">
                 <div class="form-group">
                     <label for="email">Email</label> <input type="email" id="email" name="email" value="<?= htmlspecialchars($_POST['email'] ?? '') ?>" required>
                 </div>

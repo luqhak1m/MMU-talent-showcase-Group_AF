@@ -1,9 +1,8 @@
 <?php
 
+session_start();
+
 require_once __DIR__ . '/../../public/header.php';
-
-
-
 
 ?>
 <!DOCTYPE html>
@@ -13,10 +12,28 @@ require_once __DIR__ . '/../../public/header.php';
         <link rel="stylesheet" type="text/css" href="css/styles.css">
     </head>
     <body class="index-body">
-        <h1>Welcome to MMU Talent Portal</h1>
+        <h1>
+            
+         <?php
+        if(isset($_SESSION['username'])) {
+            echo "Welcome, " . htmlspecialchars($_SESSION['username']) . "!";
+        }else {
+            echo "Welcome to MMU Talent Portal";
+        }
+        ?>
+
+
+        </h1>
         <p>Your one-stop portal for stuff.</p>
-        <a href="?page=login" class="button">Login</a>
-        <a href="?page=register" class="button">Register</a>
+
+        <?php
+        if(!isset($_SESSION['username'])) {
+            echo '<a href="?page=login" class="button">Login</a>';
+            echo '<a href="?page=register" class="button">Register</a>';
+        }else{
+            echo '<a href="#" class="button">Log Out</a>';
+        }
+        ?>
     </body>
     </html>
 <?php
