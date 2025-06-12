@@ -31,15 +31,20 @@ class ProfileController {
             $bio=$_POST['bio-input'];
             $userID=$_SESSION['user_id'];
 
+            // echo "<pre>";
+            // echo "First Name: " . htmlspecialchars($first_name) . "<br>";
+            // echo "Last Name: " . htmlspecialchars($last_name) . "<br>";
+            // echo "Address: " . htmlspecialchars($address) . "<br>";
+            // echo "Gender: " . htmlspecialchars($gender) . "<br>";
+            // echo "DOB: " . htmlspecialchars($dob) . "<br>";
+            // echo "Phone Number: " . htmlspecialchars($phone_num) . "<br>";
+            // echo "Bio: " . htmlspecialchars($bio) . "<br>";
+            // echo "User ID (from session): " . htmlspecialchars($userID) . "<br>";
+            // echo "</pre>";
+
             // upload pfp
             $upload_dir=__DIR__.'/../../public/images/';
             $user_id=$_SESSION['user_id'];
-
-            $filename=$_FILES['profilepicture-input']['name'];
-            $extension=pathinfo($filename, PATHINFO_EXTENSION);
-            $unique_name=$user_id.'_'.date('YmdHis').'.'.$extension;
-
-            $target_file=$upload_dir.$unique_name;
             if (!empty($_FILES['profilepicture-input']['name'])) {
                 $filename=$_FILES['profilepicture-input']['name'];
                 $extension=pathinfo($filename, PATHINFO_EXTENSION);
@@ -50,14 +55,16 @@ class ProfileController {
                 if (move_uploaded_file($_FILES['profilepicture-input']['tmp_name'], $target_file)) {
                     $profile_picture = $unique_name;
                     echo "[INFO] File uploaded successfully: $profile_picture";
-                    $this->profile_model->updateProfile($user_id, $first_name, $last_name, $address, $gender, $dob, $phone_num, $profile_picture, $bio);
-                    echo "[INFO] Profile Updated";
-                    header("Location: /talent-portal/public/index.php?page=profile");
-
                 } else {
                     echo "[ERROR] Failed to move uploaded file.";
                 }
+            }else{ 
+                $existing_profile = $this->profile_model->fetchProfileDetails($user_id);
+                $profile_picture = $existing_profile['ProfilePicture'] ?? null;
             }
+            $this->profile_model->updateProfile($user_id, $first_name, $last_name, $address, $gender, $dob, $phone_num, $profile_picture, $bio);
+            echo "[INFO] Profile Updated";
+            // header("Location: /talent-portal/public/index.php?page=profile");
         } else {
             echo "[INFO] No POST received.";
         }

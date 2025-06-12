@@ -32,6 +32,9 @@ require_once __DIR__ . '/../../public/header.php';
         
         <div id="profile-field-div">
             <form action="/talent-portal/public/index.php?page=profile" method="POST" enctype="multipart/form-data">
+
+                <!-- pfp that takes a bit of the banner -->
+
                 <div id="profilepicture-div">
                     <label for="profilepicture-input">
                         <img id="profilepicture-preview-img" 
@@ -48,29 +51,39 @@ require_once __DIR__ . '/../../public/header.php';
                     </label>
                     <input type="file" id="profilepicture-input" name="profilepicture-input" accept="image/*" disabled>
                 </div>
-                <label for="fullname-input">First Name</label>
-                <input type="text" name="firstname-input" id="fullname-input" readonly 
-                    value="<?php  
-                    
-                        $first_name = '';
-                        if (isset($fetched_profile['FirstName'])) {
-                            $first_name = htmlspecialchars($fetched_profile['FirstName']);
-                        }
-                        echo $first_name;
-                        
-                    ?>">
 
-                <label for="lastname-input">Last Name</label>
-                <input type="text" name="lastname-input" id="lastname-input" readonly 
-                    value="<?php  
-                        
-                        $last_name = '';
-                        if (isset($fetched_profile['LastName'])) {
-                            $last_name = htmlspecialchars($fetched_profile['LastName']);
-                        }
-                        echo $last_name;
-                        
-                    ?>">
+                <!-- first name and last name side by side -->
+
+                <div id="name-row-div">
+                    <div class="grouped-form-div">
+                        <label for="fullname-input">First Name</label>
+                        <input type="text" name="firstname-input" id="fullname-input" readonly 
+                            value="<?php  
+                            
+                                $first_name = '';
+                                if (isset($fetched_profile['FirstName'])) {
+                                    $first_name = htmlspecialchars($fetched_profile['FirstName']);
+                                }
+                                echo $first_name;
+                                
+                            ?>">
+                    </div>
+                    <div class="grouped-form-div">                    
+                        <label for="lastname-input">Last Name</label>
+                        <input type="text" name="lastname-input" id="lastname-input" readonly 
+                            value="<?php  
+                                
+                                $last_name = '';
+                                if (isset($fetched_profile['LastName'])) {
+                                    $last_name = htmlspecialchars($fetched_profile['LastName']);
+                                }
+                                echo $last_name;
+                                
+                            ?>">
+                    </div>
+
+
+                </div>
 
                 <label for="address-input">Address</label>
                 <input type="text" name="address-input" id="address-input" readonly 
@@ -88,27 +101,25 @@ require_once __DIR__ . '/../../public/header.php';
                 <select name="gender-input" id="gender-input" disabled>
                     <option value="">Select Gender</option>
                     <option 
-                        value="<?php  
-                                
-                                $gender = '';
-                                if (isset($fetched_profile['Gender'])) {
-                                    $gender = htmlspecialchars($fetched_profile['Gender']);
+                        value="M"
+                        <?php
+                            if (isset($fetched_profile['Gender'])) {
+                                if ($fetched_profile['Gender'] === 'M') {
+                                    echo 'selected';
                                 }
-                                echo $gender;
-                                
-                            ?>">
+                            }
+                        ?>>
                     Human Male</option>
 
                     <option 
-                        value="<?php  
-                                
-                                $gender = '';
-                                if (isset($fetched_profile['Gender'])) {
-                                    $gender = htmlspecialchars($fetched_profile['Gender']);
+                        value="F"
+                        <?php
+                            if (isset($fetched_profile['Gender'])) {
+                                if ($fetched_profile['Gender'] === 'F') {
+                                    echo 'selected';
                                 }
-                                echo $gender;
-                                
-                            ?>"> 
+                            }
+                        ?>> 
                     Human Female</option>
                 </select>
 

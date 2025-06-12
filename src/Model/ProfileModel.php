@@ -28,8 +28,11 @@ class ProfileModel {
     }
 
     public function updateProfile($UserID, $FirstName, $LastName, $Address, $Gender, $DOB, $PhoneNum, $ProfilePicture, $Bio){
+        echo "[INFO] ProfileModel.updateProfile(): Executing <br>";
         $sql="UPDATE `Profile` SET FirstName=?, LastName=?, `Address`=?, Gender=?, DOB=?, PhoneNum=?, ProfilePicture=?, Bio=? WHERE UserID = ?";
         $stmt=$this->db->prepare($sql);
         $stmt->execute([$FirstName, $LastName, $Address, $Gender, $DOB, $PhoneNum, $ProfilePicture, $Bio, $UserID]);
+        echo "[INFO] ProfileModel.updateProfile(): Executed <br>";
+
     }
 }
