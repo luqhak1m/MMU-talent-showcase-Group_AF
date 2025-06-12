@@ -10,14 +10,14 @@ class UserController {
     private $userModel;
 
     public function __construct($dbCredentials) {
-        echo "[INFO] Inside of __construct() in AuthController.php <br>";
+        echo "[INFO] UserController.__construct(): Executing <br>";
 
         $this->userModel = new UserModel($dbCredentials);
     }
 
     // public function so we can access outside of this class (in index.php mostly)
     public function register() {
-        echo "[INFO] Inside of register() in AuthController.php <br>";
+        echo "[INFO] Register(): Executing <br>";
 
         $errors = [];
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -59,10 +59,13 @@ class UserController {
                     'Password' => $hashedPassword, 
                     'Role' => 'User',                
                 ];
+                echo "[INFO] Creating User <br>";
 
                 if ($this->userModel->createUser($userData)) {
-
+                    echo "[INFO] Created User <br>";
                     $user = $this->userModel->findUserByEmail($email);
+                    echo "[INFO] Found User".$user."<br>";
+
                     if ($user) {
                         session_start();
                         $_SESSION['user_id'] = $user['UserID'];
@@ -84,7 +87,7 @@ class UserController {
     }
 
     public function login(){
-        echo "[INFO] Inside of login() in AuthController.php <br>";
+        echo "[INFO] UserController.login(): Executing <br>";
 
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $email = trim($_POST['email'] ?? '');

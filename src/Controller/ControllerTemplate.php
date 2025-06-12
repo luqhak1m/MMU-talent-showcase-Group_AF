@@ -9,6 +9,11 @@ require_once __DIR__ . '/Model/ObjectModel.php';
 #                   $functionController = new FunctionNameController();
 #                   $functionController->function1();
 class FunctionNameController {
+	private $object_model;
+
+    public function __construct($dbCredentials){
+        $object_model=new ObjectModel($dbCredentials);
+    }
 	public function function1() {
 
 	} 

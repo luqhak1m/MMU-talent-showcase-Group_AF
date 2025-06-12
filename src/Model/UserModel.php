@@ -2,7 +2,7 @@
 require_once __DIR__ . '/../../config/database.php';
 require_once __DIR__ . '/../../config/database_config.php';
 
-echo "[INFO] Loaded UserModel.php <br>";
+echo "[INFO] UserModel.php: Entered <br>";
 echo gettype($dbCredentials) . "<br>";
 
 
@@ -30,7 +30,7 @@ class UserModel {
             //  $this->db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
             // can use this function to make connection now
-            echo "[INFO] Inside of __construct() in UserModel.php <br>";
+            echo "[INFO] UserModel.__construct(): Executing <br>";
             $this->db=connectToDatabase($dbCredentials);
         } catch (PDOException $e) {
             // Log error or handle appropriately
@@ -39,7 +39,7 @@ class UserModel {
     }
 
     public function findUserByEmail($email) {
-        echo "[INFO] Inside of findUserByEmail() in UserModel.php <br>";
+        echo "[INFO] UserModel.findUserByEmail(): Executing <br>";
 
         $stmt = $this->db->prepare("SELECT UserID, Username, Email, `Role` FROM User WHERE Email = :email"); // [cite: 40] (User table, Email column)
         $stmt->bindParam(':email', $email);
@@ -49,15 +49,17 @@ class UserModel {
 
     public function createUser(array $data) {
 
-        // generate unique 8-character UserID, since the data dictionary uses CHAR(8)
+        // generate unique 8-character UserID, since the data dictionary says to use CHAR(8)
         $userID=substr(str_shuffle(str_repeat('0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ', 8)), 0, 8);
+        
         $data['UserID']=$userID;
-
+        
         // Ensure all necessary fields are present, matching your DB schema.
         // The ERD shows User table with UserID (PK), Username, Email, Password, Role etc. [cite: 37]
         // Data dictionary has UserID, Username, Email, Password, Role, etc. [cite: 40]
         $sql = "INSERT INTO User (UserID, Username, Email, Password, Role) VALUES (:UserID, :Username, :Email, :Password, :Role)";
         $stmt = $this->db->prepare($sql);
+        
         
         $stmt->bindParam(':UserID', $data['UserID']); // generate unique 8-character UserID, since the data dictionary uses CHAR(8)
         $stmt->bindParam(':Username', $data['Username']);
@@ -66,7 +68,16 @@ class UserModel {
         $stmt->bindParam(':Role', $data['Role']); // Default 'User' [cite: 40]
         
         try {
-            return $stmt->execute();
+            $stmt->execute();
+            $profileID = substr(str_shuffle(str_repeat('0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ', 8)), 0, 8);
+
+            // immediately create an empty profile
+            echo "[INFO] UserModel.CreateUser(): Executing <br>";
+            $sql_profile = "INSERT INTO Profile (ProfileID, UserID) VALUES (?, ?)";
+            $stmt_profile = $this->db->prepare($sql_profile);
+            $stmt_profile->execute([$profileID, $userID]);
+            echo "[INFO] UserModel.CreateUser(): Executed <br>";
+            return true;
         } catch (PDOException $e) {
             // Log error: $e->getMessage();
             echo "[EXCEPTION] " . $e->getMessage() . "<br>";

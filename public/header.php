@@ -26,8 +26,12 @@
 					<?php
 					if(isset($_SESSION['username'])) {
 						$username=$_SESSION['username'];
-						echo $username;
-						echo '<a href="/talent-portal/public/index.php?page=profile"><img src="images/profile.png" class="navbar-prof" alt="profile"></a>';
+						$profilePicturePath = 'images/profile.png'; // default image
+                        if (!empty($fetched_profile['ProfilePicture'])) {
+                            $profilePicturePath = 'images/' . htmlspecialchars($fetched_profile['ProfilePicture']);
+                        }    
+                                            
+						echo '<a href="/talent-portal/public/index.php?page=profile"><img src="'.$profilePicturePath.'" class="navbar-prof" alt="profile"></a>';
 					}else{
 						echo "no session";
 						echo '<a href="#"><img src="images/profile.png" class="navbar-prof" alt="profile"></a>';
