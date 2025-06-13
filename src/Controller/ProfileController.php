@@ -3,6 +3,7 @@
 
 # Import the necessary MODEL files
 require_once __DIR__ . '/../Model/ProfileModel.php';
+require_once __DIR__ . '/../../includes/MediaUpload.inc.php';
 
 # Encapsulate the controller logic in a class
 # Name the class according to the function it serves
@@ -43,28 +44,17 @@ class ProfileController {
             // echo "</pre>";
 
             // upload pfp
-            $upload_dir=__DIR__.'/../../public/images/';
             $user_id=$_SESSION['user_id'];
-            if (!empty($_FILES['profilepicture-input']['name'])) {
-                $filename=$_FILES['profilepicture-input']['name'];
-                $extension=pathinfo($filename, PATHINFO_EXTENSION);
-                $unique_name=$user_id.'_'.date('YmdHis').'.'.$extension;
+            $profile_picture=uploadMedia($user_id, "profilepicture-input"); // params: user_id and htmp input id
 
-                $target_file = $upload_dir . $unique_name;
-
-                if (move_uploaded_file($_FILES['profilepicture-input']['tmp_name'], $target_file)) {
-                    $profile_picture = $unique_name;
-                    echo "[INFO] File uploaded successfully: $profile_picture";
-                } else {
-                    echo "[ERROR] Failed to move uploaded file.";
-                }
-            }else{ 
+            if (!$profile_picture){
                 $existing_profile = $this->profile_model->fetchProfileDetails($user_id);
                 $profile_picture = $existing_profile['ProfilePicture'] ?? null;
             }
+
             $this->profile_model->updateProfile($user_id, $first_name, $last_name, $address, $gender, $dob, $phone_num, $profile_picture, $bio);
             echo "[INFO] Profile Updated";
-            // header("Location: /talent-portal/public/index.php?page=profile");
+            header("Location: /talent-portal/public/index.php?page=profile");
         } else {
             echo "[INFO] No POST received.";
         }

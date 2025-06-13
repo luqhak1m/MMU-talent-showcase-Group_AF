@@ -28,7 +28,7 @@
 						$username=$_SESSION['username'];
 						$profilePicturePath = 'images/profile.png'; // default image
                         if (!empty($fetched_profile['ProfilePicture'])) {
-                            $profilePicturePath = 'images/' . htmlspecialchars($fetched_profile['ProfilePicture']);
+                            $profilePicturePath = 'uploads/' . htmlspecialchars($fetched_profile['ProfilePicture']);
                         }    
                                             
 						echo '<a href="/talent-portal/public/index.php?page=profile"><img src="'.$profilePicturePath.'" class="navbar-prof" alt="profile"></a>';
