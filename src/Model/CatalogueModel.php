@@ -20,7 +20,7 @@ class CatalogueModel {
         // echo "[INFO] CatalogueModel.createCatalogue(): Executing <br>";
         $CatalogueID = generateID();
         $sql = "INSERT INTO Catalogue (CatalogueID, UserID) VALUES (?, ?)";
-        $stmt = $this->pdo->prepare($sql_catalogue);
+        $stmt = $this->pdo->prepare($sql);
         $stmt->execute([$CatalogueID, $UserID]);
         // echo "[INFO] CatalogueModel.createCatalogue(): Executed <br>";
     }

@@ -49,7 +49,7 @@ require_once __DIR__ . '/../../public/header.php';
     </div>
     <div class="add-talent-button-div">
         <a href="?page=add-talent-form" class="button">Add Talent</a>
-        <a href="" class="button">Edit Talent</a>
+        <button onclick="editMode()" class="button">Edit Talent</button>
     </div>
     <div class="talent-card-container-div">
         <div class="talent-search-results-grid">
@@ -61,6 +61,7 @@ require_once __DIR__ . '/../../public/header.php';
                     $talent_img_path = 'uploads/'.htmlspecialchars($talent['Content']);
                 }    
                 
+                echo '<div id="talent-container">';
                 echo '<a href="index.php?page=talent&id='.htmlspecialchars($talent['TalentID']).'" class="talent-search-result-card">';
                 echo '<button class="delete-button" data-id="'.htmlspecialchars($talent['TalentID']).'" type="button">&times;</button>';
                 echo '<div class="talent-img-container-div">';
@@ -71,6 +72,7 @@ require_once __DIR__ . '/../../public/header.php';
                 echo '<p>'.$talent['TalentDescription'].'</p>';
                 echo '</div>';
                 echo '</a>';
+                echo '</div>';
             }
             ?>
         </div>

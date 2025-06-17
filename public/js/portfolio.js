@@ -1,5 +1,7 @@
+console.log("portfolio.js loaded");
 
 function editMode(){
-    const element = document.getElementById('delete-button');
-
+    alert("hi!")
+    const talent_div=document.getElementById('talent-container');
+    talent_div.classList.toggle('edit-mode');
 }

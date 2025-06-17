@@ -15,7 +15,7 @@ require_once __DIR__ . '/../../public/header.php';
     <title>Document</title>
 </head>
 <body>
-    <form action="?page=talent" method="POST" enctype="multipart/form-data">
+    <form action="index.php?page=talent" method="POST" enctype="multipart/form-data">
        
         <label for="TalentTitle">Talent Title:</label><br>
         <input type="text" id="TalentTitle" name="TalentTitle" maxlength="255" required><br><br>
@@ -29,15 +29,13 @@ require_once __DIR__ . '/../../public/header.php';
         <label for="Content">Upload Media (Image, Video, or Audio):</label><br>
         <input type="file" id="Content" name="Content" accept="image/*,video/*,audio/*"><br><br>
 
-        <input type="submit" value="Submit">
-
         <label for="TalentLikes">Talent Likes:</label><br>
         <input type="number" id="TalentLikes" name="TalentLikes" min="0" value="0"><br><br>
 
         <label for="Category">Category:</label><br>
         <input type="text" id="Category" name="Category" maxlength="50"><br><br>
 
-        <input type="submit" value="Submit Talent">
+        <input type="submit" value="Submit">
     </form>
 
 </body>

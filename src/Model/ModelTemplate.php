@@ -3,13 +3,13 @@
 require_once __DIR__ . '/../../config/database.php'; // get the databse connection using $pdo
 
 class ObjectModel {
-	private $db;
+	private $pdo;
 
     # Constructor to initialize the database connection
     # Reference: https://www.php.net/manual/en/language.oop5.decon.php
     # To initialize Model object like this: $objectModel = new ObjectModel();
     public function __construct() {
-        $this->db=connectToDatabase($dbCredentials);
+        $this->pdo=connectToDatabase($pdo);
 	}
 
     # Include the functions that interact with the database, CREATE, READ, UPDATE, DELETE (CRUD)

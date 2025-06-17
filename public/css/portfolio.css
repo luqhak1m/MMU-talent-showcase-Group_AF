@@ -147,8 +147,7 @@ body{
     font-size: 1.2em;
     font-weight: bold;
     cursor: pointer;
-    border-radius: 50%;
-    background-color: transparent;
+    background-color: #d8d8d8;
 }
 
 .edit-mode .delete-button {

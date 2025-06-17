@@ -32,7 +32,7 @@
                 </div>
                 <button type="submit" class="btn-submit">Login</button>
             </form>
-            <a href="register.php" class="form-link">Don't have an account? Register</a>
+            <a href="index.php?page=register" class="form-link">Don't have an account? Register</a>
             </div>
     </div>
 </body>

@@ -52,7 +52,7 @@ class UserModel {
     public function findUserByEmail($email) {
         echo "[INFO] UserModel.findUserByEmail(): Executing <br>";
 
-        $stmt = $this->pdo->prepare("SELECT UserID, Username, Email, `Role` FROM User WHERE Email = :email"); // [cite: 40] (User table, Email column)
+        $stmt = $this->pdo->prepare("SELECT UserID, Username, Email, `Role`, `Password` FROM User WHERE Email = :email"); // [cite: 40] (User table, Email column)
         $stmt->bindParam(':email', $email);
         $stmt->execute();
         return $stmt->fetch(PDO::FETCH_ASSOC);

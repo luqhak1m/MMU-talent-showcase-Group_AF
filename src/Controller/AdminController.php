@@ -7,10 +7,10 @@ class AdminController {
     private $userModel;
     private $profileModel; 
 
-    public function __construct($dbCredentials) {
-        $this->userModel = new UserModel($dbCredentials);
+    public function __construct($pdo) {
+        $this->userModel = new UserModel($pdo);
         // This line was missing. It creates the ProfileModel.
-        $this->profileModel = new ProfileModel($dbCredentials);
+        $this->profileModel = new ProfileModel($pdo);
     }
 
     public function login() {

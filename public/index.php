@@ -32,7 +32,7 @@ switch ($page) {
 
 	case 'logout':
         require_once __DIR__ . '/../src/Controller/AuthController.php';
-        $userController = new UserController($dbCredentials);
+        $userController = new UserController($pdo);
         $userController->logout();
         break;
 		
@@ -49,25 +49,25 @@ switch ($page) {
 
 	case 'admin_login':
         require_once __DIR__ . '/../src/Controller/AdminController.php';
-        $adminController = new AdminController($dbCredentials);
+        $adminController = new AdminController($pdo);
         $adminController->login();
         break;
 
     case 'admin_dashboard':
         require_once __DIR__ . '/../src/Controller/AdminController.php';
-        $adminController = new AdminController($dbCredentials);
+        $adminController = new AdminController($pdo);
         $adminController->dashboard();
         break;
 
     case 'admin_view_profile':
         require_once __DIR__ . '/../src/Controller/AdminController.php';
-        $adminController = new AdminController($dbCredentials);
+        $adminController = new AdminController($pdo);
         $adminController->viewUserProfile();
         break;
 
     case 'admin_edit_profile':
         require_once __DIR__ . '/../src/Controller/AdminController.php';
-        $adminController = new AdminController($dbCredentials);
+        $adminController = new AdminController($pdo);
         $adminController->editUserProfile();
         break;
 		break;

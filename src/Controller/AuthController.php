@@ -97,6 +97,7 @@ class UserController {
             $email = trim($_POST['email'] ?? '');
             $password = $_POST['password'] ?? '';
             $user = $this->userModel->findUserByEmail($email);
+            var_dump($user);
 
             // Check if user exists AND the password is correct
             if ($user && password_verify($password, $user['Password'])) {

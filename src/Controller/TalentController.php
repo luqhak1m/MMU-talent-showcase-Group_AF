@@ -57,6 +57,7 @@ class TalentController {
 
             $content_filename=uploadMedia($UserID, 'Content');
             $this->talent_model->createTalent($UserID, $CatalogueID, $TalentTitle, $TalentDescription, $Price, $content_filename, $TalentLikes, $Category);
+            header("Location: /talent-portal/public/index.php?page=portfolio");
         }else{
             # echo "[INFO] No talent submission POST received<br>";
         }
