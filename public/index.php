@@ -1,4 +1,6 @@
 <?php
+$protocol = isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http";
+define('BASE_URL', $protocol . '://' . $_SERVER['HTTP_HOST'] . dirname($_SERVER['SCRIPT_NAME']) . '/');
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
 require_once __DIR__ . '/../config/database.php';
@@ -27,13 +29,13 @@ switch ($page) {
 		$userController=new UserController($pdo);
 		$userController->login();
 		break;
-		
-	case 'logout':
-		require_once __DIR__ . '/../src/Controller/AuthController.php';
-		$userController=new UserController($pdo);
-		$userController->logout();
-		break;
 
+	case 'logout':
+        require_once __DIR__ . '/../src/Controller/AuthController.php';
+        $userController = new UserController($dbCredentials);
+        $userController->logout();
+        break;
+		
 	case 'profile':
 		require_once __DIR__ . '/../src/Controller/ProfileController.php';
 		$profileController=new ProfileController($pdo);
@@ -44,10 +46,30 @@ switch ($page) {
 		$catalogueController=new CatalogueController($pdo);
 		$catalogueController->viewCatalogue();
 		break;
-	case 'profile':
-		require_once __DIR__ . '/../src/Controller/ProfileController.php';
-		$profileController=new ProfileController($pdo);
-		$profileController->viewProfile();
+
+	case 'admin_login':
+        require_once __DIR__ . '/../src/Controller/AdminController.php';
+        $adminController = new AdminController($dbCredentials);
+        $adminController->login();
+        break;
+
+    case 'admin_dashboard':
+        require_once __DIR__ . '/../src/Controller/AdminController.php';
+        $adminController = new AdminController($dbCredentials);
+        $adminController->dashboard();
+        break;
+
+    case 'admin_view_profile':
+        require_once __DIR__ . '/../src/Controller/AdminController.php';
+        $adminController = new AdminController($dbCredentials);
+        $adminController->viewUserProfile();
+        break;
+
+    case 'admin_edit_profile':
+        require_once __DIR__ . '/../src/Controller/AdminController.php';
+        $adminController = new AdminController($dbCredentials);
+        $adminController->editUserProfile();
+        break;
 		break;
 
 	case 'talent':
