@@ -87,31 +87,55 @@ class UserController {
     }
 
     public function login(){
-        echo "[INFO] UserController.login(): Executing <br>";
+        $login_error = null;
 
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $email = trim($_POST['email'] ?? '');
+            $password = $_POST['password'] ?? '';
             $user = $this->userModel->findUserByEmail($email);
-            if ($user) {
-                echo "[INFO] Found user during login <br>";
 
-                session_start();
+            // Check if user exists AND the password is correct
+            if ($user && password_verify($password, $user['Password'])) {
+                
+                if (session_status() == PHP_SESSION_NONE) {
+                    session_start();
+                }
+                
                 $_SESSION['user_id'] = $user['UserID'];
                 $_SESSION['username'] = $user['Username'];
                 $_SESSION['role'] = $user['Role'];
-    
-                // Redirect to dashboard or homepage
-                header("Location: /talent-portal/public/index.php?page=home");
+
+                if ($user['Role'] === 'Admin') {
+                    $_SESSION['is_admin'] = true;
+                    header("Location: /talent-portal/public/index.php?page=admin_dashboard");
+                } else {
+                    header("Location: /talent-portal/public/index.php?page=home");
+                }
                 exit;
-            }else{
-                echo "[INFO] Cannot find user during login <br>";
 
+            } else {
+                // If login fails, set an error message.
+                $login_error = "Invalid email or password.";
             }
-            exit;
         }
-        include __DIR__ . '/../View/login.php'; 
+        include __DIR__ . '/../View/login.php';
+    }
 
+    public function logout() {
+        // Ensure the session is started before trying to modify it
+        if (session_status() == PHP_SESSION_NONE) {
+            session_start();
+        }
 
+        // Unset all session variables
+        $_SESSION = array();
+
+        // Destroy the session completely
+        session_destroy();
+
+        // Redirect the user to the homepage 
+        header("Location: " . BASE_URL . "index.php");
+        exit;
     }
 
 }

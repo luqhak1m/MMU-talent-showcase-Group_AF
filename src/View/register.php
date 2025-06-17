@@ -10,7 +10,7 @@ echo "[INFO] Loaded register.php <br>";
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Register - MMU Talent Showcase</title>
-    <link rel="stylesheet" href="/css/styles.css"> </head>
+    <link rel="stylesheet" href="/.../public/css/styles.css"> </head> </head>
 <body>
     <div class="auth-container">
         <div class="auth-image-section">

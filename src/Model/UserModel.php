@@ -85,4 +85,10 @@ class UserModel {
             return false;
         }
     }
+    public function getAllUsers() {
+        // Simple query to get all users, you can add ordering
+        $stmt = $this->db->prepare("SELECT UserID, Username, Email, Role FROM User ORDER BY Username");
+        $stmt->execute();
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
 }
