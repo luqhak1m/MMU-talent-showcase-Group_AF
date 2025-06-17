@@ -48,7 +48,7 @@ class TalentModel {
         return $result;
     }
 
-    public function deleteTalent($TalentID){
+    public function deleteTalentByID($TalentID){
         // echo "[INFO] TalentModel.deleteTalent(): Executing <br>";
         $sql="DELETE FROM Talent WHERE TalentID=?";
         $stmt=$this->pdo->prepare($sql);

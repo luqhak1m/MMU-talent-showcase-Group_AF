@@ -81,7 +81,14 @@ class TalentController {
     }
 
     public function deleteTalent($TalentID){
-        $deleted_talent_status=$this->talent_model->deleteTalent($TalentID);
-        require_once __DIR__ . '/../View/talent.php';
+        $deleted_talent_status=$this->talent_model->deleteTalentByID($TalentID);
+        if(isset($_SESSION['user_id'])) {
+            $UserID=$_SESSION['user_id'];
+            $fetched_talent=$this->talent_model->fetchTalentByUserID($UserID);
+            # echo "[INFO] Found ".count($fetched_talent)." talent(s) for user ".$_SESSION['username']."<br>";
+        }else {
+            # echo "[INFO] No session";
+        }        
+        require_once __DIR__ . '/../View/portfolio.php';
     }
 }

@@ -1,7 +1,8 @@
-console.log("portfolio.js loaded");
+
 
 function editMode(){
-    alert("hi!")
-    const talent_div=document.getElementById('talent-container');
-    talent_div.classList.toggle('edit-mode');
+    const containers = document.querySelectorAll('.talent-container');
+    containers.forEach(container => {
+        container.classList.add("edit-mode");
+    });
 }

@@ -12,7 +12,7 @@ require_once __DIR__ . '/../../public/header.php';
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" type="text/css" href="/talent-portal/public/css/portfolio.css?v=<?= time() ?>">
-    <script src="/talent-portal/public/js/portfolio.js"></script>   
+    <script src="/talent-portal/public/js/portfolio.js?v=<?= time() ?>"></script>
     <title>Portfolio</title>
 </head>
 <body>
@@ -61,9 +61,9 @@ require_once __DIR__ . '/../../public/header.php';
                     $talent_img_path = 'uploads/'.htmlspecialchars($talent['Content']);
                 }    
                 
-                echo '<div id="talent-container">';
+                echo '<div class="talent-container">';
+                echo '<a class="delete-button" href="?page=talent&id=' . htmlspecialchars($talent['TalentID']) . '&action=del">&times;</a>';
                 echo '<a href="index.php?page=talent&id='.htmlspecialchars($talent['TalentID']).'" class="talent-search-result-card">';
-                echo '<button class="delete-button" data-id="'.htmlspecialchars($talent['TalentID']).'" type="button">&times;</button>';
                 echo '<div class="talent-img-container-div">';
                 echo '<img src="'.$talent_img_path.'" alt="'.$talent['TalentTitle'].'">';
                 echo '</div>';

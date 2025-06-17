@@ -143,13 +143,17 @@ body{
 
 .delete-button {
     display: none;
+    position: absolute;
+    margin-left: 0.5em;
     color: red;
     font-size: 1.2em;
     font-weight: bold;
     cursor: pointer;
-    background-color: #d8d8d8;
+    background-color: transparent;
+    width: 3em;
 }
 
 .edit-mode .delete-button {
     display: block;
 }
+

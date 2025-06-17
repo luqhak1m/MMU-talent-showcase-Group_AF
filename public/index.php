@@ -70,7 +70,6 @@ switch ($page) {
         $adminController = new AdminController($pdo);
         $adminController->editUserProfile();
         break;
-		break;
 
 	case 'talent':
 		require_once __DIR__ . '/../src/Controller/TalentController.php';
@@ -78,9 +77,15 @@ switch ($page) {
 
 		if(isset($_GET['id'])){ // index.php?page=X&id=Y
 			$talent_id=$_GET['id'];
+			if($_GET['action']=="del"){
+				$talentController->deleteTalent($talent_id);
+				break;
+			}
 			$talentController->viewSpecificTalent($talent_id);
+			break;
 		}else{
 			$talentController->viewTalent();
+			break;
 		}
 		break;
 		
