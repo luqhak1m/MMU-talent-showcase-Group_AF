@@ -14,8 +14,8 @@ class ProfileController {
 
     private $profile_model;
 
-    public function __construct($dbCredentials){
-        $this->profile_model=new ProfileModel($dbCredentials);
+    public function __construct($pdo){
+        $this->profile_model=new ProfileModel($pdo);
     }
 
 	public function viewProfile(){
@@ -45,10 +45,10 @@ class ProfileController {
 
             // upload pfp
             $user_id=$_SESSION['user_id'];
-            $profile_picture=uploadMedia($user_id, "profilepicture-input"); // params: user_id and htmp input id
+            $profile_picture=uploadMedia($user_id, "profilepicture-input"); // params: user_id and html input id
 
             if (!$profile_picture){
-                $existing_profile = $this->profile_model->fetchProfileDetails($user_id);
+                $existing_profile = $this->profile_model->fetchProfile($user_id);
                 $profile_picture = $existing_profile['ProfilePicture'] ?? null;
             }
 
@@ -61,7 +61,7 @@ class ProfileController {
 
         if(isset($_SESSION['user_id'])) {
             $UserID=$_SESSION['user_id'];
-            $fetched_profile=$this->profile_model->fetchProfileDetails($UserID);
+            $fetched_profile=$this->profile_model->fetchProfile($UserID);
             echo "[INFO] Found profile for user ".$_SESSION['username']."<br>";
 
         }else {

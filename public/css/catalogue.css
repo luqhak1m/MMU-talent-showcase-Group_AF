@@ -1,0 +1,99 @@
+body{
+    font-family: Arial, sans-serif;
+    /* border: 3px solid #73AD21; */
+
+}
+
+.search-filter-container-div{
+  display: flex;
+  gap: 1em;
+}
+
+.search-wrapper-div{
+  display: flex;
+  align-items: center;
+  margin-left: 40%;
+}
+
+.search-field-div, .filter-div{
+  min-width: 200px;
+}
+
+.search-input{
+  width: 20em;
+  height: 3em;
+  border-radius: 20px;
+  border: 1px solid #e7e7e7;
+}
+
+.filter-dropdown{
+  width: 10em;
+}
+
+/* talent grid */
+
+.talent-search-results-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(21em, 1fr));
+  gap: 1.5em;
+  padding: 1em;
+  justify-items: center;
+
+}
+
+.name-price-pfp-container-div{
+    display: flex;
+    justify-content: space-between;
+    /* border: 3px solid #73AD21; */
+
+}
+
+/* .image-name-price-pfp-container-div{
+    border: 3px solid #73AD21;
+}
+
+.mini-profilepicture-div{
+    border: 3px solid #73AD21;
+
+} */
+
+.mini-profilepicture-img{
+    width: 3em;
+    height: 3em;
+    border-radius: 50%;
+}
+
+.talent-card-container-div{
+    height: 50em;
+}
+
+.talent-search-result-card {
+  display: block; /* Add this */
+  text-decoration: none; 
+  color: inherit;   
+  background: #f9f9f9;
+  border: 1px solid #ddd;
+  padding: 1em;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  height: 18em;
+}
+
+.talent-search-result-card{
+    border: 3px solid #e7e7e7;
+    border-radius: 16px;
+}
+
+.talent-search-result-card:hover{
+    background-color: #efefef;
+}
+
+.talent-img{
+    padding: 10px 10px 10px 10px;
+    width: 20em;
+    height: 12em;
+    border-radius: 20px;
+}
+
+
+

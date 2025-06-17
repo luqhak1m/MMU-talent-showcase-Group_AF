@@ -23,3 +23,24 @@ CREATE TABLE IF NOT EXISTS Profile(
     Bio VARCHAR(255),
     FOREIGN KEY (UserID) REFERENCES User(UserID)
 )
+
+CREATE TABLE IF NOT EXISTS Catalogue(
+    CatalogueID CHAR(8) PRIMARY KEY,
+    UserID CHAR(8),
+    FOREIGN KEY (UserID) REFERENCES User(UserID),
+)
+
+CREATE TABLE IF NOT EXISTS Talent(
+
+    TalentID CHAR(8) PRIMARY KEY,
+    UserID CHAR(8),
+    CatalogueID CHAR(8),
+    TalentTitle VARCHAR(255),
+    TalentDescription TEXT,
+    Price DECIMAL(10,2),
+    Content VARCHAR(255),
+    TalentLikes INT,
+    Category VARCHAR(50),
+    FOREIGN KEY (UserID) REFERENCES User(UserID),
+    FOREIGN KEY (CatalogueID) REFERENCES Catalogue(CatalogueID)
+)

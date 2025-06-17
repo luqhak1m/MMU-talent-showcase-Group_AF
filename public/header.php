@@ -4,6 +4,7 @@
 <head>
 	<title>MMU Talent Showcase Portal</title>
 	<link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" type="text/css" href="/talent-portal/public/css/header.css?v=<?= time() ?>">
 	<script src="js/main.js" defer></script>
 </head>
 <body>
@@ -11,8 +12,9 @@
 		<nav>
 			<div class="navbar">
 				<div class="navbar-left">
-					<h1>Website Name</h1>
-					<a href="/catalogue">Catalogue</a> 
+					<a href="index.php?page=home" class="website-title"><h1>Website Name</h1></a>
+					<a href="index.php?page=catalogue">Catalogue</a> 	
+					<a href="index.php?page=talent">Portfolio</a> 	
 					<a href="/forum">Forum</a>
 					<a href="/leaderboard">Leaderboard</a> 
 					<a href="/feedback">Feedback</a>
@@ -33,7 +35,6 @@
                                             
 						echo '<a href="/talent-portal/public/index.php?page=profile"><img src="'.$profilePicturePath.'" class="navbar-prof" alt="profile"></a>';
 					}else{
-						echo "no session";
 						echo '<a href="#"><img src="images/profile.png" class="navbar-prof" alt="profile"></a>';
 					}
 				

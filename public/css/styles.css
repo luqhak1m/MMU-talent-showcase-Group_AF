@@ -43,7 +43,7 @@ h1 {
 	gap: 15px;
 }
 
-.navbar h1 {
+.navbar h1{
 	font-size: 30px;
 	font-weight: bold;
 	color: #5D5A88;
@@ -65,6 +65,8 @@ h1 {
 .navbar-prof {
 	width: 50px;
 	height: 50px;
+	border-radius: 50%; 
+
 }
 
 

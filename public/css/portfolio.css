@@ -1,0 +1,156 @@
+body{
+    font-family: Arial, sans-serif;
+    /* border: 3px solid #73AD21; */
+
+}
+
+#banner-div{
+    height: 14em;
+}
+
+#white-banner-div{
+    background-color: #ffffff;
+    height: 7em;
+
+}
+
+#purple-banner-div{
+    background-color: #E7E6F2;
+    height: 7em;
+ 
+}
+
+
+#profilepicture-preview-img{
+
+    width: 7em; 
+    height: 7em; 
+    border-radius: 50%; 
+    cursor: pointer;
+    /* margin-left: 50px;
+    margin-top: 80px; */
+}
+
+#profilepicture-div{ 
+    position: absolute;
+    top: 7.5em;
+    margin-left: 3em;
+    text-align: center;
+}
+
+
+#price-and-details-div{
+    position: relative;
+    left: 11em;
+    width: 40em;
+    padding-top: 1em;
+
+}
+
+#user-bio-p{
+    font-size: 13px;
+    color: #707070;
+}
+
+#likes-and-followers-div img{
+    width: 2em; 
+    height: 2em; 
+    margin-left: 1em;
+}
+
+
+#likes-and-followers-div p{
+    margin-top: 0.5em;
+}
+
+#likes-and-followers-div{
+    position: relative;
+    float: right;
+    top: 2em;
+    margin-right: 5em;
+    display: flex;    
+    /* border: 3px solid #73AD21; */
+}
+
+.follow-button-div{
+    float: right;
+    margin-top: 2.5em;
+    margin-right: 4em;
+}
+
+#catalogue-follow-user-button{
+    border-radius: 20px;
+    background-color: transparent;
+    border: 2px solid #5D5A88;
+    color: #5D5A88;
+}
+
+/* talent card row x column grid */
+
+.talent-card-container-div{
+    height: 50em;
+}
+
+.talent-search-results-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(20em, 1fr));
+  gap: 1.5em;
+  padding: 1em;
+  justify-items: center;
+}
+
+.talent-search-result-card {
+  display: block; /* Add this */
+  text-decoration: none; /* Optional: Remove underline */
+  color: inherit;         /* Optional: Preserve text color */
+  background: #f9f9f9;
+  border: 1px solid #ddd;
+  padding: 1em;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.talent-search-result-card{
+    border: 3px solid #e7e7e7;
+    border-radius: 20px;
+}
+
+.talent-search-result-card:hover{
+    background-color: #efefef;
+}
+
+.talent-search-result-card img{
+    padding: 10px 10px 10px 10px;
+    width: 20em;
+    height: 12em;
+    border-radius: 20px;
+}
+
+.talent-title-description-div h2{
+    padding-top: 10px;
+    font-size: 20px;
+}
+
+.talent-title-description-div p {
+    padding-top: 10px;
+    font-size: 15px;
+}
+
+.add-talent-button-div{
+    display: flex;
+    justify-content: flex-end;
+}
+
+.delete-button {
+    display: none;
+    color: red;
+    font-size: 1.2em;
+    font-weight: bold;
+    cursor: pointer;
+    border-radius: 50%;
+    background-color: transparent;
+}
+
+.edit-mode .delete-button {
+    display: block;
+}

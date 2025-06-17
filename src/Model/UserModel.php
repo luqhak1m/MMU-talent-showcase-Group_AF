@@ -1,6 +1,9 @@
 <?php // src/Model/UserModel.php
 require_once __DIR__ . '/../../config/database.php';
 require_once __DIR__ . '/../../config/database_config.php';
+require_once __DIR__ . '/../../includes/ID-Generator.inc.php';
+require_once __DIR__ . '/ProfileModel.php';
+require_once __DIR__ . '/CatalogueModel.php';
 
 echo "[INFO] UserModel.php: Entered <br>";
 echo gettype($dbCredentials) . "<br>";
@@ -8,9 +11,15 @@ echo gettype($dbCredentials) . "<br>";
 
 // Assuming a DB connection class or direct PDO usage
 class UserModel {
-    private $db; // Assume this is your PDO database connection object
+    private $pdo; // Assume this is your PDO database connection object
 
-    public function __construct($dbCredentials) {
+    // to use other module's model function
+
+    private $profile_model;
+    private $catalogue_model;
+    
+
+    public function __construct($pdo, ProfileModel $profile_model, CatalogueModel $catalogue_model) {
         // Initialize DB connection (e.g., using your database.php config)
         // $this->db = new PDO("mysql:host=DB_HOST;dbname=DB_NAME", DB_USER, DB_PASS);
         // For example:
@@ -31,7 +40,9 @@ class UserModel {
 
             // can use this function to make connection now
             echo "[INFO] UserModel.__construct(): Executing <br>";
-            $this->db=connectToDatabase($dbCredentials);
+            $this->pdo=$pdo;
+            $this->profile_model=$profile_model;
+            $this->catalogue_model=$catalogue_model;
         } catch (PDOException $e) {
             // Log error or handle appropriately
             die("Database connection failed: " . $e->getMessage());
@@ -41,7 +52,7 @@ class UserModel {
     public function findUserByEmail($email) {
         echo "[INFO] UserModel.findUserByEmail(): Executing <br>";
 
-        $stmt = $this->db->prepare("SELECT UserID, Username, Email, `Role` FROM User WHERE Email = :email"); // [cite: 40] (User table, Email column)
+        $stmt = $this->pdo->prepare("SELECT UserID, Username, Email, `Role` FROM User WHERE Email = :email"); // [cite: 40] (User table, Email column)
         $stmt->bindParam(':email', $email);
         $stmt->execute();
         return $stmt->fetch(PDO::FETCH_ASSOC);
@@ -50,7 +61,7 @@ class UserModel {
     public function createUser(array $data) {
 
         // generate unique 8-character UserID, since the data dictionary says to use CHAR(8)
-        $userID=substr(str_shuffle(str_repeat('0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ', 8)), 0, 8);
+        $userID=generateID();
         
         $data['UserID']=$userID;
         
@@ -58,7 +69,7 @@ class UserModel {
         // The ERD shows User table with UserID (PK), Username, Email, Password, Role etc. [cite: 37]
         // Data dictionary has UserID, Username, Email, Password, Role, etc. [cite: 40]
         $sql = "INSERT INTO User (UserID, Username, Email, Password, Role) VALUES (:UserID, :Username, :Email, :Password, :Role)";
-        $stmt = $this->db->prepare($sql);
+        $stmt = $this->pdo->prepare($sql);
         
         
         $stmt->bindParam(':UserID', $data['UserID']); // generate unique 8-character UserID, since the data dictionary uses CHAR(8)
@@ -69,13 +80,16 @@ class UserModel {
         
         try {
             $stmt->execute();
-            $profileID = substr(str_shuffle(str_repeat('0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ', 8)), 0, 8);
+            echo "[INFO] UserModel.CreateUser(): Executing <br>";
 
             // immediately create an empty profile
-            echo "[INFO] UserModel.CreateUser(): Executing <br>";
-            $sql_profile = "INSERT INTO Profile (ProfileID, UserID) VALUES (?, ?)";
-            $stmt_profile = $this->db->prepare($sql_profile);
-            $stmt_profile->execute([$profileID, $userID]);
+
+            $this->profile_model->createProfile($userID);
+
+            // immediately create an empty catalogue
+
+            $this->catalogue_model->createCatalogue($userID);
+
             echo "[INFO] UserModel.CreateUser(): Executed <br>";
             return true;
         } catch (PDOException $e) {

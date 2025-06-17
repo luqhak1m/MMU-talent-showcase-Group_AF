@@ -11,8 +11,8 @@ require_once __DIR__ . '/Model/ObjectModel.php';
 class FunctionNameController {
 	private $object_model;
 
-    public function __construct($dbCredentials){
-        $object_model=new ObjectModel($dbCredentials);
+    public function __construct($pdo){ // takes pdo instance as param to avoid reconnecting for every new model, no need to modify
+        $object_model=new ObjectModel($pdo);
     }
 	public function function1() {
 

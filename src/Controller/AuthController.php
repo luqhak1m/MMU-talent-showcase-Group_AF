@@ -2,6 +2,8 @@
 require_once __DIR__ . '/../../config/database.php';
 require_once __DIR__ . '/../../config/database_config.php';
 require_once __DIR__ . '/../Model/UserModel.php'; 
+require_once __DIR__ . '/../Model/ProfileModel.php'; 
+require_once __DIR__ . '/../Model/CatalogueModel.php'; 
 echo "[INFO] Loaded AuthController.php <br>";
 
 
@@ -9,10 +11,12 @@ class UserController {
 
     private $userModel;
 
-    public function __construct($dbCredentials) {
+    public function __construct($pdo) {
         echo "[INFO] UserController.__construct(): Executing <br>";
 
-        $this->userModel = new UserModel($dbCredentials);
+        $profile_model=new ProfileModel($pdo);
+        $catalogue_model=new CatalogueModel($pdo);
+        $this->userModel = new UserModel($pdo, $profile_model, $catalogue_model);
     }
 
     // public function so we can access outside of this class (in index.php mostly)
@@ -112,6 +116,23 @@ class UserController {
         include __DIR__ . '/../View/login.php'; 
 
 
+    }
+
+    public function logout(){
+        session_start(); 
+        session_unset();
+        session_destroy();
+
+        if (ini_get("session.use_cookies")) {
+            $params = session_get_cookie_params();
+            setcookie(session_name(), '', time() - 42000,
+                $params["path"], $params["domain"],
+                $params["secure"], $params["httponly"]
+            );
+        }
+
+        header("Location: /talent-portal/public/index.php"); 
+        exit;
     }
 
 }
