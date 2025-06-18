@@ -77,9 +77,15 @@ switch ($page) {
 
 		if(isset($_GET['id'])){ // index.php?page=X&id=Y
 			$talent_id=$_GET['id'];
-			if($_GET['action']=="del"){
-				$talentController->deleteTalent($talent_id);
-				break;
+			if(isset($_GET['action'])){
+				if($_GET['action']=="del"){
+					$talentController->deleteTalent($talent_id);
+					break;
+				}
+				if($_GET['action']=="edit"){
+					$talentController->editTalent($talent_id);
+					break;
+				}
 			}
 			$talentController->viewSpecificTalent($talent_id);
 			break;

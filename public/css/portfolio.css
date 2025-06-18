@@ -91,28 +91,23 @@ body{
     height: 50em;
 }
 
-.talent-search-results-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(20em, 1fr));
-  gap: 1.5em;
-  padding: 1em;
-  justify-items: center;
-}
-
-.talent-search-result-card {
-  display: block; /* Add this */
-  text-decoration: none; /* Optional: Remove underline */
-  color: inherit;         /* Optional: Preserve text color */
-  background: #f9f9f9;
-  border: 1px solid #ddd;
-  padding: 1em;
-  border-radius: 8px;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+.talent-search-results-grid{
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(20em, 1fr));
+    padding: 1em;
+    justify-items: center;
 }
 
 .talent-search-result-card{
+    display: block; /* Add this */
+    text-decoration: none; /* Optional: Remove underline */
+    color: inherit;         /* Optional: Preserve text color */
+    background: #f9f9f9;
+    padding: 1em;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
     border: 3px solid #e7e7e7;
     border-radius: 20px;
+    width: 23em;
 }
 
 .talent-search-result-card:hover{
@@ -157,3 +152,14 @@ body{
     display: block;
 }
 
+.disabled-link {
+    pointer-events: none;
+    background-color: #ccc;
+    color: #666;
+    cursor: not-allowed;
+    opacity: 0.6;
+}
+
+.talent-img-container-div{
+    text-align: center;
+}

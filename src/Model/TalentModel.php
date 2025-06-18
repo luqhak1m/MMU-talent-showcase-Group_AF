@@ -57,6 +57,11 @@ class TalentModel {
         return $result;
     }
 
-    public function modifyData(){
+    public function updateTalent($TalentID, $TalentTitle, $TalentDescription, $Price, $Content, $Category){
+        echo "[INFO] TalentModel.updateTalent(): Executing <br>";
+        $sql="UPDATE `Talent` SET TalentTitle=?, TalentDescription=?, `Price`=?, Content=?, Category=? WHERE TalentID=?";
+        $stmt=$this->pdo->prepare($sql);
+        $stmt->execute([$TalentTitle, $TalentDescription, $Price, $Content, $Category, $TalentID]);
+        echo "[INFO] TalentModel.updateTalent(): Executed <br>";
     }
 }

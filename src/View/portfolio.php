@@ -48,7 +48,7 @@ require_once __DIR__ . '/../../public/header.php';
         </div>
     </div>
     <div class="add-talent-button-div">
-        <a href="?page=add-talent-form" class="button">Add Talent</a>
+        <a href="?page=add-talent-form" id="add-talent-button" class="button">Add Talent</a>
         <button onclick="editMode()" class="button">Edit Talent</button>
     </div>
     <div class="talent-card-container-div">
@@ -59,11 +59,24 @@ require_once __DIR__ . '/../../public/header.php';
                 $talent_img_path='images/img_placeholder.svg.png'; // default image
                 if(!empty($talent['Content'])){
                     $talent_img_path = 'uploads/'.htmlspecialchars($talent['Content']);
-                }    
+                }   
+                
+                $user_id=htmlspecialchars($talent['TalentID']);
+
                 
                 echo '<div class="talent-container">';
                 echo '<a class="delete-button" href="?page=talent&id=' . htmlspecialchars($talent['TalentID']) . '&action=del">&times;</a>';
-                echo '<a href="index.php?page=talent&id='.htmlspecialchars($talent['TalentID']).'" class="talent-search-result-card">';
+                // echo '<div class="talent-search-result-card" data-id="'.htmlspecialchars($talent['TalentID']).'">';
+
+                // this a tag holds custom html tags -  the url to the view link and edit link.
+                echo '<a 
+                href="index.php?page=talent&id='.$user_id.'" 
+                class="talent-search-result-card" 
+                data-id="'.$user_id.'" 
+                data-view-url="index.php?page=talent&id='.$user_id.'"
+                data-edit-url="index.php?page=talent&id='.$user_id.'&action=edit"
+                >';
+
                 echo '<div class="talent-img-container-div">';
                 echo '<img src="'.$talent_img_path.'" alt="'.$talent['TalentTitle'].'">';
                 echo '</div>';

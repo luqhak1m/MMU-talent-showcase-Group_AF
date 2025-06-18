@@ -4,6 +4,7 @@
 
 # Include the header and footer files for the login page
 require_once __DIR__ . '/../../public/header.php';
+$fetched_talent=$fetched_talent??[]; // handle if user is adding talent, not editing 
 
 ?>
 
@@ -12,30 +13,58 @@ require_once __DIR__ . '/../../public/header.php';
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="/talent-portal/public/js/portfolio.js?v=<?= time() ?>"></script>
     <title>Document</title>
 </head>
 <body>
-    <form action="index.php?page=talent" method="POST" enctype="multipart/form-data">
+    <form action="index.php?page=talent<?php 
+        if(!empty($fetched_talent)) { // if empty add talent, if not send post rrquest to editTalent()
+            echo '&id='.urlencode($fetched_talent['TalentID']).'&action=edit';
+        } 
+    ?>" method="POST" enctype="multipart/form-data">
        
         <label for="TalentTitle">Talent Title:</label><br>
-        <input type="text" id="TalentTitle" name="TalentTitle" maxlength="255" required><br><br>
+        <input type="text" id="TalentTitle" name="TalentTitle" maxlength="255" value="<?php echo htmlspecialchars($fetched_talent['TalentTitle'] ?? ''); ?>" required><br><br>
 
         <label for="TalentDescription">Talent Description:</label><br>
-        <textarea id="TalentDescription" name="TalentDescription" rows="4" cols="50" required></textarea><br><br>
+        <textarea id="TalentDescription" name="TalentDescription" rows="4" cols="50" required><?php echo htmlspecialchars($fetched_talent['TalentDescription'] ?? ''); ?></textarea><br><br>
 
         <label for="Price">Price (RM):</label><br>
-        <input type="number" id="Price" name="Price" step="0.01" min="0" required><br><br>
+        <input type="number" id="Price" name="Price" step="0.01" min="0" value="<?php echo htmlspecialchars($fetched_talent['Price'] ?? ''); ?>" required><br><br>
 
         <label for="Content">Upload Media (Image, Video, or Audio):</label><br>
         <input type="file" id="Content" name="Content" accept="image/*,video/*,audio/*"><br><br>
+        <div id="new-media-preview" style="margin-top: 10px;"></div>
+        <?php if(!empty($fetched_talent['Content'])): ?>
+        <div id="existing-media-preview">
+            <p>Current file:</p>
+                <?php 
+                    $file=htmlspecialchars($fetched_talent['Content']);
+                    $extension=pathinfo($file, PATHINFO_EXTENSION);
+                    $filepath="uploads/".$file;
+                    echo "<p>Resolved path: <code>$filepath</code></p>";
+                    echo "<p>Full URL test: <a href='$filepath' target='_blank'>Open File</a></p>";
+
+                    if(in_array(strtolower($extension), ['jpg', 'jpeg', 'png', 'gif', 'webp'])){
+                        echo "<img src='$filepath' alt='Image Preview'>";
+                    }elseif(in_array(strtolower($extension), ['mp4', 'webm'])){
+                        echo "<video controls src='$filepath'></video>";
+                    }elseif(in_array(strtolower($extension), ['mp3', 'wav', 'ogg'])){
+                        echo "<audio controls src='$filepath'></audio>";
+                    }else{
+                        echo "<p>Unsupported file type: $file</p>";
+                    }
+                ?>
+            </div>
+        <?php endif; ?>
 
         <label for="TalentLikes">Talent Likes:</label><br>
-        <input type="number" id="TalentLikes" name="TalentLikes" min="0" value="0"><br><br>
+        <input type="number" id="TalentLikes" name="TalentLikes" min="0" value="<?php echo htmlspecialchars($fetched_talent['TalentLikes'] ?? '0'); ?>"><br><br>
 
         <label for="Category">Category:</label><br>
-        <input type="text" id="Category" name="Category" maxlength="50"><br><br>
+        <input type="text" id="Category" name="Category" maxlength="50" value="<?php echo htmlspecialchars($fetched_talent['Category'] ?? ''); ?>"><br><br>
 
-        <input type="submit" value="Submit">
+        <input type="submit" value="Submit" class="Button">
     </form>
 
 </body>

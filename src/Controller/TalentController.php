@@ -20,11 +20,6 @@ class TalentController {
         $this->catalogue_model=new CatalogueModel($pdo);
         $this->talent_model=new TalentModel($pdo, $this->catalogue_model);
     }
-	public function viewUserTalent(){
-        echo "[INFO] TalentController.viewTalent(): Executing <br>";
-
-        
-	} 
 
     public function viewTalent(){
         # echo "[INFO] TalentController.submitTalent(): Executing <br>";
@@ -54,7 +49,6 @@ class TalentController {
             // print_r($_FILES);
             // echo '</pre>';
 
-
             $content_filename=uploadMedia($UserID, 'Content');
             $this->talent_model->createTalent($UserID, $CatalogueID, $TalentTitle, $TalentDescription, $Price, $content_filename, $TalentLikes, $Category);
             header("Location: /talent-portal/public/index.php?page=portfolio");
@@ -77,6 +71,13 @@ class TalentController {
     public function viewSpecificTalent($TalentID){
         $talent=$this->talent_model->fetchTalentByTalentID($TalentID);
         # echo "[INFO] Found talent ID ".$talent['TalentID']."<br>";
+        if(isset($_SESSION['user_id'])) {
+            $UserID=$_SESSION['user_id'];
+            $fetched_talent=$this->talent_model->fetchTalentByUserID($UserID);
+            # echo "[INFO] Found ".count($fetched_talent)." talent(s) for user ".$_SESSION['username']."<br>";
+        }else {
+            # echo "[INFO] No session";
+        }   
         require_once __DIR__ . '/../View/talent.php';
     }
 
@@ -90,5 +91,33 @@ class TalentController {
             # echo "[INFO] No session";
         }        
         require_once __DIR__ . '/../View/portfolio.php';
+    }
+
+    public function editTalent($TalentID){
+        # echo "[INFO] TalentController.submitTalent(): Executing <br>";
+        $fetched_talent=$this->talent_model->fetchTalentByTalentID($TalentID);
+        // foreach ($fetched_talent as $key => $value) {
+        //     echo $key . ' => ' . $value . '<br>';
+        // }
+        if($_SERVER['REQUEST_METHOD']==='POST'){
+            # echo "[INFO] Talent submission POST received:<br>";
+            
+            $UserID=$_SESSION['user_id'];
+            $TalentTitle=$_POST['TalentTitle'];
+            $TalentDescription=$_POST['TalentDescription'];
+            $Price=$_POST['Price'];
+            $Category=$_POST['Category'];
+        
+            $Content=uploadMedia($UserID, "Content"); // params: user_id and html input id
+
+            if(!$Content){
+                $Content=$fetched_talent['Content']??null;
+            }
+
+            $this->talent_model->updateTalent($TalentID, $TalentTitle, $TalentDescription, $Price, $Content, $Category);
+            header("Location: /talent-portal/public/index.php?page=talent&id=".htmlspecialchars($TalentID));
+        }else{
+            require_once __DIR__ . '/../View/add-talent-form.php';
+        }
     }
 }

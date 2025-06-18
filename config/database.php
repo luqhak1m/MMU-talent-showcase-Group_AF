@@ -34,7 +34,7 @@ function connectToDatabase(array $values){
     try{
         $pdo=new PDO($conn, $user, $pass);
         $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-        echo "[INFO] Connection Successful <br>";
+        // echo "[INFO] Connection Successful <br>";
         return $pdo;
     }catch(PDOException $e){
         echo "[INFO] Connection Fails: ".$e." <br>";
