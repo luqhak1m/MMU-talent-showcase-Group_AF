@@ -27,8 +27,8 @@ require_once __DIR__ . '/../../public/header.php';
                 <img id="profilepicture-preview-img" 
                     src="<?php 
                         $profilePicturePath = 'images/profile.png'; // default image
-                        if (!empty($fetched_profile['ProfilePicture'])) {
-                            $profilePicturePath = 'uploads/' . htmlspecialchars($fetched_profile['ProfilePicture']);
+                        if(!empty($fetched_profile['ProfilePicture'])) {
+                            $profilePicturePath='uploads/'.htmlspecialchars($fetched_profile['ProfilePicture']);
                         }    
                         
                         echo $profilePicturePath;

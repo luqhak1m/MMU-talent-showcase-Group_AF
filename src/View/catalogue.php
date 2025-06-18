@@ -52,7 +52,7 @@ require_once __DIR__ . '/../../public/header.php';
                 echo '<div class="name-price-pfp-container-div">';
                 echo '<div class="talent-title-description-div">';
                 echo '<h2>'.$talent['TalentTitle'].'</h2>';
-                echo '<p>'.$talent['Price'].'</p>';
+                echo '<p>RM'.$talent['Price'].'</p>';
                 echo '</div>';
                 echo '<div class="mini-profilepicture-div">';
                 echo '<img class="mini-profilepicture-img"';
