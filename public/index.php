@@ -7,6 +7,8 @@ require_once __DIR__ . '/../config/database.php';
 require_once __DIR__ . '/../config/database_config.php';
 $pdo=connectToDatabase($dbCredentials);
 session_start();
+require_once __DIR__ . '/../public/header.php'; // <- now header can use $pdo
+
 
 if(isset($_GET['page'])){
     $page=$_GET['page'];
@@ -16,6 +18,12 @@ if(isset($_GET['page'])){
 
 $viewPath = __DIR__ . '/../src/View/' . $page . '.php';
 
+require_once __DIR__ . '/../src/Controller/ProfileController.php';
+if(isset($_SESSION['user_id'])){
+	$UserID=$_SESSION['user_id'];
+	$profileController=new ProfileController($pdo);
+	$fetched_profile=$profileController->getProfile($UserID);
+}
 
 switch ($page) {
 	case 'register':

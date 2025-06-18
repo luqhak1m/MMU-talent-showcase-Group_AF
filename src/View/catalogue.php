@@ -37,12 +37,14 @@ require_once __DIR__ . '/../../public/header.php';
         <div class="talent-search-results-grid">
             <?php
 
-            $profilePicturePath = 'images/profile.png';
-            if (!empty($fetched_profile['ProfilePicture'])){
-                $profilePicturePath = 'uploads/' . htmlspecialchars($fetched_profile['ProfilePicture']);
-            }
-                        
+
             foreach($catalogue as $talent){
+                $profilePicturePath='images/profile.png'; // default picture
+                if(!empty($talent['ProfilePicture'])){
+                    $profilePicturePath='uploads/'.htmlspecialchars($talent['ProfilePicture']);
+                }
+                // echo "<p>Resolved path: <code>$profilePicturePath</code></p>";
+                // echo "<p>Full URL test: <a href='$profilePicturePath' target='_blank'>Open File</a></p>";
    
                 echo '<a href="index.php?page=talent&id='.$talent['TalentID'].'" class="talent-search-result-card">';
                 echo '<div class="image-name-price-pfp-container-div">';
@@ -56,7 +58,7 @@ require_once __DIR__ . '/../../public/header.php';
                 echo '</div>';
                 echo '<div class="mini-profilepicture-div">';
                 echo '<img class="mini-profilepicture-img"';
-                echo 'src='.$profilePicturePath.'';
+                echo 'src="'.$profilePicturePath.'"';
                 echo 'alt="Click to upload">';
                 echo '</div>';
                 echo '</div>';

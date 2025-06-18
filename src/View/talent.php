@@ -16,20 +16,31 @@ require_once __DIR__ . '/../../public/header.php';
 </head>
 <body>
     <div id="banner-div">
-        <div id="white-banner-div"></div>
+        <?php if ($talent['UserID'] != $_SESSION['user_id']): ?>
+        <div id="white-banner-div">
+            <div class="follow-button-div">
+                <button id="catalogue-follow-user-button" class="button">Follow</button>
+            </div>
+            
+        </div>
+    <?php endif; ?>
         <div id="purple-banner-div">
             <div id="profilepicture-div">
+                <a href="/talent-portal/public/index.php?page=profile">
                 <img id="profilepicture-preview-img" 
                     src="<?php 
                         $profilePicturePath = 'images/profile.png'; // default image
-                        if (!empty($fetched_profile['ProfilePicture'])) {
-                            $profilePicturePath = 'uploads/' . htmlspecialchars($fetched_profile['ProfilePicture']);
+                        if (!empty($talent['ProfilePicture'])) {
+                            $profilePicturePath = 'uploads/' . htmlspecialchars($talent['ProfilePicture']);
                         }    
                         
                         echo $profilePicturePath;
                         ?>"
                         alt="Click to upload">
-                <p>@username</p>
+                <p><?= $talent['Username'] ?></p>
+                <?php
+						echo '<a href="/talent-portal/public/index.php?page=profile"><img src="'.$profilePicturePath.'" class="navbar-prof" alt="profile"></a>';
+				?>
 
             </div>
             <div id="likes-and-followers-div">
@@ -40,24 +51,33 @@ require_once __DIR__ . '/../../public/header.php';
                 <p>100</p>
 
             </div>
-            
-
-
         </div>
     </div>
     <div id="content-container-div">
         
         <div id="talent-description-div" class="talent-card-div">
-            <div id="images-container-div">
-                <div id="vertical-thumbnail-div">
-                    <img src="images/img_placeholder.svg.png" alt="Image Placeholder">
-                    <img src="images/img_placeholder.svg.png" alt="Image Placeholder">
-                    <img src="images/img_placeholder.svg.png" alt="Image Placeholder">
-                    <img src="images/img_placeholder.svg.png" alt="Image Placeholder">
-                </div>
-                <div id="big-image-div">
-                    <img src="uploads/<?php echo $talent['Content'] ?>" alt="Image Placeholder">
-                </div>
+            <div id="big-image-div">
+                <?php
+                $file = htmlspecialchars($talent['Content']);
+                $extension = strtolower(pathinfo($file, PATHINFO_EXTENSION));
+                $filepath = 'uploads/' . $file;
+
+                if (in_array($extension, ['jpg', 'jpeg', 'png', 'gif', 'webp'])) {
+                    echo "<img src='$filepath' alt='Image' style='width: 100%; height: auto; border-radius: 20px;'>";
+                } elseif (in_array($extension, ['mp4', 'webm', 'ogg'])) {
+                    echo "<video controls style='width: 100%; border-radius: 20px;'>
+                            <source src='$filepath' type='video/$extension'>
+                            Your browser does not support the video tag.
+                        </video>";
+                } elseif (in_array($extension, ['mp3', 'wav', 'aac'])) {
+                    echo "<audio controls style='width: 100%; border-radius: 20px;'>
+                            <source src='$filepath' type='audio/$extension'>
+                            Your browser does not support the audio tag.
+                        </audio>";
+                } else {
+                    echo "<p>Unsupported media type: $extension</p>";
+                }
+                ?>
             </div>
             <div id="title-price-div">
                 <h2><?php echo $talent['TalentTitle'] ?></h2>
@@ -83,8 +103,8 @@ require_once __DIR__ . '/../../public/header.php';
                         <img class="profilepicture-comment-img" 
                         src="<?php 
                             $profilePicturePath = 'images/profile.png'; // default image
-                            if (!empty($fetched_profile['ProfilePicture'])) {
-                                $profilePicturePath = 'uploads/' . htmlspecialchars($fetched_profile['ProfilePicture']);
+                            if(!empty($profile_picture)){
+                                $profilePicturePath = 'uploads/'.htmlspecialchars($profile_picture);
                             }    
                             
                             echo $profilePicturePath;

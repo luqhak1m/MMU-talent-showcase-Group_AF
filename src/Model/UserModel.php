@@ -5,8 +5,8 @@ require_once __DIR__ . '/../../includes/ID-Generator.inc.php';
 require_once __DIR__ . '/ProfileModel.php';
 require_once __DIR__ . '/CatalogueModel.php';
 
-echo "[INFO] UserModel.php: Entered <br>";
-echo gettype($dbCredentials) . "<br>";
+// echo "[INFO] UserModel.php: Entered <br>";
+// echo gettype($dbCredentials) . "<br>";
 
 
 // Assuming a DB connection class or direct PDO usage
@@ -39,7 +39,7 @@ class UserModel {
             //  $this->db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
             // can use this function to make connection now
-            echo "[INFO] UserModel.__construct(): Executing <br>";
+            // echo "[INFO] UserModel.__construct(): Executing <br>";
             $this->pdo=$pdo;
             $this->profile_model=$profile_model;
             $this->catalogue_model=$catalogue_model;
@@ -50,7 +50,7 @@ class UserModel {
     }
 
     public function findUserByEmail($email) {
-        echo "[INFO] UserModel.findUserByEmail(): Executing <br>";
+        // echo "[INFO] UserModel.findUserByEmail(): Executing <br>";
 
         $stmt = $this->pdo->prepare("SELECT UserID, Username, Email, `Role`, `Password` FROM User WHERE Email = :email"); // [cite: 40] (User table, Email column)
         $stmt->bindParam(':email', $email);
@@ -80,7 +80,7 @@ class UserModel {
         
         try {
             $stmt->execute();
-            echo "[INFO] UserModel.CreateUser(): Executing <br>";
+            // echo "[INFO] UserModel.CreateUser(): Executing <br>";
 
             // immediately create an empty profile
 
@@ -90,7 +90,7 @@ class UserModel {
 
             $this->catalogue_model->createCatalogue($userID);
 
-            echo "[INFO] UserModel.CreateUser(): Executed <br>";
+            // // echo "[INFO] UserModel.CreateUser(): Executed <br>";
             return true;
         } catch (PDOException $e) {
             // Log error: $e->getMessage();
@@ -103,6 +103,13 @@ class UserModel {
         // Simple query to get all users, you can add ordering
         $stmt = $this->db->prepare("SELECT UserID, Username, Email, Role FROM User ORDER BY Username");
         $stmt->execute();
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+    public function fetchUserByUserID($UserID){
+        $sql="SELECT * FROM User WHERE UserID=?";
+        $stmt=$this->db->prepare($sql);
+        $stmt->execute([$UserID]);
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 }

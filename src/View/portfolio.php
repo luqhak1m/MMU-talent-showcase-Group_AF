@@ -18,23 +18,22 @@ require_once __DIR__ . '/../../public/header.php';
 <body>
     <div id="banner-div">
         <div id="white-banner-div">
-            <div class="follow-button-div">
-                <button id="catalogue-follow-user-button" class="button">Follow</button>
-            </div>
         </div>
         <div id="purple-banner-div">
             <div id="profilepicture-div">
-                <img id="profilepicture-preview-img" 
-                    src="<?php 
-                        $profilePicturePath = 'images/profile.png'; // default image
-                        if(!empty($fetched_profile['ProfilePicture'])) {
-                            $profilePicturePath='uploads/'.htmlspecialchars($fetched_profile['ProfilePicture']);
-                        }    
-                        
-                        echo $profilePicturePath;
-                        ?>"
-                        alt="Click to upload">
-                <p>@username</p>
+                <a href="?page=talent&id="<?php echo $talent['UserID'] ?>>
+                    <img id="profilepicture-preview-img" 
+                        src="<?php 
+                            $profilePicturePath = 'images/profile.png'; // default image
+                            if(!empty($profile_picture)){
+                                $profilePicturePath='uploads/'.htmlspecialchars($profile_picture);
+                            }    
+                            
+                            echo $profilePicturePath;
+                            ?>"
+                            alt="Click to upload">
+                </a>
+            <p><?= isset($_SESSION['username']) ? htmlspecialchars($_SESSION['username']) : 'user' ?></p>
 
             </div>
             <div id="likes-and-followers-div">

@@ -37,9 +37,10 @@ class CatalogueModel {
 
     public function fetchAllCatalogue(){
         // echo "[INFO] CatalogueModel.fetchAllCatalogue(): Executing <br>";
-        $sql="SELECT * FROM Talent";
-        $stmt=$this->pdo->prepare($sql);
-        $stmt->execute();
+        $sql="SELECT t.*, p.ProfilePicture 
+            FROM Talent t 
+            JOIN `Profile` p ON t.UserID = p.UserID"; // join the talent table with profile picture from user table to display in html for each talent
+        $stmt = $this->pdo->query($sql);
         $result=$stmt->fetchAll(PDO::FETCH_ASSOC);
         // echo "[INFO] CatalogueModel.fetchAllCatalogue(): Executed <br>";
         return $result;

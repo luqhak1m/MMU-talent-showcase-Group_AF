@@ -1,4 +1,23 @@
 
+
+<?php
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
+
+$profilePicturePath = 'images/profile.png';
+if (isset($_SESSION['user_id'])) {
+	require_once __DIR__ . '/../src/Controller/ProfileController.php';
+    require_once __DIR__.'/../config/database.php'; // ensure $pdo is available
+    $profileController = new ProfileController($pdo);
+    $fetched_profile = $profileController->getProfile($_SESSION['user_id']);
+
+    if (!empty($fetched_profile['ProfilePicture'])) {
+        $profilePicturePath = 'uploads/' . htmlspecialchars($fetched_profile['ProfilePicture']);
+    }
+}
+?>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -26,18 +45,7 @@
 					<img src="images/search.png" class="navbar-img" alt="search">
 					<a href="#"><img src="images/bag.png" class="navbar-img" alt="bag"></a>
 					<?php
-					if(isset($_SESSION['username'])) {
-						$username=$_SESSION['username'];
-						$profilePicturePath = 'images/profile.png'; // default image
-                        if (!empty($fetched_profile['ProfilePicture'])) {
-                            $profilePicturePath = 'uploads/' . htmlspecialchars($fetched_profile['ProfilePicture']);
-                        }    
-                                            
 						echo '<a href="/talent-portal/public/index.php?page=profile"><img src="'.$profilePicturePath.'" class="navbar-prof" alt="profile"></a>';
-					}else{
-						echo '<a href="#"><img src="images/profile.png" class="navbar-prof" alt="profile"></a>';
-					}
-				
 					?>
 				</div>
 			</div>

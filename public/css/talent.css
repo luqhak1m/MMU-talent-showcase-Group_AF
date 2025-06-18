@@ -16,6 +16,12 @@ body{
 
 }
 
+.follow-button-div{
+    float: right;
+    margin-top: 2.5em;
+    margin-right: 4em;
+}
+
 #purple-banner-div{
     background-color: #E7E6F2;
     height: 7em;
@@ -89,39 +95,20 @@ body{
     margin-top: 5em;
 }
 
-#vertical-thumbnail-div{
-    width: 7em;
-    height: 25em;
-    margin-left: 2.5em;
-    margin-top: 2.5em;
-    /* border: 3px solid #73AD21; */
-}
-
-#vertical-thumbnail-div img{
-    width: 7em; 
-    height: 6em; 
-    border-radius: 20px;
-
-}
-
 #big-image-div{
-    position: relative;
+    margin-top: 2em;
     /* border: 3px solid #73AD21; */
     left: 11em;
     bottom: 25em;
     width: 52em;
     text-align: center;
+    margin: 2em auto 0 auto;
 }
 
 #big-image-div img{
     width: 45em; 
     height: 24.75em; 
     border-radius: 20px;
-}
-
-#images-container-div{
-    width: 90%;
-    height: 25em; 
 }
 
 #title-price-div{

@@ -18,8 +18,12 @@ class ProfileController {
         $this->profile_model=new ProfileModel($pdo);
     }
 
+    public function getProfile($UserID){
+        return $this->profile_model->fetchProfile($UserID);
+    }
+
 	public function viewProfile(){
-        echo "[INFO] ProfileController.viewProfile(): Executing <br>";
+        // echo "[INFO] ProfileController.viewProfile(): Executing <br>";
 
         if($_SERVER['REQUEST_METHOD']==='POST') {
             echo "[INFO] POST received:<br>";
@@ -47,22 +51,22 @@ class ProfileController {
             $user_id=$_SESSION['user_id'];
             $profile_picture=uploadMedia($user_id, "profilepicture-input"); // params: user_id and html input id
 
-            if (!$profile_picture){
-                $existing_profile = $this->profile_model->fetchProfile($user_id);
-                $profile_picture = $existing_profile['ProfilePicture'] ?? null;
+            if(!$profile_picture){
+                $existing_profile=$this->profile_model->fetchProfile($user_id);
+                $profile_picture=$existing_profile['ProfilePicture']??null;
             }
 
             $this->profile_model->updateProfile($user_id, $first_name, $last_name, $address, $gender, $dob, $phone_num, $profile_picture, $bio);
-            echo "[INFO] Profile Updated";
+            // echo "[INFO] Profile Updated";
             header("Location: /talent-portal/public/index.php?page=profile");
         } else {
-            echo "[INFO] No POST received.";
+            // ßecho "[INFO] No POST received.";
         }
 
         if(isset($_SESSION['user_id'])) {
             $UserID=$_SESSION['user_id'];
             $fetched_profile=$this->profile_model->fetchProfile($UserID);
-            echo "[INFO] Found profile for user ".$_SESSION['username']."<br>";
+            // echo "[INFO] Found profile for user ".$_SESSION['username']."<br>";
 
         }else {
             echo "[INFO] No session";
@@ -70,4 +74,18 @@ class ProfileController {
 
         include __DIR__ . '/../View/profile.php'; 
 	} 
+
+    public function viewOthersProfile($UserID){
+
+        if(isset($_SESSION['user_id'])) {
+            $UserID=$_SESSION['user_id'];
+            $fetched_profile=$this->profile_model->fetchProfile($UserID);
+            // echo "[INFO] Found profile for user ".$_SESSION['username']."<br>";
+
+        }else {
+            echo "[INFO] No session";
+        }
+                include __DIR__ . '/../View/profile.php'; 
+
+    }
 }

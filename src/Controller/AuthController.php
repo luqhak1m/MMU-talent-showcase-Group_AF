@@ -10,13 +10,15 @@ echo "[INFO] Loaded AuthController.php <br>";
 class UserController {
 
     private $userModel;
+    private $profile_model;
+    private $catalogue_model;
 
     public function __construct($pdo) {
         echo "[INFO] UserController.__construct(): Executing <br>";
 
-        $profile_model=new ProfileModel($pdo);
-        $catalogue_model=new CatalogueModel($pdo);
-        $this->userModel = new UserModel($pdo, $profile_model, $catalogue_model);
+        $this->profile_model=new ProfileModel($pdo);
+        $this->catalogue_model=new CatalogueModel($pdo);
+        $this->userModel = new UserModel($pdo, $this->profile_model, $this->catalogue_model);
     }
 
     // public function so we can access outside of this class (in index.php mostly)

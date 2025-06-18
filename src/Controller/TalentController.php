@@ -3,6 +3,7 @@
 # Import the necessary MODEL files
 require_once __DIR__ . '/../Model/TalentModel.php';
 require_once __DIR__ . '/../Model/CatalogueModel.php';
+require_once __DIR__ . '/../Model/ProfileModel.php';
 require_once __DIR__ . '/CatalogueController.php';
 require_once __DIR__ . '/../../includes/MediaUpload.inc.php';
 
@@ -15,17 +16,19 @@ require_once __DIR__ . '/../../includes/MediaUpload.inc.php';
 class TalentController {
 	private $talent_model;
 	private $catalogue_model;
+    private $profile_model;
 
     public function __construct($pdo){
+        $this->profile_model=new ProfileModel($pdo);
         $this->catalogue_model=new CatalogueModel($pdo);
         $this->talent_model=new TalentModel($pdo, $this->catalogue_model);
     }
 
-    public function viewTalent(){
-        # echo "[INFO] TalentController.submitTalent(): Executing <br>";
+    public function viewTalent($TalentID){
+        // echo "[INFO] TalentController.submitTalent(): Executing <br>";
 
         if($_SERVER['REQUEST_METHOD']==='POST'){
-            # echo "[INFO] Talent submission POST received:<br>";
+            echo "[INFO] Talent submission POST received:<br>";
             
             $UserID=$_SESSION['user_id'];
             
@@ -36,33 +39,43 @@ class TalentController {
             $Category=$_POST['Category'];
             $CatalogueID=$this->catalogue_model->fetchCatalogueByUserID($UserID);
             
-            // echo "UserID: $UserID<br>";
-            // echo "TalentTitle: $TalentTitle<br>";
-            // echo "TalentDescription: $TalentDescription<br>";
-            // echo "Price: $Price<br>";
-            // echo "Content: $Content<br>";
-            // echo "TalentLikes: $TalentLikes<br>";
-            // echo "Category: $Category<br>";
-            // echo "Catalogue ID: $CatalogueID<br>";
+            echo "UserID: $UserID<br>";
+            echo "TalentTitle: $TalentTitle<br>";
+            echo "TalentDescription: $TalentDescription<br>";
+            echo "Price: $Price<br>";
+            echo "Content: $Content<br>";
+            echo "TalentLikes: $TalentLikes<br>";
+            echo "Category: $Category<br>";
+            echo "Catalogue ID: $CatalogueID<br>";
 
-            // echo '<pre>';
-            // print_r($_FILES);
-            // echo '</pre>';
+            echo '<pre>';
+            print_r($_FILES);
+            echo '</pre>';
 
             $content_filename=uploadMedia($UserID, 'Content');
             $this->talent_model->createTalent($UserID, $CatalogueID, $TalentTitle, $TalentDescription, $Price, $content_filename, $TalentLikes, $Category);
-            header("Location: /talent-portal/public/index.php?page=portfolio");
+            if(isset($_SESSION['user_id'])) {
+                $UserID=$_SESSION['user_id'];
+                $fetched_talent=$this->talent_model->fetchTalentByUserID($UserID);
+                $profile_picture=$this->profile_model->fetchProfile($UserID)['ProfilePicture'];
+                // echo "[INFO] Found ".count($fetched_talent)." talent(s) for user ".$_SESSION['username']."<br>";
+
+            }else {
+                echo "[INFO] No session";
+            }
+            header("Location: /talent-portal/public/index.php?page=talent");
         }else{
-            # echo "[INFO] No talent submission POST received<br>";
+            // echo "[INFO] No talent submission POST received<br>";
         }
 
         if(isset($_SESSION['user_id'])) {
             $UserID=$_SESSION['user_id'];
             $fetched_talent=$this->talent_model->fetchTalentByUserID($UserID);
-            # echo "[INFO] Found ".count($fetched_talent)." talent(s) for user ".$_SESSION['username']."<br>";
+            $profile_picture=$this->profile_model->fetchProfile($UserID)['ProfilePicture'];
+            // ßecho "[INFO] Found ".count($fetched_talent)." talent(s) for user ".$_SESSION['username']."<br>";
 
         }else {
-            # echo "[INFO] No session";
+            echo "[INFO] No session";
         }
 
         require_once __DIR__ . '/../View/portfolio.php';
@@ -74,6 +87,7 @@ class TalentController {
         if(isset($_SESSION['user_id'])) {
             $UserID=$_SESSION['user_id'];
             $fetched_talent=$this->talent_model->fetchTalentByUserID($UserID);
+            $profile_picture=$this->profile_model->fetchProfile($UserID)['ProfilePicture'];
             # echo "[INFO] Found ".count($fetched_talent)." talent(s) for user ".$_SESSION['username']."<br>";
         }else {
             # echo "[INFO] No session";
@@ -86,6 +100,7 @@ class TalentController {
         if(isset($_SESSION['user_id'])) {
             $UserID=$_SESSION['user_id'];
             $fetched_talent=$this->talent_model->fetchTalentByUserID($UserID);
+            $profile_picture=$this->profile_model->fetchProfile($UserID)['ProfilePicture'];
             # echo "[INFO] Found ".count($fetched_talent)." talent(s) for user ".$_SESSION['username']."<br>";
         }else {
             # echo "[INFO] No session";
@@ -96,6 +111,8 @@ class TalentController {
     public function editTalent($TalentID){
         # echo "[INFO] TalentController.submitTalent(): Executing <br>";
         $fetched_talent=$this->talent_model->fetchTalentByTalentID($TalentID);
+        $profile_picture=$this->profile_model->fetchProfile($UserID)['ProfilePicture'];
+
         // foreach ($fetched_talent as $key => $value) {
         //     echo $key . ' => ' . $value . '<br>';
         // }

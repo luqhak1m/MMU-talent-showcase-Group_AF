@@ -30,7 +30,10 @@ class TalentModel {
 
     public function fetchTalentByUserID($UserID){
         // echo "[INFO] TalentModel.fetchTalentByUserID(): Executing <br>";
-        $sql="SELECT * FROM Talent WHERE UserID=?";
+        $sql="SELECT t.*, p.ProfilePicture 
+                FROM Talent t 
+                JOIN `Profile` p ON t.UserID = p.UserID 
+                WHERE t.UserID=?";        
         $stmt=$this->pdo->prepare($sql);
         $stmt->execute([$UserID]);
         // echo "[INFO] TalentModel.fetchTalentByUserID(): Executed <br>";
@@ -40,7 +43,11 @@ class TalentModel {
 
     public function fetchTalentByTalentID($TalentID){
         // echo "[INFO] TalentModel.fetchTalentByTalentID(): Executing <br>";
-        $sql="SELECT * FROM Talent WHERE TalentID=?";
+        $sql="SELECT t.*, p.ProfilePicture, u.Username
+                FROM Talent t
+                JOIN `Profile` p ON t.UserID=p.UserID
+                JOIN User u ON t.UserID=u.UserID
+                WHERE t.TalentID=?";        
         $stmt=$this->pdo->prepare($sql);
         $stmt->execute([$TalentID]);
         // echo "[INFO] TalentModel.fetchTalentByTalentID(): Executed <br>";
