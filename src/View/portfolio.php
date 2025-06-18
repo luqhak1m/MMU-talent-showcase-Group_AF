@@ -21,7 +21,7 @@ require_once __DIR__ . '/../../public/header.php';
         </div>
         <div id="purple-banner-div">
             <div id="profilepicture-div">
-                <a href="?page=talent&id="<?php echo $talent['UserID'] ?>>
+                <!-- <a href="?page=talent&id="<?php echo $talent['UserID'] ?>> -->
                     <img id="profilepicture-preview-img" 
                         src="<?php 
                             $profilePicturePath = 'images/profile.png'; // default image
@@ -32,7 +32,7 @@ require_once __DIR__ . '/../../public/header.php';
                             echo $profilePicturePath;
                             ?>"
                             alt="Click to upload">
-                </a>
+                <!-- </a> -->
             <p><?= isset($_SESSION['username']) ? htmlspecialchars($_SESSION['username']) : 'user' ?></p>
 
             </div>

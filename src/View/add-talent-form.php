@@ -58,11 +58,20 @@ $fetched_talent=$fetched_talent??[]; // handle if user is adding talent, not edi
             </div>
         <?php endif; ?>
 
-        <label for="TalentLikes">Talent Likes:</label><br>
-        <input type="number" id="TalentLikes" name="TalentLikes" min="0" value="<?php echo htmlspecialchars($fetched_talent['TalentLikes'] ?? '0'); ?>"><br><br>
+        <!-- <label for="TalentLikes">Talent Likes:</label><br>
+        <input type="number" id="TalentLikes" name="TalentLikes" min="0" value="<?php echo htmlspecialchars($fetched_talent['TalentLikes'] ?? '0'); ?>"><br><br> -->
 
         <label for="Category">Category:</label><br>
-        <input type="text" id="Category" name="Category" maxlength="50" value="<?php echo htmlspecialchars($fetched_talent['Category'] ?? ''); ?>"><br><br>
+        <select id="Category" name="Category">
+            <?php
+            $categories = ['Music', 'Art', 'Filmmaking', 'Videography', 'Photography', 'Animation', 'Voiceover'];
+            $selected = $fetched_talent['Category'] ?? '';
+            foreach ($categories as $category) {
+                $isSelected = ($selected === $category) ? 'selected' : '';
+                echo "<option value=\"$category\" $isSelected>$category</option>";
+            }
+            ?>
+        </select><br><br>
 
         <input type="submit" value="Submit" class="Button">
     </form>

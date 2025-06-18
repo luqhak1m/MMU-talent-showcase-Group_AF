@@ -24,7 +24,7 @@ class TalentController {
         $this->talent_model=new TalentModel($pdo, $this->catalogue_model);
     }
 
-    public function viewTalent($TalentID){
+    public function viewTalent(){
         // echo "[INFO] TalentController.submitTalent(): Executing <br>";
 
         if($_SERVER['REQUEST_METHOD']==='POST'){
@@ -68,15 +68,17 @@ class TalentController {
             // echo "[INFO] No talent submission POST received<br>";
         }
 
-        if(isset($_SESSION['user_id'])) {
+        // if(isset($_SESSION['user_id'])) {
+            
             $UserID=$_SESSION['user_id'];
+            // $fetched_talent=$this->talent_model->fetchTalentByUserID($UserID);
             $fetched_talent=$this->talent_model->fetchTalentByUserID($UserID);
             $profile_picture=$this->profile_model->fetchProfile($UserID)['ProfilePicture'];
-            // ßecho "[INFO] Found ".count($fetched_talent)." talent(s) for user ".$_SESSION['username']."<br>";
+            // echo "[INFO] Found ".count($fetched_talent)." talent(s) for user ".$_SESSION['username']."<br>";
+        // }else {
+            //     echo "[INFO] No session";
+            // }
 
-        }else {
-            echo "[INFO] No session";
-        }
 
         require_once __DIR__ . '/../View/portfolio.php';
     }
