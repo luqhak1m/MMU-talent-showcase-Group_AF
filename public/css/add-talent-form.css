@@ -1,0 +1,67 @@
+#talent-form-div {
+    width: 80%;
+    margin: 3em auto;
+    font-family: Arial, sans-serif;
+}
+
+#talent-form-div label {
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 4px;
+    display: block;
+    margin-top: 1.5em;
+}
+
+#talent-form-div input[type="text"],
+#talent-form-div input[type="number"],
+#talent-form-div input[type="file"],
+#talent-form-div select,
+#talent-form-div textarea {
+    width: 100%;
+    padding: 10px 12px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    background-color: #F9F9FF;
+    transition: border-color 0.2s ease, background-color 0.2s ease;
+}
+
+#talent-form-div textarea {
+    resize: vertical;
+}
+
+#talent-form-div input:focus,
+#talent-form-div select:focus,
+#talent-form-div textarea:focus {
+    outline: none;
+    border-color: #007BFF;
+    background-color: #fff;
+}
+
+#talent-form-div input[type="submit"] {
+    background-color: #514e76;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    padding: 10px 16px;
+    font-size: 16px;
+    cursor: pointer;
+    margin-top: 2em;
+    transition: background-color 0.3s ease;
+}
+
+#talent-form-div input[type="submit"]:hover {
+    background-color: #7975b3;
+}
+
+#existing-media-preview,
+#new-media-preview {
+    margin-top: 1em;
+}
+
+code {
+    background-color: #eee;
+    padding: 2px 4px;
+    border-radius: 4px;
+    font-size: 90%;
+}

@@ -14,9 +14,13 @@ $fetched_talent=$fetched_talent??[]; // handle if user is adding talent, not edi
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="/talent-portal/public/js/portfolio.js?v=<?= time() ?>"></script>
+    <link rel="stylesheet" type="text/css" href="/talent-portal/public/css/add-talent-form.css?v=<?= time() ?>">
+
     <title>Document</title>
 </head>
 <body>
+    <div id="talent-form-div">
+
     <form action="index.php?page=talent<?php 
         if(!empty($fetched_talent)) { // if empty add talent, if not send post rrquest to editTalent()
             echo '&id='.urlencode($fetched_talent['TalentID']).'&action=edit';
@@ -75,7 +79,7 @@ $fetched_talent=$fetched_talent??[]; // handle if user is adding talent, not edi
 
         <input type="submit" value="Submit" class="Button">
     </form>
-
+    </div>
 </body>
 </html>
 

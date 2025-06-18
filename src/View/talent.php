@@ -26,7 +26,7 @@ require_once __DIR__ . '/../../public/header.php';
     <?php endif; ?>
         <div id="purple-banner-div">
             <div id="profilepicture-div">
-                <a href="/talent-portal/public/index.php?page=profile">
+                <!-- <a href="/talent-portal/public/index.php?page=profile"> -->
                 <img id="profilepicture-preview-img" 
                     src="<?php 
                         $profilePicturePath = 'images/profile.png'; // default image
@@ -38,9 +38,9 @@ require_once __DIR__ . '/../../public/header.php';
                         ?>"
                         alt="Click to upload">
                 <p><?= $talent['Username'] ?></p>
-                <?php
+                <!-- <?php
 						echo '<a href="/talent-portal/public/index.php?page=profile"><img src="'.$profilePicturePath.'" class="navbar-prof" alt="profile"></a>';
-				?>
+				?> -->
 
             </div>
             <div id="likes-and-followers-div">
