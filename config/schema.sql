@@ -22,13 +22,13 @@ CREATE TABLE IF NOT EXISTS Profile(
     ProfilePicture VARCHAR(255),
     Bio VARCHAR(255),
     FOREIGN KEY (UserID) REFERENCES User(UserID)
-)
+);
 
 CREATE TABLE IF NOT EXISTS Catalogue(
     CatalogueID CHAR(8) PRIMARY KEY,
     UserID CHAR(8),
     FOREIGN KEY (UserID) REFERENCES User(UserID),
-)
+);
 
 CREATE TABLE IF NOT EXISTS Talent(
 
@@ -43,13 +43,13 @@ CREATE TABLE IF NOT EXISTS Talent(
     Category VARCHAR(50),
     FOREIGN KEY (UserID) REFERENCES User(UserID),
     FOREIGN KEY (CatalogueID) REFERENCES Catalogue(CatalogueID)
-)
+);
 
 CREATE TABLE IF NOT EXISTS Forum(
     ForumID CHAR(8) PRIMARY KEY,
     ForumName VARCHAR(50),
     ForumDescription VARCHAR(255)
-)
+);
 
 CREATE TABLE IF NOT EXISTS ForumMember(
     FMemberID CHAR(8) PRIMARY KEY,
@@ -57,7 +57,7 @@ CREATE TABLE IF NOT EXISTS ForumMember(
     ForumID CHAR(8),
     FOREIGN KEY (UserID) REFERENCES User(UserID),
     FOREIGN KEY (ForumID) REFERENCES Forum(ForumID)
-)
+);
 
 CREATE TABLE IF NOT EXISTS ForumPost(
     FPostID CHAR(8) PRIMARY KEY,
@@ -69,7 +69,7 @@ CREATE TABLE IF NOT EXISTS ForumPost(
     FPostLikes INT DEFAULT 0,
     FOREIGN KEY (ForumID) REFERENCES Forum(ForumID),
     FOREIGN KEY (FMemberID) REFERENCES ForumMember(FMemberID)
-)
+);
 
 CREATE TABLE IF NOT EXISTS ForumPostComment(
     FCommentID CHAR(8) PRIMARY KEY,
@@ -79,4 +79,4 @@ CREATE TABLE IF NOT EXISTS ForumPostComment(
     FCommentTimeStamp TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     FOREIGN KEY (FPostID) REFERENCES ForumPost(FPostID),
     FOREIGN KEY (FMemberID) REFERENCES ForumMember(FMemberID)
-)
+);
