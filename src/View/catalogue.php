@@ -33,11 +33,35 @@ require_once __DIR__ . '/../../public/header.php';
             </div>
         </div>
     </div>
+
+    <form action="index.php" method="GET" class="search-filter-container-div">
+        <input type="hidden" name="page" value="catalogue">
+        <div class="search-wrapper-div">
+            <div class="search-field-div">
+                <input type="text" name="search" placeholder="Search for talent..." class="search-input" value="<?= htmlspecialchars($_GET['search'] ?? '') ?>" />
+            </div>
+        </div>
+        <div class="filter-wrapper-div">
+            <div class="filter-div">
+                <select name="category" class="filter-dropdown">
+                    <option value="">Filter By Category</option>
+                    <?php
+                    $categories = ['Music', 'Art', 'Filmmaking', 'Videography', 'Photography', 'Animation', 'Voiceover'];
+                    $selectedCategory = $_GET['category'] ?? '';
+                    foreach ($categories as $cat) {
+                        $isSelected = ($selectedCategory === $cat) ? 'selected' : '';
+                        echo "<option value=\"$cat\" $isSelected>$cat</option>";
+                    }
+                    ?>
+                </select>
+            </div>
+        </div>
+        <button type="submit" class="button" style="height: 3em; margin-top: 0; border-radius: 20px;">Search</button>
+    </form>
+
     <div class="talent-card-container-div">
         <div class="talent-search-results-grid">
             <?php
-
-
             foreach($catalogue as $talent){
                 $profilePicturePath='images/profile.png'; // default picture
                 if(!empty($talent['ProfilePicture'])){

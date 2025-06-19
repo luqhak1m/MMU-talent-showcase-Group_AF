@@ -17,7 +17,12 @@ class CatalogueController {
         $this->user_model=new CatalogueModel($pdo);
     }
 	public function viewCatalogue(){
-        $catalogue=$this->catalogue_model->fetchAllCatalogue();
+        // Get search and category from the URL query
+        $search = $_GET['search'] ?? null;
+        $category = $_GET['category'] ?? null;
+
+        // Fetch the filtered/searched catalogue
+        $catalogue=$this->catalogue_model->fetchAllCatalogue($search, $category);
         require_once __DIR__ . '/../View/catalogue.php';
 	} 
 }

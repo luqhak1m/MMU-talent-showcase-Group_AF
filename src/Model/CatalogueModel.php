@@ -35,12 +35,31 @@ class CatalogueModel {
         return $result['CatalogueID'];
     }
 
-    public function fetchAllCatalogue(){
+    public function fetchAllCatalogue($search = null, $category = null){
         // echo "[INFO] CatalogueModel.fetchAllCatalogue(): Executing <br>";
-        $sql="SELECT t.*, p.ProfilePicture 
+        $params = [];
+        $sql="SELECT t.*, p.ProfilePicture, u.Username 
             FROM Talent t 
-            JOIN `Profile` p ON t.UserID = p.UserID"; // join the talent table with profile picture from user table to display in html for each talent
-        $stmt = $this->pdo->query($sql);
+            JOIN `Profile` p ON t.UserID = p.UserID
+            JOIN `User` u ON t.UserID = u.UserID"; // join tables to get required info
+
+        $whereClauses = [];
+        if ($search) {
+            $whereClauses[] = "(t.TalentTitle LIKE ? OR t.TalentDescription LIKE ?)";
+            $params[] = "%{$search}%";
+            $params[] = "%{$search}%";
+        }
+        if ($category && $category !== '') {
+            $whereClauses[] = "t.Category = ?";
+            $params[] = $category;
+        }
+
+        if (!empty($whereClauses)) {
+            $sql .= " WHERE " . implode(" AND ", $whereClauses);
+        }
+
+        $stmt = $this->pdo->prepare($sql);
+        $stmt->execute($params);
         $result=$stmt->fetchAll(PDO::FETCH_ASSOC);
         // echo "[INFO] CatalogueModel.fetchAllCatalogue(): Executed <br>";
         return $result;

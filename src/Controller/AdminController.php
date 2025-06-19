@@ -2,15 +2,23 @@
 
 require_once __DIR__ . '/.../Model/UserModel.php'; // Using UserModel as admins are users with a role
 require_once __DIR__ . '/../Model/ProfileModel.php';
+require_once __DIR__ . '/../Model/CatalogueModel.php';
+require_once __DIR__ . '/../Model/TalentModel.php';
 
 class AdminController {
     private $userModel;
     private $profileModel; 
+    private $catalogueModel;
+    private $talentModel;
+    
 
     public function __construct($pdo) {
-        $this->userModel = new UserModel($pdo);
-        // This line was missing. It creates the ProfileModel.
         $this->profileModel = new ProfileModel($pdo);
+        $this->catalogueModel = new CatalogueModel($pdo);
+        // Correctly instantiate UserModel with its dependencies
+        $this->userModel = new UserModel($pdo, $this->profileModel, $this->catalogueModel);
+        // Correctly instantiate TalentModel with its dependencies
+        $this->talentModel = new TalentModel($pdo, $this->catalogueModel);
     }
 
     public function login() {
@@ -94,4 +102,27 @@ class AdminController {
         include __DIR__ . '/../View/profile.php';
     }
     // insert other admin methods later, e.g., manage users, view reports, etc.
+    public function manageTalents() {
+        if (!isset($_SESSION['is_admin']) || $_SESSION['is_admin'] !== true) {
+            header("Location: /talent-portal/public/index.php?page=admin_login");
+            exit;
+        }
+        $talents = $this->catalogueModel->fetchAllCatalogue();
+        include __DIR__ . '/../View/admin/manage_talents.php';
+    }
+
+    public function deleteTalent() {
+        if (!isset($_SESSION['is_admin']) || $_SESSION['is_admin'] !== true) {
+            header("Location: /talent-portal/public/index.php?page=admin_login");
+            exit;
+        }
+        
+        $talentId = $_GET['talent_id'] ?? null;
+        if ($talentId) {
+            $this->talentModel->deleteTalentByID($talentId);
+        }
+        
+        header("Location: /talent-portal/public/index.php?page=admin_manage_talents");
+        exit;
+    }
 }

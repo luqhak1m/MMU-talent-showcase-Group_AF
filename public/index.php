@@ -79,6 +79,18 @@ switch ($page) {
         $adminController->editUserProfile();
         break;
 
+	case 'admin_manage_talents':
+        require_once __DIR__ . '/../src/Controller/AdminController.php';
+        $adminController = new AdminController($pdo);
+        $adminController->manageTalents();
+        break;
+
+    case 'admin_delete_talent':
+        require_once __DIR__ . '/../src/Controller/AdminController.php';
+        $adminController = new AdminController($pdo);
+        $adminController->deleteTalent();
+        break;
+
 	case 'talent':
 		require_once __DIR__ . '/../src/Controller/TalentController.php';
 		$talentController=new TalentController($pdo);

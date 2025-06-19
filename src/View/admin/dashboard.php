@@ -9,11 +9,13 @@
 </head>
 <body class="index-body">
     
-    <div class="container-div" id="home-container-div">
+    <div class="container-div" id="home-container-div" style="padding-bottom: 2em;">
         <h1>Admin Dashboard</h1>
         
         <p>Welcome, <?php echo htmlspecialchars($_SESSION['admin_name']); ?>!</p>
         
+        <a href="index.php?page=admin_manage_talents" class="button">Manage Talents</a>
+
         <h2>All Users</h2>
         <table border="1" style="width:100%; border-collapse: collapse; background-color: #fff;">
             <thead>
