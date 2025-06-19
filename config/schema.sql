@@ -44,3 +44,39 @@ CREATE TABLE IF NOT EXISTS Talent(
     FOREIGN KEY (UserID) REFERENCES User(UserID),
     FOREIGN KEY (CatalogueID) REFERENCES Catalogue(CatalogueID)
 )
+
+CREATE TABLE IF NOT EXISTS Forum(
+    ForumID CHAR(8) PRIMARY KEY,
+    ForumName VARCHAR(50),
+    ForumDescription VARCHAR(255)
+)
+
+CREATE TABLE IF NOT EXISTS ForumMember(
+    FMemberID CHAR(8) PRIMARY KEY,
+    UserID CHAR(8),
+    ForumID CHAR(8),
+    FOREIGN KEY (UserID) REFERENCES User(UserID),
+    FOREIGN KEY (ForumID) REFERENCES Forum(ForumID)
+)
+
+CREATE TABLE IF NOT EXISTS ForumPost(
+    FPostID CHAR(8) PRIMARY KEY,
+    ForumID CHAR(8),
+    FMemberID CHAR(8),
+    FPostTitle VARCHAR(255),
+    FPost TEXT,
+    FPostDate DATETIME DEFAULT CURRENT_TIMESTAMP,
+    FPostLikes INT DEFAULT 0,
+    FOREIGN KEY (ForumID) REFERENCES Forum(ForumID),
+    FOREIGN KEY (FMemberID) REFERENCES ForumMember(FMemberID)
+)
+
+CREATE TABLE IF NOT EXISTS ForumPostComment(
+    FCommentID CHAR(8) PRIMARY KEY,
+    FPostID CHAR(8),
+    FMemberID CHAR(8),
+    FComment TEXT,
+    FCommentTimeStamp TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (FPostID) REFERENCES ForumPost(FPostID),
+    FOREIGN KEY (FMemberID) REFERENCES ForumMember(FMemberID)
+)

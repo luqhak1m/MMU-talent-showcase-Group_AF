@@ -89,8 +89,7 @@ switch ($page) {
 				if($_GET['action']=="del"){
 					$talentController->deleteTalent($talent_id);
 					break;
-				}
-				if($_GET['action']=="edit"){
+				}elseif($_GET['action']=="edit"){
 					$talentController->editTalent($talent_id);
 					break;
 				}
@@ -102,7 +101,58 @@ switch ($page) {
 			break;
 		}
 		break;
+
+	case 'forum':
+		require_once __DIR__ . '/../src/Controller/ForumController.php';
+        $forumController = new ForumController($pdo);
+
+		if(isset($_GET['id'])){	// index.php?page=X&id=Y
+			$forum_id=$_GET['id'];
+			if($_GET['action']=="join"){ // index.php?page=X&id=Y&action=Z
+				$forumController->joinForum($forum_id);
+				break;
+			}elseif($_GET['action']=="view"){ // index.php?page=X&id=Y&action=Z
+				$forumController->viewForumDetails($forum_id);
+				break;
+			
+			}elseif($_GET['action']=="joined"){ // index.php?page=X&id=Y&action=Z
+				$user_id=$_GET['id']; // to display forums a specific user has joined
+				$forumController->viewJoinedForums($user_id);
+				break;
+			}elseif($_GET['action']=="create-post"){ // index.php?page=X&id=Y&action=Z
+				$forumController->createForum();
+				break;
+			}
+		}elseif(isset($_GET['action'])){// index.php?page=X&action=Y
+			if($_GET['action']=="create"){
+				$forumController->createForum();
+				break;
+			}
+		}
+		$forumController->browseForum();
+		break;
+
+	case 'forum-post':
+		require_once __DIR__ . '/../src/Controller/ForumController.php';
+        $forumController = new ForumController($pdo);
+		if(isset($_GET['id'])){	// index.php?page=X&id=Y 
+			if(isset($_GET['action'])){// index.php?page=X&action=Y
+				if($_GET['action']=="create"){
+					$forum_id=$_GET['id']; // and this is the forum id because each post is in a forum
+					$forumController->createForumPost($forum_id);
+					break;
+				}
+				elseif($_GET['action']=="view"){
+					$forum_post_id=$_GET['id']; // and this is the forum post id
+					$forumController->viewForumPostDetails($forum_post_id);
+					break;
+				}
+			}
+		}
 		
+		break;
+
+	
 	default:
 		if(file_exists($viewPath)) {
 			require_once $viewPath;

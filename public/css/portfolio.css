@@ -72,12 +72,6 @@ body{
     /* border: 3px solid #73AD21; */
 }
 
-.follow-button-div{
-    float: right;
-    margin-top: 2.5em;
-    margin-right: 4em;
-}
-
 #catalogue-follow-user-button{
     border-radius: 20px;
     background-color: transparent;

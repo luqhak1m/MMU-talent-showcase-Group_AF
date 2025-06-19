@@ -6,9 +6,10 @@ if (session_status() === PHP_SESSION_NONE) {
 }
 
 $profilePicturePath = 'images/profile.png';
-if (isset($_SESSION['user_id'])) {
+if(isset($_SESSION['user_id'])){
+	$user_id=$_SESSION['user_id'];
 	require_once __DIR__ . '/../src/Controller/ProfileController.php';
-    require_once __DIR__.'/../config/database.php'; // ensure $pdo is available
+    require_once __DIR__.'/../config/database.php';
     $profileController = new ProfileController($pdo);
     $fetched_profile = $profileController->getProfile($_SESSION['user_id']);
 
@@ -34,7 +35,7 @@ if (isset($_SESSION['user_id'])) {
 					<a href="index.php?page=home" class="website-title"><h1>Website Name</h1></a>
 					<a href="index.php?page=catalogue">Catalogue</a> 	
 					<a href="index.php?page=talent">Portfolio</a> 	
-					<a href="/forum">Forum</a>
+					<a href="index.php?page=forum&id=<?php echo $user_id; ?>&action=joined">Forum</a>
 					<a href="/leaderboard">Leaderboard</a> 
 					<a href="/feedback">Feedback</a>
 					<a href="/announcement">Announcement</a> 

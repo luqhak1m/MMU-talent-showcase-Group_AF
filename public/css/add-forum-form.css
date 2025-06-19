@@ -1,0 +1,58 @@
+.form-container{
+    font-family: Arial, sans-serif;
+    width: 80%;
+    margin: 2em auto;
+}
+
+.form-container label{
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 4px;
+    display: block;
+    margin-top: 1.5em;
+}
+
+.form-container input[type="text"],
+.form-container textarea {
+    width: 100%;
+    padding: 10px 12px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    background-color: #F9F9FF;
+    transition: border-color 0.2s ease, background-color 0.2s ease;
+    font-family: Arial, sans-serif;
+}
+
+.form-container input:focus,
+.form-container textarea:focus{
+    outline: none;
+    border-color: #007BFF;
+    background-color: #fff;
+}
+
+.form-container textarea {
+    resize: vertical;
+}
+
+.form-container button[type="submit"]{
+    margin-top: 1.5em;
+    float: right;
+    padding: 10px 16px;
+    font-size: 16px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    background-color: #514e76;
+    color: white;
+}
+
+.form-container button[type="submit"]:hover{
+    background-color: #7975b3;
+}
+
+.form-container button[type="submit"]:disabled{
+    background-color: #bcbbc1;
+    cursor: not-allowed;
+}
