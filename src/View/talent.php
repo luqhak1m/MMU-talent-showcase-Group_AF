@@ -17,14 +17,14 @@ require_once __DIR__ . '/../../public/header.php';
 </head>
 <body>
     <div id="banner-div">
-        <?php if ($talent['UserID'] != $_SESSION['user_id']): ?>
         <div id="white-banner-div">
-            <div class="follow-button-div">
-                <button id="catalogue-follow-user-button" class="button">Follow</button>
-            </div>
-            
+        <?php if ($talent['UserID'] != $_SESSION['user_id']): ?>
+                <div class="follow-button-div">
+                    <button id="catalogue-follow-user-button" class="button">Follow</button>
+                </div>
+                
+                <?php endif; ?>
         </div>
-    <?php endif; ?>
         <div id="purple-banner-div">
             <div id="profilepicture-div">
                 <!-- <a href="/talent-portal/public/index.php?page=profile"> -->
