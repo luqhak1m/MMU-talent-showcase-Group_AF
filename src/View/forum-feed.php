@@ -12,6 +12,7 @@ require_once __DIR__ . '/../../public/header.php';
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" type="text/css" href="/talent-portal/public/css/forum-feed.css?v=<?= time() ?>">
+    <link rel="stylesheet" type="text/css" href="/talent-portal/public/css/forum-post-details.css?v=<?= time() ?>">
     <title>Forum Feed</title>
 </head>
 <body>
@@ -40,17 +41,27 @@ require_once __DIR__ . '/../../public/header.php';
     <?php foreach($forum_posts as $post){
         echo '<a href="index.php?page=forum-post&id='.$post['FPostID'].'&action=view" class="post-link-wrapper">';
         echo '<div class="post-upper-section-container-div">';
-        echo '<div class="pfp-upper-section-container-div">';
-        echo '<img src="'.$post['ProfilePicture'].'" alt="!!">';
-        echo '<div class="details-upper-section-container-div">';
-        echo '<div>';
-        echo '<p>'.htmlspecialchars($post['FPostDate']).'</p>';
-        echo '<p>@'.htmlspecialchars($post['Username']).'</p>';
-        echo '<h4>'.htmlspecialchars($post['FPostTitle']).'</h4>';
-        echo '<p>'.htmlspecialchars($post['FPost']).'</p>';
-        echo '</div>';
-        echo '</div>';
-        echo '</div>';
+            echo '<div class="pfp-upper-section-container-div">';
+                echo '<img src="'.$post['ProfilePicture'].'" alt="!!">';
+                echo '<div class="details-upper-section-container-div">';
+                    echo '<div>';
+                        echo '<p>'.htmlspecialchars($post['FPostDate']).'</p>';
+                        echo '<p>@'.htmlspecialchars($post['Username']).'</p>';
+                        echo '<h4>'.htmlspecialchars($post['FPostTitle']).'</h4>';
+                        echo '<p>'.htmlspecialchars($post['FPost']).'</p>';
+                    echo '</div>';
+                echo '</div>';
+            echo '</div>';
+            echo '<div class="post-lower-section-container-div">';
+                echo '<div class="comment-count-div">';
+                        echo '<img src="images/comments_icon.png" alt="">';
+                    echo '<p>10</p>';
+                echo '</div>';
+                echo '<div class="like-count-div" id=post-feed-unclickable-like-div>';
+                    echo '<img src="images/likes_icon.png" alt="Like">';
+                    echo '<p>'.htmlspecialchars($post['FPostLikes']).'</p>';
+                echo '</div>';
+            echo '</div>';
         echo '</div>';
     }
     ?>

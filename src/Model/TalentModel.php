@@ -18,13 +18,13 @@ class TalentModel {
 
     # Include the functions that interact with the database, CREATE, READ, UPDATE, DELETE (CRUD)
     # ...
-    public function createTalent($UserID, $CatalogueID, $TalentTitle, $TalentDescription, $Price, $Content, $TalentLikes, $Category){
+    public function createTalent($UserID, $CatalogueID, $TalentTitle, $TalentDescription, $Price, $Content, $Category){
         // echo "[INFO] TalentModel.createTalent(): Executing <br>";
         $TalentID=generateID();
         $CatalogueID=$this->catalogue_model->fetchCatalogueByUserID($UserID);
-        $sql="INSERT INTO Talent (TalentID, UserID, CatalogueID, TalentTitle, TalentDescription, Price, Content, TalentLikes, Category) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        $sql="INSERT INTO Talent (TalentID, UserID, CatalogueID, TalentTitle, TalentDescription, Price, Content, Category) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
         $stmt=$this->pdo->prepare($sql);
-        $stmt->execute([$TalentID, $UserID, $CatalogueID, $TalentTitle, $TalentDescription, $Price, $Content, $TalentLikes, $Category]);
+        $stmt->execute([$TalentID, $UserID, $CatalogueID, $TalentTitle, $TalentDescription, $Price, $Content, $Category]);
         // echo "[INFO] TalentModel.createTalent(): Executed <br>";
     }
 
@@ -65,10 +65,18 @@ class TalentModel {
     }
 
     public function updateTalent($TalentID, $TalentTitle, $TalentDescription, $Price, $Content, $Category){
-        echo "[INFO] TalentModel.updateTalent(): Executing <br>";
+        // echo "[INFO] TalentModel.updateTalent(): Executing <br>";
         $sql="UPDATE `Talent` SET TalentTitle=?, TalentDescription=?, `Price`=?, Content=?, Category=? WHERE TalentID=?";
         $stmt=$this->pdo->prepare($sql);
         $stmt->execute([$TalentTitle, $TalentDescription, $Price, $Content, $Category, $TalentID]);
-        echo "[INFO] TalentModel.updateTalent(): Executed <br>";
+        // echo "[INFO] TalentModel.updateTalent(): Executed <br>";
+    }
+    
+    public function updateLikeCount($TalentID, $newLikeCount){
+        // echo "[INFO] TalentModel.updateLikeCount(): Executing <br>";
+        $sql="UPDATE Talent SET `TalentLikes`=? WHERE TalentID=?";
+        $stmt=$this->pdo->prepare($sql);
+        // echo "[INFO] TalentModel.updateLikeCount(): Executed <br>";
+        return $stmt->execute([$newLikeCount, $TalentID]);
     }
 }

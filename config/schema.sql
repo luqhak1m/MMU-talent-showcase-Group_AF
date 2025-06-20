@@ -39,7 +39,7 @@ CREATE TABLE IF NOT EXISTS Talent(
     TalentDescription TEXT,
     Price DECIMAL(10,2),
     Content VARCHAR(255),
-    TalentLikes INT,
+    TalentLikes INT DEFAULT 0,
     Category VARCHAR(50),
     FOREIGN KEY (UserID) REFERENCES User(UserID),
     FOREIGN KEY (CatalogueID) REFERENCES Catalogue(CatalogueID)

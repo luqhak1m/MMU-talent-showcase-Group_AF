@@ -153,4 +153,12 @@ class ForumModel {
         // echo "[INFO] ForumModel.fetchForumPostbyForumPostID(): Executed <br>";
         return $result;
     }
+
+    public function updateLikeCount($FPostID, $newLikeCount){
+        // echo "[INFO] ForumModel.updateLikeCount(): Executing <br>";
+        $sql="UPDATE ForumPost SET `FPostLikes`=? WHERE FPostID=?";
+        $stmt=$this->pdo->prepare($sql);
+        // echo "[INFO] ForumModel.updateLikeCount(): Executed <br>";
+        return $stmt->execute([$newLikeCount, $FPostID]);
+    }
 }

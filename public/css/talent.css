@@ -78,21 +78,20 @@ body{
 
 /* talent content (2 cards) */
 
-#content-container-div{
-    height: 100em;
+.content-container-div{
     width: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: flex-start;
+    /* border: 3px solid #73AD21; */
 }
 
 .talent-card-div{
     border: 3px solid #e7e7e7;
     border-radius: 20px;
-    height: 70em;
     width: 65em;
     margin-top: 5em;
+    padding-bottom: 2em;
 }
 
 #big-image-div{
@@ -166,6 +165,7 @@ body{
     display: flex;
     flex-direction: column;
     align-items: center;
+
 }
 
 .comment-card-div{
@@ -175,8 +175,9 @@ body{
     padding-top: 10px;
     padding-bottom: 10px;
     margin-top: 5px;
-    margin-bottom: 5px;
+    margin-bottom: 10px;
     height: 10em;
+
 }
 
 .comment-text-div{
@@ -187,4 +188,13 @@ body{
     height: 8em;
     /* border: 3px solid #73AD21; */
 }
+
+#talent-comment-div{
+    margin-bottom: 5em;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+}
+
 

@@ -35,7 +35,6 @@ class TalentController {
             $TalentTitle=$_POST['TalentTitle'];
             $TalentDescription=$_POST['TalentDescription'];
             $Price=$_POST['Price'];
-            $TalentLikes=$_POST['TalentLikes'];
             $Category=$_POST['Category'];
             $CatalogueID=$this->catalogue_model->fetchCatalogueByUserID($UserID);
             
@@ -44,7 +43,6 @@ class TalentController {
             echo "TalentDescription: $TalentDescription<br>";
             echo "Price: $Price<br>";
             echo "Content: $Content<br>";
-            echo "TalentLikes: $TalentLikes<br>";
             echo "Category: $Category<br>";
             echo "Catalogue ID: $CatalogueID<br>";
 
@@ -53,8 +51,8 @@ class TalentController {
             echo '</pre>';
 
             $content_filename=uploadMedia($UserID, 'Content');
-            $this->talent_model->createTalent($UserID, $CatalogueID, $TalentTitle, $TalentDescription, $Price, $content_filename, $TalentLikes, $Category);
-            if(isset($_SESSION['user_id'])) {
+            $this->talent_model->createTalent($UserID, $CatalogueID, $TalentTitle, $TalentDescription, $Price, $content_filename, $Category);
+            if(isset($_SESSION['user_id']) && isset($_POST['user_id'])) {
                 $UserID=$_SESSION['user_id'];
                 $fetched_talent=$this->talent_model->fetchTalentByUserID($UserID);
                 $profile_picture=$this->profile_model->fetchProfile($UserID)['ProfilePicture'];
@@ -111,6 +109,16 @@ class TalentController {
     }
 
     public function editTalent($TalentID){
+
+        if(isset($_SESSION['user_id'])) {
+            $UserID=$_SESSION['user_id'];
+            $fetched_talent=$this->talent_model->fetchTalentByUserID($UserID);
+            $profile_picture=$this->profile_model->fetchProfile($UserID)['ProfilePicture'];
+            # echo "[INFO] Found ".count($fetched_talent)." talent(s) for user ".$_SESSION['username']."<br>";
+        }else {
+            # echo "[INFO] No session";
+        }      
+
         # echo "[INFO] TalentController.submitTalent(): Executing <br>";
         $fetched_talent=$this->talent_model->fetchTalentByTalentID($TalentID);
         $profile_picture=$this->profile_model->fetchProfile($UserID)['ProfilePicture'];
@@ -118,7 +126,7 @@ class TalentController {
         // foreach ($fetched_talent as $key => $value) {
         //     echo $key . ' => ' . $value . '<br>';
         // }
-        if($_SERVER['REQUEST_METHOD']==='POST'){
+        if($_SERVER['REQUEST_METHOD']==='POST' && isset($_POST['talent_id'])){
             # echo "[INFO] Talent submission POST received:<br>";
             
             $UserID=$_SESSION['user_id'];
@@ -138,5 +146,12 @@ class TalentController {
         }else{
             require_once __DIR__ . '/../View/add-talent-form.php';
         }
+    }
+
+    public function likeTalent($TalentID){
+        $talent=$this->talent_model->fetchTalentByTalentID($TalentID);
+        $newLikeCount=$talent['TalentLikes']+1;
+        $this->talent_model->updateLikeCount($TalentID, $newLikeCount);
+        header("Location: /talent-portal/public/index.php?page=talent&id=".htmlspecialchars($TalentID));
     }
 }

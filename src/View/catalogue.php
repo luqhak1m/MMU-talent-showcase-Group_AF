@@ -16,23 +16,6 @@ require_once __DIR__ . '/../../public/header.php';
     <title>Portfolio</title>
 </head>
 <body>
-    <div class="search-filter-container-div">
-        <div class="search-wrapper-div">
-            <div class="search-field-div">
-                <input type="text" placeholder="Search for talent..." class="search-input" />
-            </div>
-        </div>
-        <div class="filter-wrapper-div">
-            <div class="filter-div">
-                <select class="filter-dropdown">
-                <option value="">Filter By</option>
-                <option value="design">Art</option>
-                <option value="development">Music</option>
-                <option value="marketing">Video</option>
-                </select>
-            </div>
-        </div>
-    </div>
 
     <form action="index.php" method="GET" class="search-filter-container-div">
         <input type="hidden" name="page" value="catalogue">

@@ -94,7 +94,6 @@ switch ($page) {
 	case 'talent':
 		require_once __DIR__ . '/../src/Controller/TalentController.php';
 		$talentController=new TalentController($pdo);
-
 		if(isset($_GET['id'])){ // index.php?page=X&id=Y
 			$talent_id=$_GET['id'];
 			if(isset($_GET['action'])){
@@ -103,6 +102,9 @@ switch ($page) {
 					break;
 				}elseif($_GET['action']=="edit"){
 					$talentController->editTalent($talent_id);
+					break;
+				}elseif($_GET['action']=="like"){
+					$talentController->likeTalent($talent_id);
 					break;
 				}
 			}
@@ -157,6 +159,10 @@ switch ($page) {
 				elseif($_GET['action']=="view"){
 					$forum_post_id=$_GET['id']; // and this is the forum post id
 					$forumController->viewForumPostDetails($forum_post_id);
+					break;
+				}elseif($_GET['action']=="like"){
+					$forum_post_id=$_GET['id']; // and this is the forum post id
+					$forumController->likeForumPost($forum_post_id);
 					break;
 				}
 			}

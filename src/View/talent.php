@@ -12,6 +12,7 @@ require_once __DIR__ . '/../../public/header.php';
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" type="text/css" href="/talent-portal/public/css/talent.css?v=<?= time() ?>">
+    <link rel="stylesheet" type="text/css" href="/talent-portal/public/css/forum-post-details.css?v=<?= time() ?>">
     <title>Document</title>
 </head>
 <body>
@@ -53,8 +54,7 @@ require_once __DIR__ . '/../../public/header.php';
             </div>
         </div>
     </div>
-    <div id="content-container-div">
-        
+    <div class="content-container-div">
         <div id="talent-description-div" class="talent-card-div">
             <div id="big-image-div">
                 <?php
@@ -92,10 +92,28 @@ require_once __DIR__ . '/../../public/header.php';
                 <a href="/talent-portal/public/index.php?page=offer" class="button">Make Offer</a>
                 <a href="/talent-portal/public/index.php?page=cart" class="button">Add to Cart</a>
             </div>
+            <div class="post-lower-section-container-div">
+                <div class="comment-count-div">
+                    <img src="images/comments_icon.png" alt="">
+                    <p>10</p>
+                </div>
+                <div class="like-count-div">
+                    <a href="index.php?page=talent&id=<?php echo $talent['TalentID']; ?>&action=like" class="like-button">
+                        <img src="images/likes_icon.png" alt="Like">
+                    </a>
+                    <p><?php echo $talent['TalentLikes']; ?></p>
+                </div>
+            </div>
         </div>
         <div id="talent-comment-div" class="talent-card-div">
             <div id="talent-heading-div">
                 <h1 id="comments-heading-h1">Comments</h1>
+            </div>
+            <div class="comment-form-div" id="talent-comment-form-div">
+                <form class="add-comment-form" action="submit_comment.php" method="post">
+                    <textarea class="comment-input" name="comment" placeholder="Write your comment here..." required></textarea>
+                    <button type="submit" class="comment-submit-button">Post Comment</button>
+                </form>
             </div>
             <div id="comment-card-collection-div">
                 <div class="comment-card-div">
@@ -119,50 +137,9 @@ require_once __DIR__ . '/../../public/header.php';
                         Lorem ipsum dolor sit amet consectetur adipisicing elit. Quis, rem perferendis? Ullam at voluptatibus totam ex blanditiis rerum soluta rem nobis labore optio reiciendis eaque laborum facere, incidunt facilis amet!
                     </div>
                 </div>
-                <div class="comment-card-div">
-                    <div class="pfp-username-time-div">
-                        <img class="profilepicture-comment-img" 
-                        src="<?php 
-                            $profilePicturePath = 'images/profile.png'; // default image
-                            if (!empty($fetched_profile['ProfilePicture'])) {
-                                $profilePicturePath = 'uploads/' . htmlspecialchars($fetched_profile['ProfilePicture']);
-                            }    
-                            
-                            echo $profilePicturePath;
-                            ?>"
-                            alt="Click to upload">
-                        <p>@Username</p>
-                        <p>4 Hours Ago</p>
-                    </div>
-                    <div class="comment-text-div">
-                        Lorem ipsum dolor, sit amet consectetur adipisicing elit. Repellendus impedit cupiditate saepe sint labore aliquam error placeat molestias, quaerat quidem? Labore, hic! Laudantium pariatur ab dignissimos in, nobis quisquam neque.
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Dignissimos ex delectus explicabo expedita unde, molestiae quod libero officia corporis excepturi eos? Rerum similique tempore dolorem accusantium fugit labore quam aliquam.
-                    </div>
-                </div>
-                <div class="comment-card-div">
-                    <div class="pfp-username-time-div">
-                        <img class="profilepicture-comment-img" 
-                        src="<?php 
-                            $profilePicturePath = 'images/profile.png'; // default image
-                            if (!empty($fetched_profile['ProfilePicture'])) {
-                                $profilePicturePath = 'uploads/' . htmlspecialchars($fetched_profile['ProfilePicture']);
-                            }    
-                            
-                            echo $profilePicturePath;
-                            ?>"
-                            alt="Click to upload">
-                        <p>@Username</p>
-                        <p>4 Hours Ago</p>
-                    </div>
-                    <div class="comment-text-div">
-                        Lorem ipsum dolor, sit amet consectetur adipisicing elit. Repellendus impedit cupiditate saepe sint labore aliquam error placeat molestias, quaerat quidem? Labore, hic! Laudantium pariatur ab dignissimos in, nobis quisquam neque.
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Dignissimos ex delectus explicabo expedita unde, molestiae quod libero officia corporis excepturi eos? Rerum similique tempore dolorem accusantium fugit labore quam aliquam.
-                    </div>
-                </div>
             </div>
         </div>
-                
-
+    
     </div>
 </body>
 </html>

@@ -30,25 +30,38 @@ require_once __DIR__ . '/../../public/header.php';
     </div>
 
     <div class="post-container-div">
-
         <div class="post-description-div">
                 <?php
 
                 echo '<div class="detailed-post-container-div">';
-                // echo '<a href="index.php?page=forum-post&id='.$post['FPostID'].'&action=view" class="post-link-wrapper">';
-                echo '<div class="post-upper-section-container-div">';
-                echo '<div class="pfp-upper-section-container-div">';
-                echo '<img src="'.$fetched_forum_post['ProfilePicture'].'" alt="!!">';
-                echo '<div class="details-upper-section-container-div">';
-                echo '<div>';
-                echo '<p>'.htmlspecialchars($fetched_forum_post['FPostDate']).'</p>';
-                echo '<p>@'.htmlspecialchars($fetched_forum_post['Username']).'</p>';
-                echo '<h4>'.htmlspecialchars($fetched_forum_post['FPostTitle']).'</h4>';
-                echo '<p>'.htmlspecialchars($fetched_forum_post['FPost']).'</p>';
-                echo '</div>';
-                echo '</div>';
-                echo '</div>';
-                echo '</div>';
+
+                    // echo '<a href="index.php?page=forum-post&id='.$post['FPostID'].'&action=view" class="post-link-wrapper">';
+                    echo '<div class="post-upper-section-container-div">';
+                        echo '<div class="pfp-upper-section-container-div">';
+                            echo '<img src="'.$fetched_forum_post['ProfilePicture'].'" alt="!!">';
+                            echo '<div class="details-upper-section-container-div">';
+                                echo '<div>';
+                                    echo '<p>'.htmlspecialchars($fetched_forum_post['FPostDate']).'</p>';
+                                    echo '<p>@'.htmlspecialchars($fetched_forum_post['Username']).'</p>';
+                                    echo '<h4>'.htmlspecialchars($fetched_forum_post['FPostTitle']).'</h4>';
+                                    echo '<p>'.htmlspecialchars($fetched_forum_post['FPost']).'</p>';
+                                echo '</div>';
+                            echo '</div>';
+                        echo '</div>';
+                    echo '</div>';
+                    echo '<div class="post-lower-section-container-div">';
+                        echo '<div class="comment-count-div">';
+                                echo '<img src="images/comments_icon.png" alt="">';
+                            echo '<p>10</p>';
+                        echo '</div>';
+                        echo '<div class="like-count-div">';
+                            echo '<a href="index.php?page=forum-post&id='. $fetched_forum_post['FPostID'].'&action=like" class="like-button">';
+                                echo '<img src="images/likes_icon.png" alt="Like">';
+                            echo '</a>';
+                            echo '<p>'.$fetched_forum_post['FPostLikes'].'</p>';
+                        echo '</div>';
+                    echo '</div>';
+
                 echo '</div>';
                 ?>
         </div>
@@ -56,10 +69,14 @@ require_once __DIR__ . '/../../public/header.php';
             <h1 class="post-comments-heading-h1">Comments</h1>
 
         </div>
-        <form class="add-comment-form" action="submit_comment.php" method="post">
-            <textarea class="comment-input" name="comment" placeholder="Write your comment here..." required></textarea>
-            <button type="submit" class="comment-submit-button">Post Comment</button>
-        </form>
+        <div class="comment-like-container-div">
+            <div class="comment-form-div">
+                <form class="add-comment-form" action="submit_comment.php" method="post">
+                    <textarea class="comment-input" name="comment" placeholder="Write your comment here..." required></textarea>
+                    <button type="submit" class="comment-submit-button">Post Comment</button>
+                </form>
+            </div>
+        </div>
         <div class="comment-description-div">
             <div class="post-comment-card-collection-div">
                 <div class="post-comment-card-div">
@@ -87,7 +104,7 @@ require_once __DIR__ . '/../../public/header.php';
                 </div>
             </div>
         </div>
-        </div>
+    </div>
 
 
 </body>

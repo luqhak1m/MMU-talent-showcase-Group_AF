@@ -84,5 +84,13 @@ class ForumController {
         include __DIR__ . '/../View/forum-post-details.php';
     }
 
+    public function likeForumPost($FPostID){
+        $fetched_forum_post=$this->forum_model->fetchForumPostbyForumPostID($FPostID);
+        $newLikeCount=$fetched_forum_post['FPostLikes']+1;
+        $this->forum_model->updateLikeCount($FPostID, $newLikeCount);
+        $forum_members=$this->forum_model->fetchForumMembers($fetched_forum_post['ForumID']);
+        header("Location: /talent-portal/public/index.php?page=forum-post&id=".htmlspecialchars($FPostID)."&action=view");
+    }
+
     
 }

@@ -46,8 +46,8 @@ $fetched_talent=$fetched_talent??[]; // handle if user is adding talent, not edi
                     $file=htmlspecialchars($fetched_talent['Content']);
                     $extension=pathinfo($file, PATHINFO_EXTENSION);
                     $filepath="uploads/".$file;
-                    echo "<p>Resolved path: <code>$filepath</code></p>";
-                    echo "<p>Full URL test: <a href='$filepath' target='_blank'>Open File</a></p>";
+                    // echo "<p>Resolved path: <code>$filepath</code></p>";
+                    // echo "<p>Full URL test: <a href='$filepath' target='_blank'>Open File</a></p>";
 
                     if(in_array(strtolower($extension), ['jpg', 'jpeg', 'png', 'gif', 'webp'])){
                         echo "<img src='$filepath' alt='Image Preview'>";
