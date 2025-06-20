@@ -12,7 +12,6 @@
     <div class="container-div" id="home-container-div" style="padding-bottom: 2em;">
         <h1>Admin Dashboard</h1>
         
-        <p>Welcome, <?php echo htmlspecialchars($_SESSION['admin_name']); ?>!</p>
         
         <a href="index.php?page=admin_manage_talents" class="button">Manage Talents</a>
 
