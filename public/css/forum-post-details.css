@@ -5,3 +5,142 @@
     width: 80%;
     margin: 5em auto;
 }
+
+body{
+    font-family: Arial, sans-serif;
+    /* border: 3px solid #73AD21; */
+
+}
+
+.pfp-upper-section-container-div{
+    display: flex;
+    align-items: flex-start;
+    gap: 1em;
+    margin-top: 2em;
+    margin-left: 2em;
+}
+
+.pfp-upper-section-container-div img{
+    width: 3em;
+    height: 3em;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.details-upper-section-container-div{
+    flex: 1;
+}
+
+.details-upper-section-container-div p{
+    margin: 0.2em 0;
+    color: #333;
+    font-size: 0.9em;
+}
+
+.details-upper-section-container-div h4{
+    margin: 0.5em 0 0.3em;
+    font-size: 1.2em;
+    color: #222;
+}
+
+.details-upper-section-container-div hr{
+    margin-top: 1em;
+    border: none;
+    border-top: 1px solid #ddd;
+}
+
+.middle-container-div{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-left: 5em;
+    padding-right: 5em;
+}
+
+.forum-details-container-div{
+    background-color: #E7E6F2;
+    padding-left: 5em;
+    padding-bottom: 3em;
+    padding-top: 3em;
+    margin-bottom: 2em;
+}
+
+.comment-description-div{
+    border: 3px solid #e7e7e7;
+    border-radius: 20px;
+    width: 80%;
+    margin: 5em auto;
+    padding-bottom: 2em;
+}
+
+.post-comment-heading-div{
+    margin-left: 10%;
+    margin-top: 2em;
+}
+
+.post-profilepicture-comment-img{
+    width: 3em;
+    height: 3em;
+    margin-bottom: 2em;
+    display: block;
+    /* border: 3px solid #73AD21; */
+    margin-left: 1em;
+}
+
+.post-comment-card-collection-div{
+    margin-left: 2em;
+    margin-top: 2em;
+    /* border: 3px solid #73AD21; */
+}
+
+.post-comment-card-div{
+    display: flex;
+    align-items: flex-start;
+}
+
+.post-pfp-username-time-div{
+    margin-right: 2em;
+    /* border: 3px solid #73AD21; */
+
+}
+
+.post-comment-text-div{
+    padding-right: 2em;
+}
+
+.add-comment-form {
+    border: 3px solid #e7e7e7;
+    border-radius: 20px;
+    width: 80%;
+    margin: 1em auto;
+    padding: 2em;
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+    background-color: #ffffff;
+}
+
+.comment-input{
+    width: 100%;
+    min-height: 100px;
+    padding: 1em;
+    font-size: 16px;
+    border: 1px solid #E7E6F2;
+    border-radius: 8px;
+    background-color: #F9F9FF;
+}
+
+.comment-submit-button{
+    align-self: flex-end;
+    background-color: #5D5A88;
+    color: white;
+    border: none;
+    padding: 10px 25px;
+    font-size: 16px;
+    font-weight: bold;
+    border-radius: 8px;
+}
+
+.comment-submit-button:hover{
+    background-color: #4a4770;
+}

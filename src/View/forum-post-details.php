@@ -16,6 +16,19 @@ require_once __DIR__ . '/../../public/header.php';
 </head>
 <body>
 
+    <div class="forum-details-container-div">
+        <div class="forum-title-desc-container-div">
+            <h2><?php echo htmlspecialchars($fetched_forum_post['ForumName']); ?></h2>
+            <p><?php echo htmlspecialchars($fetched_forum_post['ForumDescription']); ?></p>
+        </div>
+        
+        
+        <div class="forum-members-summary-div">
+            <h3>Members</h3>
+            <p><?php echo count($forum_members); ?> member(s)</p>
+        </div>
+    </div>
+
     <div class="post-container-div">
 
         <div class="post-description-div">
@@ -39,11 +52,16 @@ require_once __DIR__ . '/../../public/header.php';
                 echo '</div>';
                 ?>
         </div>
-        <!-- <div id="post-comment-div" class="post-card-div">
-            <div id="post-heading-div">
-                <h1 id="post-comments-heading-h1">Comments</h1>
-            </div>
-            <div id="post-comment-card-collection-div">
+        <div class="post-comment-heading-div">
+            <h1 class="post-comments-heading-h1">Comments</h1>
+
+        </div>
+        <form class="add-comment-form" action="submit_comment.php" method="post">
+            <textarea class="comment-input" name="comment" placeholder="Write your comment here..." required></textarea>
+            <button type="submit" class="comment-submit-button">Post Comment</button>
+        </form>
+        <div class="comment-description-div">
+            <div class="post-comment-card-collection-div">
                 <div class="post-comment-card-div">
                     <div class="post-pfp-username-time-div">
                         <img class="post-profilepicture-comment-img" 
@@ -56,8 +74,10 @@ require_once __DIR__ . '/../../public/header.php';
                             echo $profilePicturePath;
                             ?>"
                             alt="Click to upload">
-                        <p>@Username</p>
-                        <p>4 Hours Ago</p>
+                            <div class="username-time-div">
+                                <p>@Username</p>
+                                <p>4 Hours Ago</p>
+                            </div>
                     </div>
                     <div class="post-comment-text-div">
                         Lorem ipsum dolor, sit amet consectetur adipisicing elit. Repellendus impedit cupiditate saepe sint labore aliquam error placeat molestias, quaerat quidem? Labore, hic! Laudantium pariatur ab dignissimos in, nobis quisquam neque.
@@ -67,7 +87,7 @@ require_once __DIR__ . '/../../public/header.php';
                 </div>
             </div>
         </div>
-        </div> -->
+        </div>
 
 
 </body>

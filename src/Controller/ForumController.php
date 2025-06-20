@@ -79,6 +79,8 @@ class ForumController {
 
     public function viewForumPostDetails($FPostID){
         $fetched_forum_post=$this->forum_model->fetchForumPostbyForumPostID($FPostID);
+        $forum_members=$this->forum_model->fetchForumMembers($fetched_forum_post['ForumID']);
+
         include __DIR__ . '/../View/forum-post-details.php';
     }
 

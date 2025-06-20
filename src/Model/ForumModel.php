@@ -135,12 +135,18 @@ class ForumModel {
 
     public function fetchForumPostbyForumPostID($FPostID){
         // echo "[INFO] ForumModel.fetchForumPostbyForumPostID(): Executing <br>";
-        $sql="SELECT ForumPost.*, Profile.ProfilePicture, User.Username
+        $sql="SELECT 
+                    ForumPost.*, 
+                    Profile.ProfilePicture, 
+                    User.Username, 
+                    Forum.ForumName, 
+                    Forum.ForumDescription
                 FROM ForumPost
                 JOIN ForumMember ON ForumPost.FMemberID = ForumMember.FMemberID
                 JOIN Profile ON ForumMember.UserID = Profile.UserID
                 JOIN User ON ForumMember.UserID = User.UserID
-                WHERE ForumPost.FPostID=?";
+                JOIN Forum ON ForumPost.ForumID = Forum.ForumID
+                WHERE ForumPost.FPostID = ?";
         $stmt=$this->pdo->prepare($sql);
         $stmt->execute([$FPostID]);
         $result=$stmt->fetch(PDO::FETCH_ASSOC);
