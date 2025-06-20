@@ -7,7 +7,7 @@ require_once __DIR__ . '/../config/database.php';
 require_once __DIR__ . '/../config/database_config.php';
 $pdo=connectToDatabase($dbCredentials);
 session_start();
-require_once __DIR__ . '/../public/header.php'; // <- now header can use $pdo
+require_once __DIR__ . '/../public/header.php';
 
 
 if(isset($_GET['page'])){
@@ -106,6 +106,9 @@ switch ($page) {
 				}elseif($_GET['action']=="like"){
 					$talentController->likeTalent($talent_id);
 					break;
+				}elseif($_GET['action']=="comment"){
+					$talentController->addComment($talent_id);
+					break;
 				}
 			}
 			$talentController->viewSpecificTalent($talent_id);
@@ -163,6 +166,10 @@ switch ($page) {
 				}elseif($_GET['action']=="like"){
 					$forum_post_id=$_GET['id']; // and this is the forum post id
 					$forumController->likeForumPost($forum_post_id);
+					break;
+				}elseif($_GET['action']=="comment"){
+					$forum_post_id=$_GET['id']; // and this is the forum post id
+					$forumController->addComment($forum_post_id);
 					break;
 				}
 			}

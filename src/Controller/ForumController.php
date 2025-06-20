@@ -80,6 +80,7 @@ class ForumController {
     public function viewForumPostDetails($FPostID){
         $fetched_forum_post=$this->forum_model->fetchForumPostbyForumPostID($FPostID);
         $forum_members=$this->forum_model->fetchForumMembers($fetched_forum_post['ForumID']);
+        $fetched_comments=$this->forum_model->fetchAllCommentsByForumPostID($FPostID);
 
         include __DIR__ . '/../View/forum-post-details.php';
     }
@@ -90,6 +91,30 @@ class ForumController {
         $this->forum_model->updateLikeCount($FPostID, $newLikeCount);
         $forum_members=$this->forum_model->fetchForumMembers($fetched_forum_post['ForumID']);
         header("Location: /talent-portal/public/index.php?page=forum-post&id=".htmlspecialchars($FPostID)."&action=view");
+    }
+
+    public function addComment($FPostID){
+
+        if($_SERVER['REQUEST_METHOD']==='POST'){
+    
+            echo "[INFO] POST received:<br>";
+            $comment=$_POST['comment'];
+            if(isset($_SESSION['user_id'])){
+	            $UserID=$_SESSION['user_id'];
+            }
+            $ForumID=$this->forum_model->fetchForumIDByForumPostID($FPostID)['ForumID'];
+            // echo "forumid ".$ForumID;
+            $FMemberID=$this->forum_model->fetchForumMemberID($UserID, $ForumID)['FMemberID'];
+            // echo "forumid ".$UserID;
+
+            $this->forum_model->createComment($UserID, $FPostID, $FMemberID, $comment);
+
+            header("Location: /talent-portal/public/index.php?page=forum-post&id=".htmlspecialchars($FPostID)."&action=view");
+            // $forum=$this->forum_model->fetchForumByForumID($ForumID);
+            // $forum_members=$this->forum_model->fetchForumMembers($ForumID);
+            // $forum_posts=$this->forum_model->fetchAllForumPosts($ForumID);
+            // include __DIR__ . '/../View/forum-feed.php';
+        }        
     }
 
     

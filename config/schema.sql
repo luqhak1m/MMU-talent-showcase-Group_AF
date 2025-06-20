@@ -76,7 +76,17 @@ CREATE TABLE IF NOT EXISTS ForumPostComment(
     FPostID CHAR(8),
     FMemberID CHAR(8),
     FComment TEXT,
-    FCommentTimeStamp TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    FCommentTimestamp TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     FOREIGN KEY (FPostID) REFERENCES ForumPost(FPostID),
     FOREIGN KEY (FMemberID) REFERENCES ForumMember(FMemberID)
+);
+
+CREATE TABLE IF NOT EXISTS Comment(
+    CommentID CHAR(8) PRIMARY KEY,
+    TalentID CHAR(8),
+    UserID CHAR(8),
+    Comment TEXT,
+    CommentTimestamp TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (TalentID) REFERENCES Talent(TalentID),
+    FOREIGN KEY (UserID) REFERENCES User(UserID)
 );

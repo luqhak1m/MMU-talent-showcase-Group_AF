@@ -110,34 +110,31 @@ require_once __DIR__ . '/../../public/header.php';
                 <h1 id="comments-heading-h1">Comments</h1>
             </div>
             <div class="comment-form-div" id="talent-comment-form-div">
-                <form class="add-comment-form" action="submit_comment.php" method="post">
+                <form class="add-comment-form" action="index.php?page=talent&id=<?php echo $talent['TalentID'] ?>&action=comment" method="post">
                     <textarea class="comment-input" name="comment" placeholder="Write your comment here..." required></textarea>
                     <button type="submit" class="comment-submit-button">Post Comment</button>
                 </form>
             </div>
-            <div id="comment-card-collection-div">
-                <div class="comment-card-div">
-                    <div class="pfp-username-time-div">
-                        <img class="profilepicture-comment-img" 
-                        src="<?php 
-                            $profilePicturePath = 'images/profile.png'; // default image
-                            if(!empty($profile_picture)){
-                                $profilePicturePath = 'uploads/'.htmlspecialchars($profile_picture);
-                            }    
-                            
-                            echo $profilePicturePath;
-                            ?>"
-                            alt="Click to upload">
-                        <p>@Username</p>
-                        <p>4 Hours Ago</p>
-                    </div>
-                    <div class="comment-text-div">
-                        Lorem ipsum dolor, sit amet consectetur adipisicing elit. Repellendus impedit cupiditate saepe sint labore aliquam error placeat molestias, quaerat quidem? Labore, hic! Laudantium pariatur ab dignissimos in, nobis quisquam neque.
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Dignissimos ex delectus explicabo expedita unde, molestiae quod libero officia corporis excepturi eos? Rerum similique tempore dolorem accusantium fugit labore quam aliquam.
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Quis, rem perferendis? Ullam at voluptatibus totam ex blanditiis rerum soluta rem nobis labore optio reiciendis eaque laborum facere, incidunt facilis amet!
-                    </div>
-                </div>
-            </div>
+                <?php 
+                    foreach($comments as $comment){
+                        echo '<div class="comment-description-div" id="talent-comment-description-div">';
+                            echo '<div class="post-comment-card-collection-div">';
+                                echo '<div class="post-comment-card-div">';
+                                    echo '<div class="post-pfp-username-time-div">';
+                                        echo '<img class="post-profilepicture-comment-img" src="uploads/' . htmlspecialchars($comment['ProfilePicture']) . '" alt="Click to upload">';
+                                        echo '<div class="username-time-div">';
+                                            echo '<p>@' . htmlspecialchars($comment['Username']) . '</p>';
+                                            echo '<p>' . htmlspecialchars($comment['CommentTimestamp']) . '</p>';
+                                        echo '</div>';
+                                    echo '</div>';
+                                    echo '<div class="post-comment-text-div">';
+                                        echo htmlspecialchars($comment['Comment']);
+                                    echo '</div>';
+                                echo '</div>';
+                            echo '</div>';
+                        echo '</div>';
+                    }
+                    ?>
         </div>
     
     </div>

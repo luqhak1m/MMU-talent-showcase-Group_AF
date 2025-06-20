@@ -17,8 +17,8 @@ class ForumModel {
     public function createForum($ForumName, $ForumDescription){
         // echo "[INFO] ForumModel.createForum(): Executing <br>";
         $ForumID = generateID();
-        $sql = "INSERT INTO Forum (ForumID, ForumName, ForumDescription) VALUES (?, ?, ?)";
-        $stmt = $this->pdo->prepare($sql);
+        $sql="INSERT INTO Forum (ForumID, ForumName, ForumDescription) VALUES (?, ?, ?)";
+        $stmt=$this->pdo->prepare($sql);
         $result=$stmt->execute([$ForumID, $ForumName, $ForumDescription]);
         return $result;
         // echo "[INFO] ForumModel.createForum(): Executed <br>";
@@ -66,7 +66,7 @@ class ForumModel {
         // echo "[INFO] ForumModel.fetchForumByForumID(): Executed <br>";
         return $result;
     }
-
+    
     public function fetchForumMembers($ForumID){
         // echo "[INFO] ForumModel.fetchForumMembers(): Executing <br>";
         $sql="SELECT fm.*, u.Username
@@ -109,12 +109,14 @@ class ForumModel {
 
     public function fetchAllForumPosts($ForumID){
         // echo "[INFO] ForumModel.fetchAllForumPosts(): Executing <br>";
-        $sql="SELECT ForumPost.*, Profile.ProfilePicture, User.Username
+        $sql="SELECT ForumPost.FPostID, ForumPost.ForumID, ForumPost.FMemberID, ForumPost.FPostTitle, ForumPost.FPost, ForumPost.FPostDate, ForumPost.FPostLikes, Profile.ProfilePicture, User.Username, COUNT(ForumPostComment.FCommentID) AS CommentCount
                 FROM ForumPost
-                JOIN ForumMember ON ForumPost.FMemberID = ForumMember.FMemberID
+                JOIN ForumMember ON ForumPost.FMemberID=ForumMember.FMemberID
                 JOIN Profile ON ForumMember.UserID = Profile.UserID
                 JOIN User ON ForumMember.UserID = User.UserID
-                WHERE ForumPost.ForumID = ?
+                LEFT JOIN ForumPostComment ON ForumPost.FPostID = ForumPostComment.FPostID
+                WHERE ForumPost.ForumID=?
+                GROUP BY ForumPost.FPostID, ForumPost.ForumID, ForumPost.FMemberID, ForumPost.FPostTitle, ForumPost.FPost, ForumPost.FPostDate, ForumPost.FPostLikes, Profile.ProfilePicture, User.Username
             "; 
         $stmt=$this->pdo->prepare($sql);
         $stmt->execute([$ForumID]);
@@ -161,4 +163,43 @@ class ForumModel {
         // echo "[INFO] ForumModel.updateLikeCount(): Executed <br>";
         return $stmt->execute([$newLikeCount, $FPostID]);
     }
+
+    public function createComment($UserID, $FPostID, $FMemberID, $FComment){
+        // echo "[INFO] ForumModel.createComment(): Executing <br>";
+        $FCommentID=generateID();
+        $sql="INSERT INTO ForumPostComment (FCommentID, FPostID, FMemberID, FComment) VALUES (?, ?, ?, ?)";
+        $stmt=$this->pdo->prepare($sql);
+        $result=$stmt->execute([$FCommentID, $FPostID, $FMemberID, $FComment]);
+        return $result;
+        // echo "[INFO] ForumModel.createComment(): Executed <br>";
+    }
+
+    public function fetchForumIDByForumPostID($FPostID){
+        // echo "[INFO] ForumModel.fetchForumByForumPostID(): Executing <br>";
+        $sql="SELECT ForumID FROM ForumPost WHERE FPostID=?"; 
+        $stmt=$this->pdo->prepare($sql);
+        $stmt->execute([$FPostID]);
+        $result=$stmt->fetch(PDO::FETCH_ASSOC);
+        return $result;
+        // echo "[INFO] ForumModel.fetchForumByForumPostID(): Executed <br>";
+    }
+
+    public function fetchAllCommentsByForumPostID($FPostID){
+        // echo "[INFO] ForumModel.fetchAllCommentsByForumPostID(): Executing <br>";
+
+        // join 3 tables: fpostcomment, fmmeber, profile
+        $sql="SELECT ForumPostComment.*, Profile.ProfilePicture, User.Username
+            FROM ForumPostComment
+            JOIN ForumMember ON ForumPostComment.FMemberID=ForumMember.FMemberID
+            JOIN User ON ForumMember.UserID=User.UserID
+            JOIN Profile ON ForumMember.UserID=Profile.UserID
+            WHERE ForumPostComment.FPostID=?
+            ORDER BY ForumPostComment.FCommentTimestamp DESC"; 
+        $stmt=$this->pdo->prepare($sql);
+        $stmt->execute([$FPostID]);
+        $result=$stmt->fetchAll(PDO::FETCH_ASSOC);
+        return $result;
+        // echo "[INFO] ForumModel.fetchAllCommentsByForumPostID(): Executed <br>";
+    }
+
 }

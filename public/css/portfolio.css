@@ -87,9 +87,10 @@ body{
 
 .talent-search-results-grid{
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(20em, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(23em, 1fr));
     padding: 1em;
     justify-items: center;
+    gap: 1em;
 }
 
 .talent-search-result-card{
@@ -130,7 +131,7 @@ body{
     justify-content: flex-end;
 }
 
-.delete-button {
+.delete-button{
     display: none;
     position: absolute;
     margin-left: 0.5em;
@@ -142,11 +143,11 @@ body{
     width: 3em;
 }
 
-.edit-mode .delete-button {
+.edit-mode .delete-button{
     display: block;
 }
 
-.disabled-link {
+.disabled-link{
     pointer-events: none;
     background-color: #ccc;
     color: #666;

@@ -83,6 +83,8 @@ class TalentController {
 
     public function viewSpecificTalent($TalentID){
         $talent=$this->talent_model->fetchTalentByTalentID($TalentID);
+        $comments=$this->talent_model->fetchAllCommentsByTalentID($TalentID);
+        // var_dump($comments);
         # echo "[INFO] Found talent ID ".$talent['TalentID']."<br>";
         if(isset($_SESSION['user_id'])) {
             $UserID=$_SESSION['user_id'];
@@ -126,7 +128,7 @@ class TalentController {
         // foreach ($fetched_talent as $key => $value) {
         //     echo $key . ' => ' . $value . '<br>';
         // }
-        if($_SERVER['REQUEST_METHOD']==='POST' && isset($_POST['talent_id'])){
+        if($_SERVER['REQUEST_METHOD']==='POST' && isset($_POST['id'])){
             # echo "[INFO] Talent submission POST received:<br>";
             
             $UserID=$_SESSION['user_id'];
@@ -153,5 +155,25 @@ class TalentController {
         $newLikeCount=$talent['TalentLikes']+1;
         $this->talent_model->updateLikeCount($TalentID, $newLikeCount);
         header("Location: /talent-portal/public/index.php?page=talent&id=".htmlspecialchars($TalentID));
+    }
+
+    public function addComment($TalentID){
+
+        if($_SERVER['REQUEST_METHOD']==='POST'){
+    
+            echo "[INFO] POST received:<br>";
+            $comment=$_POST['comment'];
+            if(isset($_SESSION['user_id'])){
+	            $UserID=$_SESSION['user_id'];
+            }
+            
+            $this->talent_model->createComment($TalentID, $UserID, $comment);
+
+            header("Location: /talent-portal/public/index.php?page=talent&id=".htmlspecialchars($TalentID));
+            // $forum=$this->forum_model->fetchForumByForumID($ForumID);
+            // $forum_members=$this->forum_model->fetchForumMembers($ForumID);
+            // $forum_posts=$this->forum_model->fetchAllForumPosts($ForumID);
+            // include __DIR__ . '/../View/forum-feed.php';
+        }        
     }
 }

@@ -79,4 +79,30 @@ class TalentModel {
         // echo "[INFO] TalentModel.updateLikeCount(): Executed <br>";
         return $stmt->execute([$newLikeCount, $TalentID]);
     }
+
+    public function createComment($TalentID, $UserID, $Comment){
+        // echo "[INFO] TalentModel.createComment(): Executing <br>";
+        $CommentID=generateID();
+        $sql="INSERT INTO Comment (CommentID, TalentID, UserID, Comment) VALUES (?, ?, ?, ?)";
+        $stmt=$this->pdo->prepare($sql);
+        $result=$stmt->execute([$CommentID, $TalentID, $UserID, $Comment]);
+        return $result;
+        // echo "[INFO] TalentModel.createComment(): Executed <br>";
+    }
+
+    public function fetchAllCommentsByTalentID($TalentID){
+        // echo "[INFO] ForumModel.fetchAllCommentsByForumPostID(): Executing <br>";
+
+        $sql="SELECT Comment.*, User.Username, Profile.ProfilePicture
+                FROM Comment
+                JOIN User ON Comment.UserID = User.UserID
+                LEFT JOIN Profile ON User.UserID = Profile.UserID
+                WHERE Comment.TalentID = ?
+                ORDER BY Comment.CommentTimestamp DESC"; 
+        $stmt=$this->pdo->prepare($sql);
+        $stmt->execute([$TalentID]);
+        $result=$stmt->fetchAll(PDO::FETCH_ASSOC);
+        return $result;
+        // echo "[INFO] ForumModel.fetchAllCommentsByForumPostID(): Executed <br>";
+    }
 }
