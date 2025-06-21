@@ -48,9 +48,6 @@ class AdminController {
             header("Location: /talent-portal/public/index.php?page=admin_login");
             exit;
         }
-        // Author:Sabrina
-        $regularUsers = $this->userModel->getRegularUsers();
-        
         include __DIR__ . '/../View/admin/dashboard.php';
     }
 

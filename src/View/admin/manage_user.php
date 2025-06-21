@@ -22,8 +22,8 @@
             </thead>
             <!--Author:Sabrina-->
             <tbody>
-                <?php if (!empty($regularUsers)): ?>
-                    <?php foreach ($regularUsers as $user): ?>
+                <?php if (!empty($users)): ?>
+                    <?php foreach ($users as $user): ?>
                         <tr>
                             <td><?php echo htmlspecialchars($user['Username']); ?></td>
                             <td><?php echo htmlspecialchars($user['Email']); ?></td>
@@ -36,12 +36,12 @@
                     <?php endforeach; ?>
                 <?php else: ?>
                     <tr>
-                        <td colspan="5" style="text-align: center;">No users found.</td>
+                        <td colspan="4" style="text-align: center;">No users found.</td>
                     </tr>
                 <?php endif; ?>
             </tbody>
         </table>
-        <a href="index.php?page=admin_dashboard" class="button">Back to Dashboard</a>
+        <a href="/index.php?page=admin_dashboard" class="button">Back to Dashboard</a>
     </div>
 
 </body>
