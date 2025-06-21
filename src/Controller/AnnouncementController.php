@@ -16,20 +16,16 @@ class AnnouncementController {
     }
 
 	public function viewAnnouncement(){
-        
-        echo "post no receive";
         $announcements=$this->announcement_model->fetchAllAnnouncement();
         require_once __DIR__ . '/../View/announcement.php';
 	} 
 	public function viewAdminAnnouncement(){
         if ($_SERVER['REQUEST_METHOD']==='POST'){
-            echo "post received";
 
             $AnnouncementTitle=$_POST['announcement-title'];
             $Announcement=$_POST['announcement-details'];
 
             $this->announcement_model->createAnnouncement($AnnouncementTitle, $Announcement);
-            echo "submitted";
             header("Location: /talent-portal/public/index.php?page=admin_manage_announcement");
         }
         $announcements=$this->announcement_model->fetchAllAnnouncement();

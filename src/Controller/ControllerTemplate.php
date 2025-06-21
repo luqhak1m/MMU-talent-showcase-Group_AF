@@ -1,7 +1,7 @@
 <?php
 
 # Import the necessary MODEL files
-require_once __DIR__ . '/Model/ObjectModel.php';
+require_once __DIR__ . '/../Model/ObjectModel.php';
 
 # Encapsulate the controller logic in a class
 # Name the class according to the function it serves

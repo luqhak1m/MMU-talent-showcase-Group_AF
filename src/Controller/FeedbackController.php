@@ -1,0 +1,45 @@
+<?php
+
+# Import the necessary MODEL files
+require_once __DIR__ . '/../Model/FeedbackModel.php';
+
+# Encapsulate the controller logic in a class
+# Name the class according to the function it serves
+# Usage example:
+#                   $functionController = new FunctionNameController();
+#                   $functionController->function1();
+class FeedbackController {
+	private $feedback_model;
+
+    public function __construct($pdo){ // takes pdo instance as param to avoid reconnecting for every new model, no need to modify
+        $this->feedback_model=new FeedbackModel($pdo);
+    }
+	public function viewFeedback(){
+        if ($_SERVER['REQUEST_METHOD']==='POST'){
+    
+           $Feedback=$_POST['feedback'];
+           $UserID=$_SESSION['user_id'];
+    
+           $this->feedback_model->createFeedback($UserID, $Feedback);
+           header("Location: /talent-portal/public/index.php?page=admin/add-feedback-form");
+       }
+        require_once __DIR__ . '/../View/admin/add-feedback-form.php';
+	} 
+    public function viewAdminFeedback(){
+        $feedbacks=$this->feedback_model->fetchAllFeedback();
+        require_once __DIR__ . '/../View/admin/manage-feedback.php';
+
+    }
+    public function updateAdminFeedback($FeedbackID){
+         if ($_SERVER['REQUEST_METHOD']==='POST'){
+
+            $Feedback=$_POST['feedback'];
+
+            $this->feedback_model->updateFeedbackStatus($FeedbackID, $Feedback);
+            header("Location: /talent-portal/public/index.php?page=admin_manage_feedback");
+        }
+        $feedbacks=$this->feedback_model->fetchAllFeedback();
+        require_once __DIR__ . '/../View/admin/manage-feedback.php';
+
+    }
+}

@@ -1,0 +1,9 @@
+.parent-content-div{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.h2-div{
+    margin-bottom: 2em;
+}

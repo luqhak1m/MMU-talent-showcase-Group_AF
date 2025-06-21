@@ -106,3 +106,11 @@ CREATE TABLE IF NOT EXISTS Announcement(
     Announcement TEXT,
     AnnouncementTimestamp TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
+
+CREATE TABLE IF NOT EXISTS Feedback(
+    FeedbackID CHAR(8) PRIMARY KEY,
+    UserID CHAR(8),
+    Feedback TEXT,
+    FeedbackStatus VARCHAR(10) DEFAULT 'Pending',
+    FOREIGN KEY (UserID) REFERENCES User(UserID)
+);

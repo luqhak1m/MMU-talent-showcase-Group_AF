@@ -30,7 +30,7 @@ if(isset($_SESSION['user_id'])){
 		<nav>
 			<div class="navbar">
 				<div class="navbar-left">
-					//---Author:Sabrina---//
+					<!-- //---Author:Sabrina---// -->
 					<?php if (isset($_SESSION['is_admin']) && $_SESSION['is_admin'] === true): ?>
 						<a href="<?= BASE_URL ?>index.php?page=admin_dashboard" class="website-title">
 							<h1>Website Name</h1>
@@ -44,7 +44,7 @@ if(isset($_SESSION['user_id'])){
 					<a href="index.php?page=talent&id=<?php echo $user_id; ?>&action=portfolio">Portfolio</a> 	
 					<a href="index.php?page=forum&id=<?php echo $user_id; ?>&action=joined">Forum</a>
 					<a href="/leaderboard">Leaderboard</a> 
-					<a href="/feedback">Feedback</a>
+					<a href="index.php?page=feedback">Feedback</a>
 					<a href="index.php?page=announcement">Announcement</a> 
 					<a href="/faq">FAQ</a>
 				</div>

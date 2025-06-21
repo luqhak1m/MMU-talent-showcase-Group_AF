@@ -235,6 +235,28 @@ switch ($page) {
 		}
 		$announcementController->viewAdminAnnouncement();
 		break;
+
+	case 'feedback':
+		require_once __DIR__ . '/../src/Controller/FeedbackController.php';
+		$feedbackController=new FeedbackController($pdo);
+		$feedbackController->viewFeedback();
+		break;
+
+	case 'admin_manage_feedback':
+		require_once __DIR__ . '/../src/Controller/FeedbackController.php';
+		$feedbackController=new FeedbackController($pdo);
+
+		if(isset($_GET['action'])){ // index.php?page=X&action=Y
+			if($_GET['action']=="update"){
+				$feedback_id=$_GET['id'];
+				$feedbackController->updateAdminFeedback($feedback_id);
+				break;
+			}
+		}
+
+		$feedbackController->viewAdminFeedback();
+		break;
+
 	
 	default:
 		if(file_exists($viewPath)) {
