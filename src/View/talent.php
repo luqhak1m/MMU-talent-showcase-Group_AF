@@ -19,15 +19,21 @@ require_once __DIR__ . '/../../public/header.php';
     <div id="banner-div">
         <div id="white-banner-div">
         <?php if ($talent['UserID'] != $_SESSION['user_id']): ?>
-                <div class="follow-button-div">
-                    <button id="catalogue-follow-user-button" class="button">Follow</button>
-                </div>
-                
-                <?php endif; ?>
+            <div class="follow-button-div">
+                <!-- <button id="catalogue-follow-user-button" class="button">Follow</button> -->
+                 <a 
+                    href="index.php?page=talent&id=<?php echo $talent['TalentID']; ?>&followerID=<?php echo $_SESSION['user_id']; ?>&followingID=<?php echo $talent['UserID']; ?>&action=follow" 
+                    class="button"
+                    id="catalogue-follow-user-button">
+                    Follow
+                </a>
+            </div>
+        
+        <?php endif; ?>
         </div>
         <div id="purple-banner-div">
             <div id="profilepicture-div">
-                <!-- <a href="/talent-portal/public/index.php?page=profile"> -->
+                <a class="profile-link-a" href="index.php?page=talent&id=<?php echo $talent['UserID']; ?>&action=portfolio">
                 <img id="profilepicture-preview-img" 
                     src="<?php 
                         $profilePicturePath = 'images/profile.png'; // default image
@@ -39,17 +45,14 @@ require_once __DIR__ . '/../../public/header.php';
                         ?>"
                         alt="Click to upload">
                 <p><?= $talent['Username'] ?></p>
-                <!-- <?php
-						echo '<a href="/talent-portal/public/index.php?page=profile"><img src="'.$profilePicturePath.'" class="navbar-prof" alt="profile"></a>';
-				?> -->
-
+                </a>
             </div>
             <div id="likes-and-followers-div">
 
                 <img src="/talent-portal/public/images/likes_icon.png" alt="Like Icon" class="talent-icon">
-                <p>100</p>
+                <p><?php echo $post_likes; ?></p>
                 <img src="/talent-portal/public/images/followers_icon.png" alt="Like Icon" class="talent-icon">
-                <p>100</p>
+                <p><?php echo count($followers); ?></p>
 
             </div>
         </div>
@@ -95,7 +98,7 @@ require_once __DIR__ . '/../../public/header.php';
             <div class="post-lower-section-container-div">
                 <div class="comment-count-div">
                     <img src="images/comments_icon.png" alt="">
-                    <p>10</p>
+                    <p><?php echo count($comments) ?></p>
                 </div>
                 <div class="like-count-div">
                     <a href="index.php?page=talent&id=<?php echo $talent['TalentID']; ?>&action=like" class="like-button">

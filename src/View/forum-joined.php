@@ -38,7 +38,7 @@ require_once __DIR__ . '/../../public/header.php';
                 <h2>Joined Forums</h2>    
             </div>
             <div clas="browse-forum-text-div">
-                <a href='index.php?page=forum'>Browse Forum</a>
+                <a href='index.php?page=forum' class='browse-forum-button'>Browse Forum</a>
             </div>
         </div>
     </div>

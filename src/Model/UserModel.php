@@ -101,16 +101,41 @@ class UserModel {
     }
     public function getAllUsers() {
         // Simple query to get all users, you can add ordering
-        $stmt = $this->db->prepare("SELECT UserID, Username, Email, Role FROM User ORDER BY Username");
+        $stmt = $this->pdo->prepare("SELECT UserID, Username, Email, Role FROM User ORDER BY Username");
         $stmt->execute();
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
     public function fetchUserByUserID($UserID){
         $sql="SELECT * FROM User WHERE UserID=?";
-        $stmt=$this->db->prepare($sql);
+        $stmt=$this->pdo->prepare($sql);
+        $stmt->execute([$UserID]);
+        return $stmt->fetch(PDO::FETCH_ASSOC);
+    }
+
+    public function followUser($FollowerID, $FollowingID){
+        $ConnectionID=generateID();
+        $sql = "INSERT INTO Connection (ConnectionID, FollowerID, FollowingID) VALUES (?, ?, ?)";
+        $stmt = $this->pdo->prepare($sql);
+        return $stmt->execute([$ConnectionID, $FollowerID, $FollowingID]);
+    }
+    public function fetchFollowers($UserID){
+         $sql="SELECT User.* 
+                FROM Connection 
+                JOIN User ON Connection.FollowerID=User.UserID 
+                WHERE Connection.FollowingID=?";
+        $stmt=$this->pdo->prepare($sql);
         $stmt->execute([$UserID]);
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+    public function fetchFollowing($UserID){
+        $sql="SELECT User.* 
+                FROM Connection 
+                JOIN User ON Connection.FollowingID = User.UserID 
+                WHERE Connection.FollowerID=?";
+       $stmt=$this->pdo->prepare($sql);
+       $stmt->execute([$UserID]);
+       return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
     // Author: Sabrina

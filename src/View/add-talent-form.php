@@ -51,7 +51,7 @@ $fetched_talent=$fetched_talent??[]; // handle if user is adding talent, not edi
 
                     if(in_array(strtolower($extension), ['jpg', 'jpeg', 'png', 'gif', 'webp'])){
                         echo "<img src='$filepath' alt='Image Preview'>";
-                    }elseif(in_array(strtolower($extension), ['mp4', 'webm'])){
+                    }elseif(in_array(strtolower($extension), ['mp4', 'webm', 'mov'])){
                         echo "<video controls src='$filepath'></video>";
                     }elseif(in_array(strtolower($extension), ['mp3', 'wav', 'ogg'])){
                         echo "<audio controls src='$filepath'></audio>";

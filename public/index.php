@@ -109,15 +109,37 @@ switch ($page) {
 				}elseif($_GET['action']=="comment"){
 					$talentController->addComment($talent_id);
 					break;
+				}elseif($_GET['action']=="portfolio"){
+					if(isset($_GET['followerID'])&&isset($_GET['followingID'])){
+						// echo "post";
+						require_once __DIR__ . '/../src/Controller/AuthController.php';
+						$userController=new UserController($pdo);
+						$FollowerID=$_GET['followerID'];
+						$FollowingID=$_GET['followingID'];
+						$userController->followUser($FollowerID, $FollowingID);
+						break;
+					}
+					$user_id=$_GET['id'];
+					// echo "no post";
+					$talentController->viewTalent($user_id);
+					break;
+				}elseif($_GET['action']=="follow"){
+					if(isset($_GET['followerID'])&&isset($_GET['followingID'])){
+						// echo "pßost";
+						require_once __DIR__ . '/../src/Controller/AuthController.php';
+						$userController=new UserController($pdo);
+						$FollowerID=$_GET['followerID'];
+						$FollowingID=$_GET['followingID'];
+						$userController->followUser($FollowerID, $FollowingID, $talent_id);
+						break;
+					}
 				}
+				
 			}
+
 			$talentController->viewSpecificTalent($talent_id);
 			break;
-		}else{
-			$talentController->viewTalent();
-			break;
 		}
-		break;
 
 	case 'forum':
 		require_once __DIR__ . '/../src/Controller/ForumController.php';
@@ -177,6 +199,15 @@ switch ($page) {
 		
 		break;
 
+	case 'follow':
+		require_once __DIR__ . '/../src/Controller/AuthController.php';
+		$userController=new UserController($pdo);
+		if(isset($_GET['followerID'])&&isset($_GET['followingID'])){
+			$FollowerID=$_GET['followerID'];
+			$FollowingID=$_GET['followingID'];
+			$userController->followUser($FollowerID, $FollowingID);
+			break;
+		}
 	
 	default:
 		if(file_exists($viewPath)) {

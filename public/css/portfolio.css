@@ -158,3 +158,19 @@ body{
 .talent-img-container-div{
     text-align: center;
 }
+
+#follow-button{
+	background-color: #5D5A88;
+	color: #FFFFFF;
+	border: none;
+	padding: 15px 30px;
+	margin: 10px;
+	font-size: 16px;
+	border-radius: 5px;
+	cursor: pointer;
+	text-decoration: none;
+}
+
+#follow-button:hover {
+	background-color: #4a4770;
+}

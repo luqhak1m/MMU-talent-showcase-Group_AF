@@ -41,11 +41,11 @@ if(isset($_SESSION['user_id'])){
 						</a>
 					<?php endif; ?>
 					<a href="index.php?page=catalogue">Catalogue</a> 	
-					<a href="index.php?page=talent">Portfolio</a> 	
+					<a href="index.php?page=talent&id=<?php echo $user_id; ?>&action=portfolio">Portfolio</a> 	
 					<a href="index.php?page=forum&id=<?php echo $user_id; ?>&action=joined">Forum</a>
 					<a href="/leaderboard">Leaderboard</a> 
 					<a href="/feedback">Feedback</a>
-					<a href="/announcement">Announcement</a> 
+					<a href="index.php?page=announcement">Announcement</a> 
 					<a href="/faq">FAQ</a>
 				</div>
 

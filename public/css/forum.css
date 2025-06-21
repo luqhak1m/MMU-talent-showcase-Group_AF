@@ -110,3 +110,18 @@ body{
     display: flex;
     justify-content: flex-end;
 }
+
+.browse-forum-button{
+    display: inline-block;
+    padding: 0.7em 1.5em;
+    background-color: #514e76;
+    color: white;
+    text-decoration: none;
+    border-radius: 8px;
+    font-weight: bold;
+}
+
+.browse-forum-button:hover {
+    background-color: #bfbfbf;
+}
+

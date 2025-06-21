@@ -14,6 +14,18 @@ function uploadMedia(string $user_id, ?string $input_name){ // params: user_id a
     }
 
     $upload_dir=__DIR__.'/../public/uploads/';
+    if(!is_dir($upload_dir)){
+        if(!mkdir($upload_dir, 0755, true)) {
+            echo "[ERROR] Failed to create upload directory: $upload_dir<br>";
+            return null;
+        }
+    }
+
+    if(!is_writable($upload_dir)){ // double check file permisison
+        echo "[ERROR] Upload directory is not writable: $upload_dir<br>";
+        return null;
+    }
+
     $filename=$_FILES[$input_name]['name'];
     $extension=pathinfo($filename, PATHINFO_EXTENSION);
     $unique_name=$user_id.'_'.date('YmdHis').'.'.$extension;

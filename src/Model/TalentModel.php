@@ -30,9 +30,10 @@ class TalentModel {
 
     public function fetchTalentByUserID($UserID){
         // echo "[INFO] TalentModel.fetchTalentByUserID(): Executing <br>";
-        $sql="SELECT t.*, p.ProfilePicture 
+        $sql="SELECT t.*, p.ProfilePicture, u.Username
                 FROM Talent t 
                 JOIN `Profile` p ON t.UserID = p.UserID 
+                JOIN User u ON t.UserID=u.UserID
                 WHERE t.UserID=?";        
         $stmt=$this->pdo->prepare($sql);
         $stmt->execute([$UserID]);
@@ -104,5 +105,13 @@ class TalentModel {
         $result=$stmt->fetchAll(PDO::FETCH_ASSOC);
         return $result;
         // echo "[INFO] ForumModel.fetchAllCommentsByForumPostID(): Executed <br>";
+    }
+
+    public function fetchPostLikesSum($UserID){
+        $sql="SELECT SUM(TalentLikes) AS TotalLikes FROM Talent WHERE UserID=?";
+        $stmt=$this->pdo->prepare($sql);
+        $stmt->execute([$UserID]);
+        $result=$stmt->fetch(PDO::FETCH_ASSOC);
+        return $result;
     }
 }

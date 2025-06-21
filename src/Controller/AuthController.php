@@ -4,7 +4,7 @@ require_once __DIR__ . '/../../config/database_config.php';
 require_once __DIR__ . '/../Model/UserModel.php'; 
 require_once __DIR__ . '/../Model/ProfileModel.php'; 
 require_once __DIR__ . '/../Model/CatalogueModel.php'; 
-echo "[INFO] Loaded AuthController.php <br>";
+//  echo "[INFO] Loaded AuthController.php <br>";
 
 
 class UserController {
@@ -14,7 +14,7 @@ class UserController {
     private $catalogue_model;
 
     public function __construct($pdo) {
-        echo "[INFO] UserController.__construct(): Executing <br>";
+        // echo "[INFO] UserController.__construct(): Executing <br>";
 
         $this->profile_model=new ProfileModel($pdo);
         $this->catalogue_model=new CatalogueModel($pdo);
@@ -23,7 +23,7 @@ class UserController {
 
     // public function so we can access outside of this class (in index.php mostly)
     public function register() {
-        echo "[INFO] Register(): Executing <br>";
+        // echo "[INFO] Register(): Executing <br>";
 
         $errors = [];
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -65,12 +65,12 @@ class UserController {
                     'Password' => $hashedPassword, 
                     'Role' => 'User',                
                 ];
-                echo "[INFO] Creating User <br>";
+                // echo "[INFO] Creating User <br>";
 
                 if ($this->userModel->createUser($userData)) {
-                    echo "[INFO] Created User <br>";
+                    // echo "[INFO] Created User <br>";
                     $user = $this->userModel->findUserByEmail($email);
-                    echo "[INFO] Found User".$user."<br>";
+                    // echo "[INFO] Found User".$user."<br>";
 
                     if ($user) {
                         session_start();
@@ -161,5 +161,18 @@ class UserController {
     //     header("Location: /talent-portal/public/index.php"); 
     //     exit;
     // }
+
+    public function followUser($FollowerID, $FollowingID, $TalentID=null){
+        echo "executing followuser";
+        $this->userModel->followUser($FollowerID, $FollowingID);
+        if($TalentID===null){
+            $url="/talent-portal/public/index.php?page=talent&id=".urlencode($FollowingID)."&action=portfolio";
+        }else {
+            $url="/talent-portal/public/index.php?page=talent&id=".urlencode($TalentID);
+        }
+        echo "executed followuser bye".$url ;
+        header("Location: $url");
+    }
+
 
 }

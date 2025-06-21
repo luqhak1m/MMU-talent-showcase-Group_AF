@@ -1,6 +1,6 @@
 <?php // src/Controller/AdminController.php
 
-require_once __DIR__ . '/.../Model/UserModel.php'; // Using UserModel as admins are users with a role
+require_once __DIR__ . '/../Model/UserModel.php'; // Using UserModel as admins are users with a role
 require_once __DIR__ . '/../Model/ProfileModel.php';
 require_once __DIR__ . '/../Model/CatalogueModel.php';
 require_once __DIR__ . '/../Model/TalentModel.php';

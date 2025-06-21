@@ -202,4 +202,9 @@ body{
 
 }
 
+.profile-link-a{
+    text-decoration: none;
+    color: inherit;
+}
+
 

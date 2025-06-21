@@ -11,45 +11,56 @@ require_once __DIR__ . '/../../public/header.php';
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="/talent-portal/public/css/talent.css?v=<?= time() ?>">
     <link rel="stylesheet" type="text/css" href="/talent-portal/public/css/portfolio.css?v=<?= time() ?>">
+
     <script src="/talent-portal/public/js/portfolio.js?v=<?= time() ?>"></script>
     <title>Portfolio</title>
 </head>
 <body>
     <div id="banner-div">
         <div id="white-banner-div">
+            <?php if ($user_id != $_SESSION['user_id']): ?>
+
+            <div class="follow-button-div">
+                <!-- <button id="catalogue-follow-user-button" class="button">Follow</button> -->
+                 <a 
+                    href="index.php?page=talent&id=<?php echo $user_id; ?>&followerID=<?php echo $_SESSION['user_id']; ?>&followingID=<?php echo $user_id; ?>&action=portfolio" 
+                    class="button">
+                    Follow
+                </a>
+            </div>
+
+        <?php endif; ?>
         </div>
         <div id="purple-banner-div">
             <div id="profilepicture-div">
-                <!-- <a href="?page=talent&id="<?php echo $talent['UserID'] ?>> -->
                     <img id="profilepicture-preview-img" 
-                        src="<?php 
-                            $profilePicturePath = 'images/profile.png'; // default image
-                            if(!empty($profile_picture)){
-                                $profilePicturePath='uploads/'.htmlspecialchars($profile_picture);
-                            }    
-                            
-                            echo $profilePicturePath;
-                            ?>"
-                            alt="Click to upload">
-                <!-- </a> -->
-            <p><?= isset($_SESSION['username']) ? htmlspecialchars($_SESSION['username']) : 'user' ?></p>
+                        src="uploads/<?php echo $profile_picture; ?>"
+                        alt="Click to upload">
+            <p><?php echo $username; ?></p>
 
             </div>
             <div id="likes-and-followers-div">
 
                 <img src="/talent-portal/public/images/likes_icon.png" alt="Like Icon" class="talent-icon">
-                <p>100</p>
+                <p><?php echo $post_likes; ?></p>
                 <img src="/talent-portal/public/images/followers_icon.png" alt="Like Icon" class="talent-icon">
-                <p>100</p>
+                <p><?php echo count($followers); ?></p>
 
             </div>
         </div>
     </div>
-    <div class="add-talent-button-div">
-        <a href="?page=add-talent-form" id="add-talent-button" class="button">Add Talent</a>
-        <button onclick="editMode()" class="button">Edit Talent</button>
-    </div>
+    <?php
+    
+    if($UserID==$_SESSION['user_id']){
+        echo '<div class="add-talent-button-div">';
+        echo '<a href="?page=add-talent-form" id="add-talent-button" class="button">Add Talent</a>';
+        echo '<button onclick="editMode()" class="button">Edit Talent</button>';
+        echo '</div>';
+    }
+
+    ?>
     <div class="talent-card-container-div">
         <div class="talent-search-results-grid">
             <?php

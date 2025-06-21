@@ -39,7 +39,8 @@ require_once __DIR__ . '/../../public/header.php';
                 <h2>Browse Popular Forums</h2>
             </div>
             <div clas="create-forum-text-div">
-                <a href='index.php?page=forum&action=create'>Create Forum</a>
+                <a href='index.php?page=forum&action=create' class='browse-forum-button'>Create Forum</a>
+                <a href='index.php?page=forum&id=<?php echo $_SESSION['user_id']; ?>&action=joined' class='browse-forum-button'>Joined Forum</a>
             </div>
         </div>
     </div>

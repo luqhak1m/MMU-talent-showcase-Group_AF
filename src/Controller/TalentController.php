@@ -4,6 +4,7 @@
 require_once __DIR__ . '/../Model/TalentModel.php';
 require_once __DIR__ . '/../Model/CatalogueModel.php';
 require_once __DIR__ . '/../Model/ProfileModel.php';
+require_once __DIR__ . '/../Model/UserModel.php';
 require_once __DIR__ . '/CatalogueController.php';
 require_once __DIR__ . '/../../includes/MediaUpload.inc.php';
 
@@ -17,14 +18,16 @@ class TalentController {
 	private $talent_model;
 	private $catalogue_model;
     private $profile_model;
+    private $user_model;
 
     public function __construct($pdo){
         $this->profile_model=new ProfileModel($pdo);
         $this->catalogue_model=new CatalogueModel($pdo);
+        $this->user_model=new UserModel($pdo, $this->profile_model, $this->catalogue_model);
         $this->talent_model=new TalentModel($pdo, $this->catalogue_model);
     }
 
-    public function viewTalent(){
+    public function viewTalent($UserID){
         // echo "[INFO] TalentController.submitTalent(): Executing <br>";
 
         if($_SERVER['REQUEST_METHOD']==='POST'){
@@ -68,10 +71,14 @@ class TalentController {
 
         // if(isset($_SESSION['user_id'])) {
             
-            $UserID=$_SESSION['user_id'];
-            // $fetched_talent=$this->talent_model->fetchTalentByUserID($UserID);
-            $fetched_talent=$this->talent_model->fetchTalentByUserID($UserID);
-            $profile_picture=$this->profile_model->fetchProfile($UserID)['ProfilePicture'];
+        // $fetched_talent=$this->talent_model->fetchTalentByUserID($UserID);
+        $fetched_talent=$this->talent_model->fetchTalentByUserID($UserID);
+        $profile_picture=$this->profile_model->fetchProfile($UserID)['ProfilePicture'];
+        $username=$this->user_model->fetchUserByUserID($UserID)['Username'];
+        $user_id=$this->user_model->fetchUserByUserID($UserID)['UserID'];
+        $followers=$this->user_model->fetchFollowers($UserID);
+        $post_likes=$this->talent_model->fetchPostLikesSum($UserID)['TotalLikes'];
+        // var_dump($username);
             // echo "[INFO] Found ".count($fetched_talent)." talent(s) for user ".$_SESSION['username']."<br>";
         // }else {
             //     echo "[INFO] No session";
@@ -84,16 +91,11 @@ class TalentController {
     public function viewSpecificTalent($TalentID){
         $talent=$this->talent_model->fetchTalentByTalentID($TalentID);
         $comments=$this->talent_model->fetchAllCommentsByTalentID($TalentID);
+        $UserID=$this->talent_model->fetchTalentByTalentID($TalentID)['UserID'];
+        $followers=$this->user_model->fetchFollowers($UserID);
+        $post_likes=$this->talent_model->fetchPostLikesSum($UserID)['TotalLikes'];
         // var_dump($comments);
         # echo "[INFO] Found talent ID ".$talent['TalentID']."<br>";
-        if(isset($_SESSION['user_id'])) {
-            $UserID=$_SESSION['user_id'];
-            $fetched_talent=$this->talent_model->fetchTalentByUserID($UserID);
-            $profile_picture=$this->profile_model->fetchProfile($UserID)['ProfilePicture'];
-            # echo "[INFO] Found ".count($fetched_talent)." talent(s) for user ".$_SESSION['username']."<br>";
-        }else {
-            # echo "[INFO] No session";
-        }   
         require_once __DIR__ . '/../View/talent.php';
     }
 
@@ -123,19 +125,23 @@ class TalentController {
 
         # echo "[INFO] TalentController.submitTalent(): Executing <br>";
         $fetched_talent=$this->talent_model->fetchTalentByTalentID($TalentID);
+        // var_dump($fetched_talent);
         $profile_picture=$this->profile_model->fetchProfile($UserID)['ProfilePicture'];
 
         // foreach ($fetched_talent as $key => $value) {
         //     echo $key . ' => ' . $value . '<br>';
+        # echo "[INFO] Talent submission POST received:<br>";
+        
         // }
-        if($_SERVER['REQUEST_METHOD']==='POST' && isset($_POST['id'])){
-            # echo "[INFO] Talent submission POST received:<br>";
-            
+        if($_SERVER['REQUEST_METHOD']==='POST'){
+            // echo "POST";
             $UserID=$_SESSION['user_id'];
             $TalentTitle=$_POST['TalentTitle'];
             $TalentDescription=$_POST['TalentDescription'];
             $Price=$_POST['Price'];
             $Category=$_POST['Category'];
+
+            // echo $TalentDescription;
         
             $Content=uploadMedia($UserID, "Content"); // params: user_id and html input id
 

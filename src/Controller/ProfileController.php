@@ -74,18 +74,4 @@ class ProfileController {
 
         include __DIR__ . '/../View/profile.php'; 
 	} 
-
-    public function viewOthersProfile($UserID){
-
-        if(isset($_SESSION['user_id'])) {
-            $UserID=$_SESSION['user_id'];
-            $fetched_profile=$this->profile_model->fetchProfile($UserID);
-            // echo "[INFO] Found profile for user ".$_SESSION['username']."<br>";
-
-        }else {
-            echo "[INFO] No session";
-        }
-                include __DIR__ . '/../View/profile.php'; 
-
-    }
 }

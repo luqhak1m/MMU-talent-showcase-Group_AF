@@ -1,8 +1,4 @@
-<?php
 
-require_once __DIR__ . '/../../public/header.php';
-
-?>
 <!DOCTYPE html>
 <html>
     <head>
@@ -34,8 +30,3 @@ require_once __DIR__ . '/../../public/header.php';
         </div>
     </body>
     </html>
-<?php
-
-require_once __DIR__ . '/../../public/footer.php';
-
-?>
