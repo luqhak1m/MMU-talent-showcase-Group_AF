@@ -50,6 +50,7 @@ class AdminController {
         }
         // Author:Sabrina
         $regularUsers = $this->userModel->getRegularUsers();
+        
         include __DIR__ . '/../View/admin/dashboard.php';
     }
 
