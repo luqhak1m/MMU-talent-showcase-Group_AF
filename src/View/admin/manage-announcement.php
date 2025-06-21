@@ -12,7 +12,7 @@
             <tr style="background-color: #E7E6F2;">
                 <th style="padding: 8px;">Title</th>
                 <th style="padding: 8px;">Content</th>
-                <th style="padding: 8px;">Date Published</th>
+                <th style="padding: 8px;">Date</th>
                 <th style="padding: 8px;">Actions</th>
             </tr>
         </thead>
