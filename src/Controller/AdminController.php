@@ -104,27 +104,47 @@ class AdminController {
         include __DIR__ . '/../View/profile.php';
     }
     // insert other admin methods later, e.g., manage users, view reports, etc.
-    public function manageTalents() {
+
+    //Author: Sabrina
+    //ADMIN DASHBOARD FUNCTIONS
+    public function manageUser()
+    {
         if (!isset($_SESSION['is_admin']) || $_SESSION['is_admin'] !== true) {
-            header("Location: /talent-portal/public/index.php?page=admin_login");
+            header("Location: /index.php?page=admin_login");
             exit;
         }
-        $talents = $this->catalogueModel->fetchAllCatalogue();
-        include __DIR__ . '/../View/admin/manage_talents.php';
+        $users = $this->userModel->getRegularUsers();
+        include __DIR__ . '/../View/admin/manage_user.php';
     }
 
-    public function deleteTalent() {
+    public function manageAnnouncement() 
+    {
         if (!isset($_SESSION['is_admin']) || $_SESSION['is_admin'] !== true) {
-            header("Location: /talent-portal/public/index.php?page=admin_login");
+            header("Location: /index.php?page=admin_login");
             exit;
         }
-        
-        $talentId = $_GET['talent_id'] ?? null;
-        if ($talentId) {
-            $this->talentModel->deleteTalentByID($talentId);
+    }
+
+    public function manageCatalogue() 
+    {
+        if (!isset($_SESSION['is_admin']) || $_SESSION['is_admin'] !== true) {
+            header("Location: /index.php?page=admin_login");
+            exit;
         }
-        
-        header("Location: /talent-portal/public/index.php?page=admin_manage_talents");
-        exit;
+    }
+
+    public function manageFAQ() 
+    {
+        if (!isset($_SESSION['is_admin']) || $_SESSION['is_admin'] !== true) {
+            header("Location: /index.php?page=admin_login");
+            exit;
+        }
+    }
+
+    public function manageFeedback() {
+        if (!isset($_SESSION['is_admin']) || $_SESSION['is_admin'] !== true) {
+            header("Location: /index.php?page=admin_login");
+            exit;
+        }
     }
 }
