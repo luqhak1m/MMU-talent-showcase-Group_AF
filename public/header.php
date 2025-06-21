@@ -32,6 +32,7 @@ if(isset($_SESSION['user_id'])){
 		<nav>
 			<div class="navbar">
 				<div class="navbar-left">
+					//---Author:Sabrina---//
 					<?php if (isset($_SESSION['is_admin']) && $_SESSION['is_admin'] === true): ?>
 						<a href="<?= BASE_URL ?>index.php?page=admin_dashboard" class="website-title">
 							<h1>Website Name</h1>
