@@ -48,6 +48,9 @@ class AdminController {
             header("Location: /talent-portal/public/index.php?page=admin_login");
             exit;
         }
+        // Author:Sabrina
+        $regularUsers = $this->userModel->getRegularUsers();
+        
         include __DIR__ . '/../View/admin/dashboard.php';
     }
 
@@ -60,7 +63,7 @@ class AdminController {
         if (!$userIdToView) { die("User ID is required."); }
 
         // This will now work because $this->profileModel exists
-        $fetched_profile = $this->profileModel->fetchProfileDetails($userIdToView);
+        $fetched_profile = $this->profileModel->fetchProfile($userIdToView);
         include __DIR__ . '/../View/profile.php';
     }
 
@@ -85,7 +88,7 @@ class AdminController {
             require_once __DIR__ . '/../../includes/MediaUpload.inc.php';
             $profilePicture = uploadMedia($userIdToEdit, "profilepicture-input");
             if (!$profilePicture) {
-                $existing_profile = $this->profileModel->fetchProfileDetails($userIdToEdit);
+                $existing_profile = $this->profileModel->fetchProfile($userIdToEdit);
                 $profilePicture = $existing_profile['ProfilePicture'] ?? null;
             }
 
@@ -97,7 +100,7 @@ class AdminController {
         }
 
         // This will also now work
-        $fetched_profile = $this->profileModel->fetchProfileDetails($userIdToEdit);
+        $fetched_profile = $this->profileModel->fetchProfile($userIdToEdit);
         include __DIR__ . '/../View/profile.php';
     }
     // insert other admin methods later, e.g., manage users, view reports, etc.
@@ -107,7 +110,7 @@ class AdminController {
     public function manageUser()
     {
         if (!isset($_SESSION['is_admin']) || $_SESSION['is_admin'] !== true) {
-            header("Location: /talent-portal/public/index.php?page=admin_login");
+            header("Location: /index.php?page=admin_login");
             exit;
         }
         $users = $this->userModel->getRegularUsers();
@@ -117,7 +120,7 @@ class AdminController {
     public function manageAnnouncement() 
     {
         if (!isset($_SESSION['is_admin']) || $_SESSION['is_admin'] !== true) {
-            header("Location: /talent-portal/public/index.php?page=admin_login");
+            header("Location: /index.php?page=admin_login");
             exit;
         }
     }
@@ -125,7 +128,7 @@ class AdminController {
     public function manageCatalogue() 
     {
         if (!isset($_SESSION['is_admin']) || $_SESSION['is_admin'] !== true) {
-            header("Location: /talent-portal/public/index.php?page=admin_login");
+            header("Location: /index.php?page=admin_login");
             exit;
         }
     }
@@ -133,14 +136,14 @@ class AdminController {
     public function manageFAQ() 
     {
         if (!isset($_SESSION['is_admin']) || $_SESSION['is_admin'] !== true) {
-            header("Location: /talent-portal/public/index.php?page=admin_login");
+            header("Location: /index.php?page=admin_login");
             exit;
         }
     }
 
     public function manageFeedback() {
         if (!isset($_SESSION['is_admin']) || $_SESSION['is_admin'] !== true) {
-            header("Location: /talent-portal/public/index.php?page=admin_login");
+            header("Location: /index.php?page=admin_login");
             exit;
         }
     }

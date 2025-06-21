@@ -17,7 +17,7 @@
                     <th style="padding: 8px;">Username</th>
                     <th style="padding: 8px;">Email</th>
                     <th style="padding: 8px;">Role</th>
-                    <th style="padding: 8px;">Actions</th>
+                    <th style="padding: 8px;">Action</th>
                 </tr>
             </thead>
             <!--Author:Sabrina-->
@@ -30,7 +30,6 @@
                             <td><?php echo htmlspecialchars($user['Role']); ?></td>
                             <td>
                                 <a href="/index.php?page=admin_view_profile&user_id=<?php echo $user['UserID']; ?>" class="button" id="list-button">View</a>
-                                <a href="/index.php?page=admin_edit_profile&user_id=<?php echo $user['UserID']; ?>" class="button" id="list-button">Edit</a>
                             </td>
                         </tr>
                     <?php endforeach; ?>
