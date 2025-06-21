@@ -110,7 +110,7 @@ class AdminController {
     public function manageUser()
     {
         if (!isset($_SESSION['is_admin']) || $_SESSION['is_admin'] !== true) {
-            header("Location: /index.php?page=admin_login");
+            header("Location: /talent-portal/public/index.php?page=admin_login");
             exit;
         }
         $users = $this->userModel->getRegularUsers();
@@ -120,7 +120,7 @@ class AdminController {
     public function manageAnnouncement() 
     {
         if (!isset($_SESSION['is_admin']) || $_SESSION['is_admin'] !== true) {
-            header("Location: /index.php?page=admin_login");
+            header("Location: /talent-portal/public/index.php?page=admin_login");
             exit;
         }
     }
@@ -128,7 +128,7 @@ class AdminController {
     public function manageCatalogue() 
     {
         if (!isset($_SESSION['is_admin']) || $_SESSION['is_admin'] !== true) {
-            header("Location: /index.php?page=admin_login");
+            header("Location: /talent-portal/public/index.php?page=admin_login");
             exit;
         }
     }
@@ -136,14 +136,14 @@ class AdminController {
     public function manageFAQ() 
     {
         if (!isset($_SESSION['is_admin']) || $_SESSION['is_admin'] !== true) {
-            header("Location: /index.php?page=admin_login");
+            header("Location: /talent-portal/public/index.php?page=admin_login");
             exit;
         }
     }
 
     public function manageFeedback() {
         if (!isset($_SESSION['is_admin']) || $_SESSION['is_admin'] !== true) {
-            header("Location: /index.php?page=admin_login");
+            header("Location: /talent-portal/public/index.php?page=admin_login");
             exit;
         }
     }
