@@ -28,6 +28,7 @@
             <tbody>
                 <!--Author:Sabrina-->
                 <?php if (!empty($regularUsers)): ?> 
+                    <!--Author:Sabrina-->
                     <?php foreach ($regularUsers as $user): ?>
                     <tr>
                         <td><?php echo htmlspecialchars($user['Username']); ?></td>
