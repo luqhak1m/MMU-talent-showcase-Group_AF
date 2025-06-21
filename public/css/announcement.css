@@ -1,0 +1,42 @@
+body{
+    font-family: Arial, sans-serif;
+    /* border: 3px solid #73AD21; */
+
+}
+
+.admin-container-div{
+    width: 80%;
+}
+
+.admin-header-div{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 3em;
+    margin-left: 3em;
+    margin-bottom: 3em;
+}
+
+.header-add-div{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 2em;
+}
+
+.plus-button{
+    font-size: 2.5em;
+    border: none;
+    cursor: pointer;
+
+}
+
+.placeholder-div{
+    margin-left: 5em;
+
+}
+
+.plus-button-div{
+    margin-right: 5em;
+
+}

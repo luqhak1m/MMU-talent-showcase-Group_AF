@@ -208,6 +208,33 @@ switch ($page) {
 			$userController->followUser($FollowerID, $FollowingID);
 			break;
 		}
+
+	case 'announcement':
+		require_once __DIR__ . '/../src/Controller/AnnouncementController.php';
+		$announcementController=new AnnouncementController($pdo);
+		$announcementController->viewAnnouncement();
+		break;
+
+	case 'admin_manage_announcement':
+		require_once __DIR__ . '/../src/Controller/AnnouncementController.php';
+		$announcementController=new AnnouncementController($pdo);
+
+		if(isset($_GET['action'])){ // index.php?page=X&action=Y
+			if($_GET['action']=="create"){
+				$announcementController->createAdminAnnouncement();
+				break;
+			}elseif($_GET['action']=="edit"){
+				$announcement_id=$_GET['id'];
+				$announcementController->createAdminAnnouncement($announcement_id);
+				break;
+			}elseif($_GET['action']=="delete"){
+				$announcement_id=$_GET['id'];
+				$announcementController->deleteAdminAnnouncement($announcement_id);
+				break;
+			}
+		}
+		$announcementController->viewAdminAnnouncement();
+		break;
 	
 	default:
 		if(file_exists($viewPath)) {

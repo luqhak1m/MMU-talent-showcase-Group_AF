@@ -124,7 +124,7 @@ require_once __DIR__ . '/../../public/header.php';
                             echo '<div class="post-comment-card-collection-div">';
                                 echo '<div class="post-comment-card-div">';
                                     echo '<div class="post-pfp-username-time-div">';
-                                        echo '<img class="post-profilepicture-comment-img" src="uploads/' . htmlspecialchars($comment['ProfilePicture']) . '" alt="Click to upload">';
+                                        echo '<img class="post-profilepicture-comment-img" src="uploads/' . $comment['ProfilePicture'] . '" alt="Click to upload">';
                                         echo '<div class="username-time-div">';
                                             echo '<p>@' . htmlspecialchars($comment['Username']) . '</p>';
                                             echo '<p>' . htmlspecialchars($comment['CommentTimestamp']) . '</p>';

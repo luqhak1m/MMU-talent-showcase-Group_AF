@@ -91,11 +91,18 @@ CREATE TABLE IF NOT EXISTS Comment(
     FOREIGN KEY (UserID) REFERENCES User(UserID)
 );
 
-CREATE TABLE IF NOT EXISTS Connection (
+CREATE TABLE IF NOT EXISTS Connection(
     ConnectionID CHAR(8) PRIMARY KEY,
     FollowerID CHAR(8) NOT NULL,
     FollowingID CHAR(8) NOT NULL,
     CreatedAt DATETIME DEFAULT CURRENT_TIMESTAMP,
     FOREIGN KEY (FollowerID) REFERENCES User(UserID),
     FOREIGN KEY (FollowingID) REFERENCES User(UserID)
+);
+
+CREATE TABLE IF NOT EXISTS Announcement(
+    AnnouncementID CHAR(8) PRIMARY KEY,
+    AnnouncementTitle VARCHAR(255),
+    Announcement TEXT,
+    AnnouncementTimestamp TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
