@@ -12,7 +12,7 @@ class FunctionNameController {
 	private $object_model;
 
     public function __construct($pdo){ // takes pdo instance as param to avoid reconnecting for every new model, no need to modify
-        $object_model=new ObjectModel($pdo);
+        $this->object_model=new ObjectModel($pdo);
     }
 	public function function1() {
 

@@ -257,6 +257,31 @@ switch ($page) {
 		$feedbackController->viewAdminFeedback();
 		break;
 
+	case 'faq':
+		require_once __DIR__ . '/../src/Controller/FAQController.php';
+		$faqController=new FAQController($pdo);
+
+		if(isset($_GET['action'])){ // index.php?page=X&action=Y
+			if($_GET['action']=="create"){
+				$faqController->addFAQ();
+				break;
+			}
+		}
+		$faqController->viewFAQ();
+		break;
+		
+		case 'admin_manage_faq':
+			require_once __DIR__ . '/../src/Controller/FAQController.php';
+			$faqController=new FAQController($pdo);
+			if(isset($_GET['action'])){ // index.php?page=X&action=Y
+				if($_GET['action']=="answer"){
+					$faq_id=$_GET['id'];
+					$faqController->viewAdminFAQ($faq_id);
+					break;
+				}
+			}
+		$faqController->viewAdminFAQ();
+		break;
 	
 	default:
 		if(file_exists($viewPath)) {

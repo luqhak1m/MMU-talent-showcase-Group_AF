@@ -13,7 +13,7 @@
 
     <div class="admin-container">
         <h1 class="admin-header-div" id="announcement-header-div">
-            Feedback
+            Feedback Management
         </h1>
         <?php  
         
