@@ -16,7 +16,6 @@
                 <tr style="background-color: #E7E6F2;">
                     <th style="padding: 8px;">Username</th>
                     <th style="padding: 8px;">Email</th>
-                    <th style="padding: 8px;">Role</th>
                     <th style="padding: 8px;">Action</th>
                 </tr>
             </thead>
@@ -27,7 +26,6 @@
                         <tr>
                             <td><?php echo htmlspecialchars($user['Username']); ?></td>
                             <td><?php echo htmlspecialchars($user['Email']); ?></td>
-                            <td><?php echo htmlspecialchars($user['Role']); ?></td>
                             <td>
                                 <a href="/index.php?page=admin_view_profile&user_id=<?php echo $user['UserID']; ?>" class="button" id="list-button">View</a>
                             </td>
@@ -35,7 +33,7 @@
                     <?php endforeach; ?>
                 <?php else: ?>
                     <tr>
-                        <td colspan="4" style="text-align: center;">No users found.</td>
+                        <td colspan="3" style="text-align: center;">No users found.</td>
                     </tr>
                 <?php endif; ?>
             </tbody>
