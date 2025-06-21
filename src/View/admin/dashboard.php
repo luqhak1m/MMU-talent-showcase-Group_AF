@@ -15,7 +15,7 @@
     <div class="container-div" id="adminlist-container-div" style="padding-bottom: 2em;">
         <h1>Admin Dashboard</h1>
 
-        <a href="index.php?page=admin_manage_announcement" class="button">Manage Annoucement</a>
+        <a href="index.php?page=admin_manage_announcement" class="button">Manage Announcement</a>
         <a href="index.php?page=admin_manage_user" class="button">Manage User</a>
         <a href="index.php?page=admin_manage_catalogue" class="button">Manage Catalogue</a>
         <a href="index.php?page=admin_manage_feedback" class="button">Manage Feedback</a>

@@ -21,7 +21,7 @@ class FeedbackController {
            $UserID=$_SESSION['user_id'];
     
            $this->feedback_model->createFeedback($UserID, $Feedback);
-           header("Location: /talent-portal/public/index.php?page=admin/add-feedback-form");
+           header("Location: /index.php?page=admin/add-feedback-form");
        }
         require_once __DIR__ . '/../View/admin/add-feedback-form.php';
 	} 
@@ -33,13 +33,27 @@ class FeedbackController {
     public function updateAdminFeedback($FeedbackID){
          if ($_SERVER['REQUEST_METHOD']==='POST'){
 
-            $Feedback=$_POST['feedback'];
+            $FeedbackStatus=$_POST['feedback_status'];
 
-            $this->feedback_model->updateFeedbackStatus($FeedbackID, $Feedback);
-            header("Location: /talent-portal/public/index.php?page=admin_manage_feedback");
+            $this->feedback_model->updateFeedbackStatus($FeedbackID, $FeedbackStatus);
+            header("Location: /index.php?page=admin_manage_feedback");
         }
         $feedbacks=$this->feedback_model->fetchAllFeedback();
         require_once __DIR__ . '/../View/admin/manage-feedback.php';
 
+    }
+    public function deleteAdminFeedback($FeedbackID){
+        if (!empty($FeedbackID)) {
+            $deleted = $this->feedback_model->deleteFeedbackByID($FeedbackID); // Implement this in your model
+            if ($deleted) {
+                $_SESSION['success_message'] = "Feedback deleted successfully!";
+            } else {
+                $_SESSION['error_message'] = "Failed to delete feedback.";
+            }
+        } else {
+            $_SESSION['error_message'] = "Feedback ID missing for deletion.";
+        }
+        header("Location: " . BASE_URL . "index.php?page=admin_manage_feedback");
+        exit; // IMPORTANT: Always exit after header redirect
     }
 }

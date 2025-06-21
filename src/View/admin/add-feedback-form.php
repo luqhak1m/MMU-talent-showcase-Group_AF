@@ -10,8 +10,8 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="stylesheet" type="text/css" href="/talent-portal/public/css/add-forum-form.css?v=<?= time() ?>">
-        <link rel="stylesheet" type="text/css" href="/talent-portal/public/css/feedback.css?v=<?= time() ?>">
+        <link rel="stylesheet" type="text/css" href="<?= BASE_URL ?>css/add-forum-form.css?v=<?= time() ?>">
+        <link rel="stylesheet" type="text/css" href="<?= BASE_URL ?> css/feedback.css?v=<?= time() ?>">
         <title>Add Feedback</title>
     </head>
     <body>

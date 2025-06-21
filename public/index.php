@@ -242,18 +242,30 @@ switch ($page) {
 		$feedbackController->viewFeedback();
 		break;
 
+	// public/index.php (relevant part)
+
 	case 'admin_manage_feedback':
 		require_once __DIR__ . '/../src/Controller/FeedbackController.php';
-		$feedbackController=new FeedbackController($pdo);
+		$feedbackController = new FeedbackController($pdo);
 
-		if(isset($_GET['action'])){ // index.php?page=X&action=Y
-			if($_GET['action']=="update"){
-				$feedback_id=$_GET['id'];
+		if (isset($_GET['action'])) { 
+			if ($_GET['action'] == "update") {
+				$feedback_id = $_GET['id'];
 				$feedbackController->updateAdminFeedback($feedback_id);
 				break;
+			} elseif ($_GET['action'] == "delete") { 
+				$feedback_id = $_GET['id']; 
+				if ($feedback_id) { 
+					$feedbackController->deleteAdminFeedback($feedback_id);
+				} else {
+					$_SESSION['error_message'] = "Feedback ID is missing for deletion.";
+					header("Location: /talent-portal/public/index.php?page=admin_manage_feedback");
+					exit;
+				}
+				break; 
 			}
 		}
-
+		// If no action is specified, or action not matched, view all feedback
 		$feedbackController->viewAdminFeedback();
 		break;
 

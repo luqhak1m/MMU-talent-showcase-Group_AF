@@ -37,11 +37,13 @@ class FeedbackModel {
         return $result;
     }
 
-    public function updateFeedbackStatus($FeedbackID, $Feedback){
+    public function updateFeedbackStatus($FeedbackID, $FeedbackStatus){
         // echo "[INFO] FeedbackModel.updateFeedbackStatus(): Executing <br>";
         $sql="UPDATE `Feedback` SET FeedbackStatus=? WHERE FeedbackID=?";
         $stmt=$this->pdo->prepare($sql);
-        $stmt->execute([$Feedback, $FeedbackID]);
+        $stmt->execute([$FeedbackStatus, $FeedbackID]);
         // echo "[INFO] FeedbackModel.updateFeedbackStatus(): Executed <br>";
     }
+
+    
 }
