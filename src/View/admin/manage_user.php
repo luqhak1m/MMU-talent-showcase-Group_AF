@@ -29,8 +29,8 @@
                             <td><?php echo htmlspecialchars($user['Email']); ?></td>
                             <td><?php echo htmlspecialchars($user['Role']); ?></td>
                             <td>
-                                <a href="/index.php?page=admin_view_profile&user_id=<?php echo $user['UserID']; ?>">View</a>
-                                <a href="/index.php?page=admin_edit_profile&user_id=<?php echo $user['UserID']; ?>">Edit</a>
+                                <a href="/index.php?page=admin_view_profile&user_id=<?php echo $user['UserID']; ?>" class="button" id="list-button">View</a>
+                                <a href="/index.php?page=admin_edit_profile&user_id=<?php echo $user['UserID']; ?>" class="button" id="list-button">Edit</a>
                             </td>
                         </tr>
                     <?php endforeach; ?>
