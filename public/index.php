@@ -79,10 +79,10 @@ switch ($page) {
         $adminController->editUserProfile();
         break;
 
-	case 'admin_manage_talents':
+	case 'admin_manage_user':
         require_once __DIR__ . '/../src/Controller/AdminController.php';
         $adminController = new AdminController($pdo);
-        $adminController->manageTalents();
+        $adminController->manageUser();
         break;
 
     case 'admin_delete_talent':
