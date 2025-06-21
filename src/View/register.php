@@ -1,6 +1,6 @@
 <?php
 
-echo "[INFO] Loaded register.php <br>";
+// echo "[INFO] Loaded register.php <br>";
 
 ?>
 

@@ -22,6 +22,17 @@
         <a href="index.php?page=admin_manage_faq" class="button">Manage FAQ</a>
     </div>
 
+    <div>
+        <?php
+                    if(!isset($_SESSION['username'])) {
+                        echo '<a href="?page=login" class="button">Login</a>';
+                        echo '<a href="?page=register" class="button">Register</a>';
+                    }else{
+                        echo '<a href="/talent-portal/public/index.php?page=logout" class="button">Log Out</a>';
+                    }
+                ?>
+    </div>
+
 </body>
 
 </html>
