@@ -32,7 +32,15 @@ if(isset($_SESSION['user_id'])){
 		<nav>
 			<div class="navbar">
 				<div class="navbar-left">
-					<a href="index.php?page=home" class="website-title"><h1>Website Name</h1></a>
+					<?php if (isset($_SESSION['is_admin']) && $_SESSION['is_admin'] === true): ?>
+						<a href="<?= BASE_URL ?>index.php?page=admin_dashboard" class="website-title">
+							<h1>Website Name</h1>
+						</a>
+					<?php else: ?>
+						<a href="<?= BASE_URL ?>index.php?page=home" class="website-title">
+							<h1>Website Name</h1>
+						</a>
+					<?php endif; ?>
 					<a href="index.php?page=catalogue">Catalogue</a> 	
 					<a href="index.php?page=talent">Portfolio</a> 	
 					<a href="index.php?page=forum&id=<?php echo $user_id; ?>&action=joined">Forum</a>
