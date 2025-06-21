@@ -14,10 +14,9 @@
         <table border="1" style="width:90%; margin: 2em auto; border-collapse: collapse; background-color: #fff;">
             <thead>
                 <tr style="background-color: #E7E6F2;">
-                    <th style="padding: 8px;">Talent Title</th>
-                    <th style="padding: 8px;">Creator</th>
-                    <th style="padding: 8px;">Category</th>
-                    <th style="padding: 8px;">Price</th>
+                    <th style="padding: 8px;">Username</th>
+                    <th style="padding: 8px;">Email</th>
+                    <th style="padding: 8px;">Role</th>
                     <th style="padding: 8px;">Actions</th>
                 </tr>
             </thead>
