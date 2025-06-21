@@ -114,3 +114,10 @@ CREATE TABLE IF NOT EXISTS Feedback(
     FeedbackStatus VARCHAR(10) DEFAULT 'Pending',
     FOREIGN KEY (UserID) REFERENCES User(UserID)
 );
+
+
+CREATE TABLE IF NOT EXISTS FAQ(
+    FAQID CHAR(8) PRIMARY KEY,
+    Question TEXT,
+    Answer TEXT
+);

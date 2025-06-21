@@ -46,7 +46,7 @@ if(isset($_SESSION['user_id'])){
 					<a href="/leaderboard">Leaderboard</a> 
 					<a href="index.php?page=feedback">Feedback</a>
 					<a href="index.php?page=announcement">Announcement</a> 
-					<a href="/faq">FAQ</a>
+					<a href="index.php?page=faq">FAQ</a>
 				</div>
 
 				<div class="navbar-right">
