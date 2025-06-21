@@ -79,7 +79,7 @@ class UserController {
                         $_SESSION['role'] = $user['Role'];
 
                         // Redirect to dashboard or homepage
-                        header("Location: /talent-portal/public/index.php?page=home");
+                        header("Location: /index.php?page=home");
                         exit;
                     }
                     exit;
