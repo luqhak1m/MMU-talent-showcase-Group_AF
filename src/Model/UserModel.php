@@ -112,4 +112,18 @@ class UserModel {
         $stmt->execute([$UserID]);
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
+
+    // Author: Sabrina
+     public function getUsersByRole($role) {
+        $sql = "SELECT UserID, Username, Email, Role FROM User WHERE Role = :role ORDER BY Username";
+        $stmt = $this->pdo->prepare($sql);
+        $stmt->bindParam(':role', $role);
+        $stmt->execute();
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+    // Author: Sabrina
+    public function getRegularUsers() {
+        return $this->getUsersByRole('User'); 
+    }
 }
