@@ -11,7 +11,7 @@
 
 <body class="index-body">
 
-    <!-- // Author: Sabrina -->
+    <!--Author: Sabrina-->
     <div class="container-div" id="adminlist-container-div" style="padding-bottom: 2em;">
         <h1>Admin Dashboard</h1>
 
