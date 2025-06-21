@@ -26,8 +26,8 @@
                 </tr>
             </thead>
             <tbody>
-                <?php if (!empty($users)): ?>
-                    <?php foreach ($users as $user): ?>
+                //---Author:Sabrina---//
+                <?php if (!empty($regularUsers)): ?> and <?php foreach ($regularUsers as $user): ?>
                     <tr>
                         <td><?php echo htmlspecialchars($user['Username']); ?></td>
                         <td><?php echo htmlspecialchars($user['Email']); ?></td>
