@@ -27,7 +27,8 @@
                             <td><?php echo htmlspecialchars($user['Username']); ?></td>
                             <td><?php echo htmlspecialchars($user['Email']); ?></td>
                             <td>
-                                <a href="/index.php?page=admin_view_profile&user_id=<?php echo $user['UserID']; ?>" class="button" id="list-button">View</a>
+                                <a href="talent-portal/public/index.php?page=admin_view_profile&user_id=<?php echo $user['UserID']; ?>" class="button" id="list-button">View</a>
+                                <a href="talent-portal/public/index.php?page=admin_manage_user&action=delete&user_id=<?= $user['UserID']; ?>" class="button" id="list-button" onclick="return confirm('Are you sure you want to delete this user?');">Delete</a>
                             </td>
                         </tr>
                     <?php endforeach; ?>
@@ -38,7 +39,7 @@
                 <?php endif; ?>
             </tbody>
         </table>
-        <a href="/index.php?page=admin_dashboard" class="button">Back to Dashboard</a>
+        <a href="talent-portal/public/index.php?page=admin_dashboard" class="button">Back to Dashboard</a>
     </div>
 
 </body>
