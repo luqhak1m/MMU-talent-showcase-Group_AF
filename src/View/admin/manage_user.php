@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Admin - Manage Talents</title>
-    <link rel="stylesheet" type="text/css" href="/talent-portal/public/css/styles.css">
+    <link rel="stylesheet" type="text/css" href="<?= BASE_URL ?>css/styles.css">
 </head>
 <body class="index-body">
     
@@ -27,8 +27,8 @@
                             <td><?php echo htmlspecialchars($user['Username']); ?></td>
                             <td><?php echo htmlspecialchars($user['Email']); ?></td>
                             <td>
-                                <a href="talent-portal/public/index.php?page=admin_view_profile&user_id=<?php echo $user['UserID']; ?>" class="button" id="list-button">View</a>
-                                <a href="talent-portal/public/index.php?page=admin_manage_user&action=delete&user_id=<?= $user['UserID']; ?>" class="button" id="list-button" onclick="return confirm('Are you sure you want to delete this user?');">Delete</a>
+                                <a href="<?= BASE_URL ?>index.php?page=admin_view_profile&user_id=<?php echo $user['UserID']; ?>" class="button" id="list-button">View</a>
+                                <a href="<?= BASE_URL ?>index.php?page=admin_manage_user&action=delete&user_id=<?= $user['UserID']; ?>" class="button" id="list-button" onclick="return confirm('Are you sure you want to delete this user?');">Delete</a>
                             </td>
                         </tr>
                     <?php endforeach; ?>

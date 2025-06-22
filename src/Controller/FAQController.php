@@ -19,7 +19,7 @@ class FAQController {
 
             $Question=$_POST['question'];
             $this->faq_model->createFAQ($Question);
-            header("Location: /talent-portal/public/index.php?page=faq");
+            header("Location: " . BASE_URL . "index.php?page=faq");
 
         }
         $FAQs=$this->faq_model->fetchAllFAQ();
@@ -39,7 +39,7 @@ class FAQController {
         if ($_SERVER['REQUEST_METHOD']==='POST'&&isset($FAQID)){
             $Answer=$_POST['answer'];
             $this->faq_model->updateFAQ($FAQID, $Answer);
-            header("Location: /talent-portal/public/index.php?page=admin_manage_faq");
+            header("Location: " . BASE_URL . "index.php?page=admin_manage_faq");
             
         }
         $FAQs=$this->faq_model->fetchAllFAQ();

@@ -21,7 +21,7 @@ class FeedbackController {
            $UserID=$_SESSION['user_id'];
     
            $this->feedback_model->createFeedback($UserID, $Feedback);
-            header("Location: /talent-portal/public/index.php?page=feedback");
+            header("Location: " . BASE_URL . "index.php?page=feedback");
        }
         require_once __DIR__ . '/../View/admin/add-feedback-form.php';
 	} 
@@ -36,7 +36,7 @@ class FeedbackController {
             $FeedbackStatus=$_POST['feedback_status'];
 
             $this->feedback_model->updateFeedbackStatus($FeedbackID, $FeedbackStatus);
-            header("Location: /talent-portal/public/index.php?page=admin_manage_feedback");
+            header("Location: " . BASE_URL . "index.php?page=admin_manage_feedback");
         }
         $feedbacks=$this->feedback_model->fetchAllFeedback();
         require_once __DIR__ . '/../View/admin/manage-feedback.php';
