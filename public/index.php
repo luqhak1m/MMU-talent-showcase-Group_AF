@@ -301,9 +301,17 @@ switch ($page) {
 
 	case 'faq':
 		require_once __DIR__ . '/../src/Controller/FAQController.php';
-		$FAQController=new FAQController($pdo);
-		$FAQController->viewFAQ();
-		break;
+		$FAQController = new FAQController($pdo);
+
+		if (isset($_GET['action'])) {
+			if ($_GET['action'] === 'create' && $_SERVER['REQUEST_METHOD'] !== 'POST') {
+				$FAQController->addFAQ();  // show form
+				break;
+			} 
+		}
+
+    $FAQController->viewFAQ();  // default
+    break;
 
 	case 'admin_manage_faq':
 		require_once __DIR__ . '/../src/Controller/FAQController.php';
