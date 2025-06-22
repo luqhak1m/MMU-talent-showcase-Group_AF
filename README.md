@@ -1,4 +1,4 @@
-# 🎓 MMU Talent Showcase Portal
+# MMU Talent Showcase Portal
 
 > **Group Name:** `MMU-talent-showcase-Group_AF`  
 > **Subject:** CIT6224 - Web Application Development  
@@ -8,7 +8,7 @@
 
 ---
 
-## 👥 Group Members
+## Group Members
 
 | Student ID   | Student Name                                  |
 |--------------|-----------------------------------------------|
