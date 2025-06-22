@@ -39,7 +39,7 @@
         </div>
         <div class="group-4">
             <figure>
-                <img src="images/asyer.png" alt="Asyrani Syazwan Bin Yuhanis">
+                <img src="images/asyer.jpg" alt="Asyrani Syazwan Bin Yuhanis">
             </figure>
             <p>Name: Asyrani Syazwan Bin Yuhanis</p>
             <p>Student ID: 1211103222</p>
