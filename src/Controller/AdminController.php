@@ -107,41 +107,29 @@ class AdminController {
     public function manageUser()
     {
         if (!isset($_SESSION['is_admin']) || $_SESSION['is_admin'] !== true) {
-            header("Location: /index.php?page=admin_login");
+            header("Location: talent-portal/public/index.php?page=admin_login");
             exit;
         }
+
+        if (isset($_GET['action']) && $_GET['action'] === 'delete' && isset($_GET['user_id'])) {
+            $this->deleteUser($_GET['user_id']);
+        }
+
+  
         $users = $this->userModel->getRegularUsers();
         include __DIR__ . '/../View/admin/manage_user.php';
     }
 
-    public function manageAnnouncement() 
-    {
-        if (!isset($_SESSION['is_admin']) || $_SESSION['is_admin'] !== true) {
-            header("Location: /index.php?page=admin_login");
-            exit;
-        }
+    public function deleteUser($userId) {
+    if (!isset($_SESSION['is_admin']) || $_SESSION['is_admin'] !== true) {
+        header("Location: talent-portal/public/index.php?page=admin_login");
+        exit;
     }
 
-    public function manageCatalogue() 
-    {
-        if (!isset($_SESSION['is_admin']) || $_SESSION['is_admin'] !== true) {
-            header("Location: /index.php?page=admin_login");
-            exit;
-        }
+    $this->userModel->deleteUserById($userId);
+    header("Location: talent-portal/public/index.php?page=admin_manage_user&status=deleted");
+    exit;
     }
 
-    public function manageFAQ() 
-    {
-        if (!isset($_SESSION['is_admin']) || $_SESSION['is_admin'] !== true) {
-            header("Location: /index.php?page=admin_login");
-            exit;
-        }
-    }
 
-    public function manageFeedback() {
-        if (!isset($_SESSION['is_admin']) || $_SESSION['is_admin'] !== true) {
-            header("Location: /index.php?page=admin_login");
-            exit;
-        }
-    }
 }

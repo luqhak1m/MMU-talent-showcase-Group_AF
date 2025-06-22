@@ -151,4 +151,9 @@ class UserModel {
     public function getRegularUsers() {
         return $this->getUsersByRole('User'); 
     }
+
+
 }
+
+    
+
