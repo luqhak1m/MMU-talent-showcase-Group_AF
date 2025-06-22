@@ -92,8 +92,8 @@ require_once __DIR__ . '/../../public/header.php';
                 </p>
             </div>
             <div id="offer-cart-button-div">
-                <a href="/talent-portal/public/index.php?page=offer" class="button">Make Offer</a>
-                <a href="/talent-portal/public/index.php?page=cart" class="button">Add to Cart</a>
+                <a href="/talent-portal/public/index.php?page=offer&talent_id=<?= htmlspecialchars($talent['TalentID']) ?>" class="button">Make Offer</a>
+                <a href="/talent-portal/public/index.php?page=cart&action=add&talent_id=<?= htmlspecialchars($talent['TalentID']) ?>" class="button">Add to Cart</a>
             </div>
             <div class="post-lower-section-container-div">
                 <div class="comment-count-div">
