@@ -63,7 +63,7 @@ class TalentController {
             }else {
                 // echo "[INFO] No session";
             }
-            header("Location: ". BASE_URL . " index.php?page=talent");
+            header("Location: " . BASE_URL . "index.php?page=talent");
         }else{
             // echo "[INFO] No talent submission POST received<br>";
         }
@@ -161,7 +161,7 @@ class TalentController {
             }
 
             $this->talent_model->updateTalent($TalentID, $TalentTitle, $TalentDescription, $Price, $Content, $Category);
-            header("Location: ". BASE_URL . "index.php?page=talent&id=".htmlspecialchars($TalentID));
+            header("Location: " . BASE_URL . "index.php?page=talent&id=".htmlspecialchars($TalentID));
         }else{
             require_once __DIR__ . '/../View/add-talent-form.php';
         }
@@ -171,7 +171,7 @@ class TalentController {
         $talent=$this->talent_model->fetchTalentByTalentID($TalentID);
         $newLikeCount=$talent['TalentLikes']+1;
         $this->talent_model->updateLikeCount($TalentID, $newLikeCount);
-        header("Location: ". BASE_URL . "index.php?page=talent&id=".htmlspecialchars($TalentID));
+        header("Location: " . BASE_URL . "index.php?page=talent&id=".htmlspecialchars($TalentID));
     }
 
     public function addComment($TalentID){
@@ -186,7 +186,7 @@ class TalentController {
             
             $this->talent_model->createComment($TalentID, $UserID, $comment);
 
-            header("Location: ". BASE_URL . "index.php?page=talent&id=".htmlspecialchars($TalentID));
+            header("Location: " . BASE_URL . "index.php?page=talent&id=".htmlspecialchars($TalentID));
             // $forum=$this->forum_model->fetchForumByForumID($ForumID);
             // $forum_members=$this->forum_model->fetchForumMembers($ForumID);
             // $forum_posts=$this->forum_model->fetchAllForumPosts($ForumID);

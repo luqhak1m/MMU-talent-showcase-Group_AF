@@ -28,7 +28,7 @@
                         echo '<a href="?page=login" class="button">Login</a>';
                         echo '<a href="?page=register" class="button">Register</a>';
                     }else{
-                        echo '<a href="/talent-portal/public/index.php?page=logout" class="button">Log Out</a>';
+                        echo '<a href="' . BASE_URL . 'index.php?page=logout" class="button">Log Out</a>';
                     }
         ?>
     </div>
