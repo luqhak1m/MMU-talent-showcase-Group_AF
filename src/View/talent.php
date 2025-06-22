@@ -65,9 +65,9 @@ require_once __DIR__ . '/../../public/header.php';
                 $extension = strtolower(pathinfo($file, PATHINFO_EXTENSION));
                 $filepath = 'uploads/' . $file;
 
-                if (in_array($extension, ['jpg', 'jpeg', 'png', 'gif', 'webp'])) {
+                if (in_array($extension, ['jpg', 'jpeg', 'png', 'gif', 'webp', 'heic'])) {
                     echo "<img src='$filepath' alt='Image' style='width: 100%; height: auto; border-radius: 20px;'>";
-                } elseif (in_array($extension, ['mp4', 'webm', 'ogg'])) {
+                } elseif (in_array($extension, ['mp4', 'webm', 'ogg', 'mov'])) {
                     echo "<video controls style='width: 100%; border-radius: 20px;'>
                             <source src='$filepath' type='video/$extension'>
                             Your browser does not support the video tag.

@@ -36,7 +36,7 @@ body{
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(21em, 1fr));
   gap: 1.5em;
-  padding: 1em;
+  padding: 5em;
   justify-items: center;
 
 }
@@ -64,7 +64,7 @@ body{
 }
 
 .talent-card-container-div{
-    height: 50em;
+    height: 100em;
 }
 
 .talent-search-result-card {

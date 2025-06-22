@@ -2,4 +2,10 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
+        height: 20em;
+
+}
+
+.form-container{
+    height: 15em;
 }

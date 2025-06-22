@@ -7,7 +7,7 @@
     <script src="js/main.js"></script>
 </head>
 <body class="group-body">
-    <?php include("header.php") ?>
+    <!-- <?php include("header.php") ?> -->
 
     <div class="group-container">
         <div class="group-1">

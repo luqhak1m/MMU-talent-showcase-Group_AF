@@ -223,7 +223,7 @@ class ForumModel {
     public function searchForum($search){
         $sql="SELECT * FROM Forum WHERE ForumName LIKE ?";
         $stmt=$this->pdo->prepare($sql);
-        $stmt->execute([$search]);
+        $stmt->execute(['%'.$search.'%']);
         $result=$stmt->fetchAll(PDO::FETCH_ASSOC);
         return $result;
     }

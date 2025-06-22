@@ -67,7 +67,17 @@ if (!isset($selectedCategory)) {
                     else if ($index === 1) $rank = 2; // Left is 2nd
                     else if ($index === 2) $rank = 3; // Right is 3rd
 
-                    $talentImagePath = !empty($talent['Content']) ? BASE_URL . 'uploads/' . htmlspecialchars($talent['Content']) : BASE_URL . 'images/profile.png';
+                    $filename=$talent['Content'];
+                    $extension=strtolower(pathinfo($filename, PATHINFO_EXTENSION));
+
+                    $audio_extensions=['mp3', 'wav', 'ogg', 'aac', 'flac'];
+
+                    if(in_array($extension, $audio_extensions)){
+                        $talentImagePath="images/audio_icon.png";
+                    }else{
+                        $talentImagePath='uploads/'.htmlspecialchars($filename);
+                    }
+
             ?>
                     <div class="mid-talent-card rank-<?= $rank ?>">
                         <div class="rank-number">#<?= $rank ?></div>
@@ -88,7 +98,17 @@ if (!isset($selectedCategory)) {
             $startRank = 4; // Start ranking from 4 for the bottom list
             foreach ($remainingTalents as $index => $talent) :
                 $currentRank = $startRank + $index;
-                $talentImagePath = !empty($talent['Content']) ? BASE_URL . 'uploads/' . htmlspecialchars($talent['Content']) : 'https://placehold.co/60x60/cccccc/333333?text=No+Img';
+                $filename=$talent['Content'];
+                    $extension=strtolower(pathinfo($filename, PATHINFO_EXTENSION));
+
+                    $audio_extensions=['mp3', 'wav', 'ogg', 'aac', 'flac'];
+
+                    if(in_array($extension, $audio_extensions)){
+                        $talentImagePath="images/audio_icon.png";
+                    }else{
+                        $talentImagePath='uploads/'.htmlspecialchars($filename);
+                    }
+                // $talentImagePath = !empty($talent['Content']) ? BASE_URL . 'uploads/' . htmlspecialchars($talent['Content']) : 'https://placehold.co/60x60/cccccc/333333?text=No+Img';
             ?>
                 <div class="bott-talent-row">
                     <div class="rank-num">#<?= $currentRank ?></div>

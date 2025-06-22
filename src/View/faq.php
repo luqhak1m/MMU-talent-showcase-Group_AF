@@ -15,7 +15,7 @@
         <div class="header-add-div">
             <div class="placeholder-div"></div>
             <h1 class="admin-header-div">
-                FAQ Management
+                FAQ
             </h1>
             <div class="plus-button-div">
                 <a href="index.php?page=faq&action=create" class="plus-button button">+</a>
