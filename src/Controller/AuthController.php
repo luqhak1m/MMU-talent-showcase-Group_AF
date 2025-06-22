@@ -114,7 +114,7 @@ class UserController {
 
                 if ($user['Role'] === 'Admin') {
                     $_SESSION['is_admin'] = true;
-                    header("Location: /talent-portal/public/index.php?page=admin_dashboard");
+                    header("Location: index.php?page=admin_dashboard");
                 } else {
                     header("Location: /talent-portal/public/index.php?page=home");
                 }

@@ -34,7 +34,7 @@ class AdminController {
                 $_SESSION['admin_name'] = $user['Username'];
                 $_SESSION['is_admin'] = true;
 
-                header("Location: /talent-portal/public/index.php?page=admin_dashboard");
+                header("Location: index.php?page=admin_dashboard");
                 exit;
             } else {
                 $login_error = "Invalid credentials or not an admin.";
@@ -92,7 +92,7 @@ class AdminController {
             // This will now work because $this->profileModel exists
             $this->profileModel->updateProfile($userIdToEdit, $firstName, $lastName, $address, $gender, $dob, $phoneNum, $profilePicture, $bio);
 
-            header("Location: /talent-portal/public/index.php?page=admin_dashboard");
+            header("Location: index.php?page=admin_dashboard");
             exit;
         }
 

@@ -3,7 +3,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Admin - Manage Talents</title>
+    <title>Admin - Manage User</title>
     <link rel="stylesheet" type="text/css" href="/talent-portal/public/css/styles.css">
 </head>
 <body class="index-body">
@@ -39,7 +39,7 @@
                 <?php endif; ?>
             </tbody>
         </table>
-        <a href="talent-portal/public/index.php?page=admin_dashboard" class="button">Back to Dashboard</a>
+        <a href="index.php?page=admin_dashboard" class="button">Back to Dashboard</a>
     </div>
 
 </body>

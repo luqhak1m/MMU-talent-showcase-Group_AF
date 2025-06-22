@@ -49,6 +49,6 @@
         </tbody>
     </table>
     <div style="text-align: center; margin-top: 20px;">
-        <a href="<?= BASE_URL ?>index.php?page=admin_dashboard" class="button">Back to Dashboard</a>
+        <a href="index.php?page=admin_dashboard" class="button">Back to Dashboard</a>
     </div>
 </div>

@@ -11,38 +11,61 @@
 </head>
 <body>
 
-    <div class="admin-container">
-        <h1 class="admin-header-div" id="announcement-header-div">
-            FAQ Management
-        </h1>
-        <?php  
-        
-        foreach($FAQs as $FAQ){
-            echo '<div class="post-link-wrapper">';
-            echo '    <div class="post-upper-section-container-div">';
-            echo '        <div class="pfp-upper-section-container-div">';
-            echo '            <div class="details-upper-section-container-div">';
-            echo '                <div class="parent-content-div">';
-            echo '                    <div class="left-content-div">';
-            echo '                        <p>Question: <strong>'.$FAQ['Question'].'</strong></p>';
-            echo '                        <div class="form-div">';
-            echo '                        <form method="POST" action="index.php?page=admin_manage_faq&id='.$FAQ['FAQID'].'&action=answer">';
-            echo '                            <label for="answer">Answer:</label><br>';
-            echo '                            <textarea id="answer" name="answer" rows="3" cols="50">'.$FAQ['Answer'].'</textarea><br>';
-            echo '                            <button type="submit" class="button">Save Answer</button>';
-            echo '                        </form>';
-            echo '                       </div>';
-            echo '                    </div>';
-            echo '                </div>';
-            echo '            </div>';
-            echo '        </div>';
-            echo '    </div>';
-            echo '</div>';
-        }
+    <div class="container-div" style="padding-top: 2em; height: auto; min-height: 100vh;">
+        <h1 class="page-title" id="feedback-header-div">FAQ Management</h1>
 
-        ?>
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5em;">
+            <div style="width: 30px;"></div> <h1 class="page-title" style="flex-grow: 1; text-align: center; margin: 0;">FAQ Management</h1>
+            <div class="plus-button-div" style="width: 30px;">
+                <a href="index.php?page=admin_manage_faq&action=create" class="button" id="list-button">+</a>
+            </div>
+        </div>
+
+        <?php if (isset($_SESSION['success_message'])): ?>
+            <div class="success-message">
+                <?php echo htmlspecialchars($_SESSION['success_message']); unset($_SESSION['success_message']); ?>
+            </div>
+        <?php endif; ?>
+        <?php if (isset($_SESSION['error_message'])): ?>
+            <div class="error-message">
+                <?php echo htmlspecialchars($_SESSION['error_message']); unset($_SESSION['error_message']); ?>
+            </div>
+        <?php endif; ?>
+
+        <table border="1" style="width:90%; margin: 2em auto; border-collapse: collapse; background-color: #fff;">
+            <thead>
+                <tr style="background-color: #E7E6F2;">
+                    <th style="padding: 8px;">FAQ ID</th>
+                    <th style="padding: 8px;">Question</th>
+                    <th style="padding: 8px;">Answer</th>
+                    <th style="padding: 8px;">Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php if (!empty($FAQs)): ?>
+                    <?php foreach ($FAQs as $faq): ?>
+                        <tr>
+                            <td style="padding: 8px;"><?php echo htmlspecialchars($faq['FAQID']); ?></td>
+                            <td style="padding: 8px;"><?php echo htmlspecialchars($faq['Question']); ?></td>
+                            <td style="padding: 8px;"><?php echo htmlspecialchars($faq['Answer']); ?></td>
+                            <td style="padding: 8px;">
+                                <a href="index.php?page=admin_manage_faq&action=edit&id=<?php echo htmlspecialchars($faq['FAQID']); ?>" class="button" id="list-button">Edit</a>
+                                <a href="index.php?page=admin_manage_faq&action=delete&id=<?php echo htmlspecialchars($faq['FAQID']); ?>" class="button" id="list-button" onclick="return confirm('Are you sure you want to delete this FAQ?');">Delete</a>
+                            </td>
+                        </tr>
+                    <?php endforeach; ?>
+                <?php else: ?>
+                    <tr>
+                        <td colspan="4" style="text-align: center; padding: 8px;">No FAQs found.</td>
+                    </tr>
+                <?php endif; ?>
+            </tbody>
+        </table>
+
+        <div style="text-align: center; margin-top: 20px;">
+            <a href="index.php?page=admin_dashboard" class="button">Back to Dashboard</a>
+        </div>
     </div>
-
 
 </body>
 </html>
