@@ -1,4 +1,4 @@
-<div class="container-div" style="padding-top: 2em;">
+<div class="container-div" style="padding-top: 2em; height: 50em;">
     <h1 style="text-align: center" class="page-title">Catalogue Management</h1> 
 
     <?php if (isset($_SESSION['success_message'])): ?>

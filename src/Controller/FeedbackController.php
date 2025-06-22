@@ -27,6 +27,7 @@ class FeedbackController {
 	} 
     public function viewAdminFeedback(){
         $feedbacks=$this->feedback_model->fetchAllFeedback();
+        // var_dump($feedbacks);
         require_once __DIR__ . '/../View/admin/manage-feedback.php';
 
     }

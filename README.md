@@ -9,7 +9,7 @@ CIT6224 - Web Application Development
 
 ## Assignment Title
 
-MMU Talent Showcase Portal Final Report
+MMU Talent Showcase Portal
 
 ## Lecture Section
 
@@ -26,7 +26,27 @@ Dr. Mohana A/P Muniady
 ### 1211103222	ASYRANI SYAZWAN BIN YUHANIS
 
 
-## Important: Create Uploads folder in public
+## Setting Up the Website
+
+1. Install and Start XAMPP
+Download XAMPP from https://www.apachefriends.org/
+Install and launch the XAMPP Control Panel
+Start the following:
+Apache
+MySQL
+
+2. Move the Project to XAMPP's htdocs Folder
+Unzip the project folder MMU-talent-showcase-Group_AF
+Move the entire folder to:
+Windows: C:\xampp\htdocs\
+MacOS: /Applications/XAMPP/htdocs/
+
+Final path: C:\xampp\htdocs\MMU-talent-showcase-Group_AF
+
+3. Create the uploads Folder (IMPORTANT!)
+
+This folder is used for profile pictures and media files.
+cd /Applications/XAMPP/htdocs/MMU-talent-showcase-Group_AF
 
 ### MacOS
 
@@ -38,6 +58,18 @@ chmod 777 public/uploads
 mkdir public\uploads
 icacls public\uploads /grant Everyone:(F) /T
 
-## Add Feedback
+4. Setup the Database
+Open your browser and go to:
+http://localhost/phpmyadmin
+Create a new database named: mmu_talent_portal
+Import the provided .sql file:
+Click the Import tab
+Choose the SQL file from config folder
+Click Go
 
-Add feedback must be done using User, Admin cannot
+5. Configure Database Connection
+Open the file: config/database_config.php
+Check and ensure the DB credentials match your local MySQL config
+
+6. Run the Web App
+Open your browser and go to: http://localhost/MMU-talent-showcase-Group_AF/public/index.php
