@@ -48,10 +48,9 @@ class FAQModel
 
     public function deleteFAQByID($FAQID)
     {
-        $sql = "DELETE FROM FAQ WHERE FAQID=?";
+        $sql = "DELETE FROM FAQ WHERE FAQID = ?";
         $stmt = $this->pdo->prepare($sql);
-        $result = $stmt->execute([$FAQID]);
-        return $result;
+        return $stmt->execute([$FAQID]);
     }
 
     public function updateFAQ($FAQID, $Answer)

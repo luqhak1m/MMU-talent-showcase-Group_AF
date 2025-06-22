@@ -20,20 +20,20 @@ class FAQController {
             $Question=$_POST['question'];
             $this->faq_model->createFAQ($Question);
             header("Location: " . BASE_URL . "index.php?page=faq");
-
         }
         $FAQs=$this->faq_model->fetchAllFAQ();
         require_once __DIR__ . '/../View/faq.php';
 	} 
 
     public function viewAdminFAQ(){
-        $faq=$this->faq_model->fetchAllFAQ();
+        $FAQs=$this->faq_model->fetchAllFAQ();
         require_once __DIR__ . '/../View/admin/manage-faq.php';
 	}
 
     public function addFAQ(){
         require_once __DIR__ . '/../View/add-faq-form.php';
     }
+
 
     public function UpdateAdminFAQ($FAQID=null){
         if ($_SERVER['REQUEST_METHOD']==='POST'&&isset($FAQID)){
@@ -47,8 +47,10 @@ class FAQController {
     }
 
     public function deleteAdminFAQ($FAQID){
-        $deleted_faq_status=$this->faq_model->deleteFAQByID($FAQID);
-        $faq=$this->faq_model->fetchAllFAQ();
+        if ($FAQID) {
+            $this->faq_model->deleteFAQByID($FAQID);
+        }
+        $FAQs = $this->faq_model->fetchAllFAQ();
         require_once __DIR__ . '/../View/admin/manage-faq.php';
     }
 }

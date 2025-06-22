@@ -313,12 +313,16 @@ switch ($page) {
 			if($_GET['action']=="create"){
 				$FAQController->addFAQ();
 				break;
-			}elseif($_GET['action']=="update"){
+			}elseif ($_GET['action'] == "create" && $_SERVER['REQUEST_METHOD'] === 'POST') {
+        		$FAQController->createAdminFAQ(); // handle form
+        		break;
+			}
+			elseif($_GET['action']=="update"){
 				$faq_id=$_GET['id'];
 				$FAQController->UpdateAdminFAQ($faq_id);
 				break;
-			}elseif($_GET['action']=="delete"){
-				$faq_id=$_GET['id'];
+			}elseif ($_GET['action'] == "delete" && isset($_GET['id'])) {
+				$faq_id = $_GET['id'];
 				$FAQController->deleteAdminFAQ($faq_id);
 				break;
 			}

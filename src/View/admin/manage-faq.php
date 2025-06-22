@@ -35,7 +35,6 @@
         <table border="1" style="width:90%; margin: 2em auto; border-collapse: collapse; background-color: #fff;">
             <thead>
                 <tr style="background-color: #E7E6F2;">
-                    <th style="padding: 8px;">FAQ ID</th>
                     <th style="padding: 8px;">Question</th>
                     <th style="padding: 8px;">Answer</th>
                     <th style="padding: 8px;">Actions</th>
@@ -45,9 +44,8 @@
                 <?php if (!empty($FAQs)): ?>
                     <?php foreach ($FAQs as $faq): ?>
                         <tr>
-                            <td style="padding: 8px;"><?php echo htmlspecialchars($faq['FAQID']); ?></td>
-                            <td style="padding: 8px;"><?php echo htmlspecialchars($faq['Question']); ?></td>
-                            <td style="padding: 8px;"><?php echo htmlspecialchars($faq['Answer']); ?></td>
+                            <td style="padding: 8px;"><?php echo htmlspecialchars($faq['Question'] ?? ''); ?></td>
+                            <td style="padding: 8px;"><?php echo htmlspecialchars($faq['Answer'] ?? ''); ?></td>
                             <td style="padding: 8px;">
                                 <a href="index.php?page=admin_manage_faq&action=edit&id=<?php echo htmlspecialchars($faq['FAQID']); ?>" class="button" id="list-button">Edit</a>
                                 <a href="index.php?page=admin_manage_faq&action=delete&id=<?php echo htmlspecialchars($faq['FAQID']); ?>" class="button" id="list-button" onclick="return confirm('Are you sure you want to delete this FAQ?');">Delete</a>
