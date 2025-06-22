@@ -32,11 +32,11 @@ if(isset($_SESSION['user_id'])){
 				<div class="navbar-left">
 					<?php if (isset($_SESSION['is_admin']) && $_SESSION['is_admin'] === true): ?>
 						<a href="index.php?page=admin_dashboard" class="website-title">
-							<h1>Website Name</h1>
+							<h1>MMU Talent Portal Admin</h1>
 						</a>
 					<?php else: ?>
 						<a href="<?= BASE_URL ?>index.php?page=home" class="website-title">
-							<h1>Website Name</h1>
+							<h1>MMU Talent Portal</h1>
 						</a>
 					<?php endif; ?>
 					<a href="index.php?page=catalogue">Catalogue</a> 	

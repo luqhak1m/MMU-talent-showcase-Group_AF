@@ -26,6 +26,9 @@ if(isset($_SESSION['user_id'])){
 }
 
 switch ($page) {
+	case 'group':
+        require_once 'group.php';
+        break;
 	case 'register':
         require_once __DIR__ . '/../src/Controller/AuthController.php';
 		$userController=new UserController($pdo);
@@ -161,10 +164,21 @@ switch ($page) {
 			}elseif($_GET['action']=="create-post"){ // index.php?page=X&id=Y&action=Z
 				$forumController->createForum();
 				break;
+			}elseif($_GET['action']=="search"){
+				$UserID=$_GET['id'];
+				// echo $search;
+				$forumController->viewJoinedForums($UserID);
+				break;
 			}
 		}elseif(isset($_GET['action'])){// index.php?page=X&action=Y
 			if($_GET['action']=="create"){
 				$forumController->createForum();
+				break;
+			}
+			if($_GET['action']=="search"){
+				$search=$_GET['action'];
+				// echo $search;
+				$forumController->browseForum($search);
 				break;
 			}
 		}

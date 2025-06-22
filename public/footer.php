@@ -3,9 +3,9 @@
 
 	<footer>
 		<div class="footer-container">
-			<div class="footer-left">
+			<a href="index.php?page=group" class="footer-left" style="text-decoration: none; color: white;">
 				<p>MMU Talent Portal</p>
-			</div>
+			</a>
 			<div class="footer-right">
 				<a href="/catalogue">Catalogue</a> 
 				<a href="/forum">Forum</a>

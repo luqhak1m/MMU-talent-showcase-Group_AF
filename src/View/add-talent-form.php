@@ -54,9 +54,9 @@ $fetched_talent=$fetched_talent??[]; // handle if user is adding talent, not edi
                     // echo "<p>Resolved path: <code>$filepath</code></p>";
                     // echo "<p>Full URL test: <a href='$filepath' target='_blank'>Open File</a></p>";
 
-                    if(in_array(strtolower($extension), ['jpg', 'jpeg', 'png', 'gif', 'webp'])){
+                    if(in_array(strtolower($extension), ['jpg', 'jpeg', 'png', 'gif', 'webp', 'heic'])){
                         echo "<img src='$filepath' alt='Image Preview'>";
-                    }elseif(in_array(strtolower($extension), ['mp4', 'webm', 'mov'])){
+                    }elseif(in_array(strtolower($extension), ['mp4', 'webm', 'mov', 'mov'])){
                         echo "<video controls src='$filepath'></video>";
                     }elseif(in_array(strtolower($extension), ['mp3', 'wav', 'ogg'])){
                         echo "<audio controls src='$filepath'></audio>";
