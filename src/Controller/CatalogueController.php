@@ -25,4 +25,21 @@ class CatalogueController {
         $catalogue=$this->catalogue_model->fetchAllCatalogue($search, $category);
         require_once __DIR__ . '/../View/catalogue.php';
 	} 
+
+    public function adminManageCatalogue() {
+        $catalogue = $this->catalogue_model->fetchAllCatalogue();
+        require_once __DIR__ . '/../View/admin/manage-catalogue.php';
+    }
+
+    public function editCatalogue($catalogueID) {
+        $item = $this->catalogue_model->getCatalogueByID($catalogueID);
+        require_once __DIR__ . '/../View/admin/edit-catalogue.php';
+    }
+
+    public function deleteCatalogue($catalogueID) {
+        $this->catalogue_model->deleteCatalogueByID($catalogueID);
+        $_SESSION['success_message'] = "Catalogue deleted successfully.";
+        header("Location: index.php?page=admin_manage_catalogue");
+        exit;
+    }
 }

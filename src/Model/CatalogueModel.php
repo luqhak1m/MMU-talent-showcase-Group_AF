@@ -67,4 +67,15 @@ class CatalogueModel {
 
     public function modifyData(){
     }
+
+    public function getCatalogueByID($catalogueID) {
+        $stmt = $this->pdo->prepare("SELECT * FROM Talent WHERE TalentID = ?");
+        $stmt->execute([$catalogueID]);
+        return $stmt->fetch(PDO::FETCH_ASSOC);
+        }
+
+    public function deleteCatalogueByID($catalogueID) {
+        $stmt = $this->pdo->prepare("DELETE FROM Talent WHERE TalentID = ?");
+        $stmt->execute([$catalogueID]);
+    }
 }
