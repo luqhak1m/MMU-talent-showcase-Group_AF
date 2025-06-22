@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login - MMU Talent Showcase</title>
-    <link rel="stylesheet" href="/.../public/css/styles.css"> </head>
+    <link rel="stylesheet" href="<?= BASE_URL ?>css/styles.css"> </head>
 <body>
     <div class="auth-container">
         <div class="auth-image-section">
@@ -22,7 +22,7 @@
                 echo '<p class="error-message" style="text-align:center;">' . htmlspecialchars($login_error) . '</p>';
             }
             ?>
-            <form action="/talent-portal/public/index.php?page=login" method="POST">
+            <form action="<?= BASE_URL ?>index.php?page=login" method="POST">
                 <div class="form-group">
                     <label for="email">Email</label> <input type="email" id="email" name="email" value="<?= htmlspecialchars($_POST['email'] ?? '') ?>" required>
                 </div>

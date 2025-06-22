@@ -11,7 +11,7 @@ require_once __DIR__ . '/../../public/header.php';
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" type="text/css" href="/talent-portal/public/css/catalogue.css?v=<?= time() ?>">
+    <link rel="stylesheet" type="text/css" href="<?= BASE_URL ?>css/catalogue.css?v=<?= time() ?>">
 
     <title>Portfolio</title>
 </head>

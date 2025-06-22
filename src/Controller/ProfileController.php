@@ -58,7 +58,7 @@ class ProfileController {
 
             $this->profile_model->updateProfile($user_id, $first_name, $last_name, $address, $gender, $dob, $phone_num, $profile_picture, $bio);
             // echo "[INFO] Profile Updated";
-            header("Location: index.php?page=profile");
+            header("Location: /talent-portal/public/index.php?page=profile");
         } else {
             // ßecho "[INFO] No POST received.";
         }

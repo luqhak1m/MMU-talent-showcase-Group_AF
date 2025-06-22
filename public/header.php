@@ -22,7 +22,7 @@ if(isset($_SESSION['user_id'])){
 <head>
 	<title>MMU Talent Showcase Portal</title>
 	<link rel="stylesheet" href="css/styles.css">
-    <link rel="stylesheet" type="text/css" href="/talent-portal/public/css/header.css?v=<?= time() ?>">
+    <link rel="stylesheet" type="text/css" href="<?= BASE_URL ?>/css/header.css?v=<?= time() ?>">
 	<script src="js/main.js" defer></script>
 </head>
 <body>
@@ -52,7 +52,7 @@ if(isset($_SESSION['user_id'])){
 					<img src="images/search.png" class="navbar-img" alt="search">
 					<a href="<?= BASE_URL ?>index.php?page=cart"><img src="images/bag.png" class="navbar-img" alt="bag"></a>
 					<?php
-						echo '<a href="/talent-portal/public/index.php?page=profile"><img src="'.$profilePicturePath.'" class="navbar-prof" alt="profile"></a>';
+						echo '<a href="' . BASE_URL . 'index.php?page=profile"><img src="' . BASE_URL . $profilePicturePath . '" class="navbar-prof" alt="profile"></a>';
 					?>
 				</div>
 			</div>

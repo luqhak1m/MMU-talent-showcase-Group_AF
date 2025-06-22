@@ -25,7 +25,7 @@ if (!isset($cartTotal)) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Shopping Cart</title>
 
-    <link rel="stylesheet" type="text/css" href="/talent-portal/public/css/cart.css?v=<?= time() ?>">
+    <link rel="stylesheet" type="text/css" href="<?= BASE_URL ?>css/cart.css?v=<?= time() ?>">
 </head>
 <body>
     <div class="cart-page-wrapper">

@@ -63,13 +63,7 @@ class TalentController {
             }else {
                 // echo "[INFO] No session";
             }
-            $fetched_talent=$this->talent_model->fetchTalentByUserID($UserID);
-            $profile_picture=$this->profile_model->fetchProfile($UserID)['ProfilePicture'];
-            $username=$this->user_model->fetchUserByUserID($UserID)['Username'];
-            $user_id=$this->user_model->fetchUserByUserID($UserID)['UserID'];
-            $followers=$this->user_model->fetchFollowers($UserID);
-            $post_likes=$this->talent_model->fetchPostLikesSum($UserID)['TotalLikes'];
-            // header("Location: index.php?page=talent&id=".$UserID."&action=portfolio");
+            header("Location: /talent-portal/public/index.php?page=talent");
         }else{
             // echo "[INFO] No talent submission POST received<br>";
         }
@@ -167,7 +161,7 @@ class TalentController {
             }
 
             $this->talent_model->updateTalent($TalentID, $TalentTitle, $TalentDescription, $Price, $Content, $Category);
-            header("Location: index.php?page=talent&id=".htmlspecialchars($TalentID));
+            header("Location: /talent-portal/public/index.php?page=talent&id=".htmlspecialchars($TalentID));
         }else{
             require_once __DIR__ . '/../View/add-talent-form.php';
         }
@@ -177,7 +171,7 @@ class TalentController {
         $talent=$this->talent_model->fetchTalentByTalentID($TalentID);
         $newLikeCount=$talent['TalentLikes']+1;
         $this->talent_model->updateLikeCount($TalentID, $newLikeCount);
-        header("Location: index.php?page=talent&id=".htmlspecialchars($TalentID));
+        header("Location: /talent-portal/public/index.php?page=talent&id=".htmlspecialchars($TalentID));
     }
 
     public function addComment($TalentID){
@@ -192,7 +186,7 @@ class TalentController {
             
             $this->talent_model->createComment($TalentID, $UserID, $comment);
 
-            header("Location: index.php?page=talent&id=".htmlspecialchars($TalentID));
+            header("Location: /talent-portal/public/index.php?page=talent&id=".htmlspecialchars($TalentID));
             // $forum=$this->forum_model->fetchForumByForumID($ForumID);
             // $forum_members=$this->forum_model->fetchForumMembers($ForumID);
             // $forum_posts=$this->forum_model->fetchAllForumPosts($ForumID);

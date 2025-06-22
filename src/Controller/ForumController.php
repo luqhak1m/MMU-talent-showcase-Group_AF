@@ -22,7 +22,7 @@ class ForumController {
             $forum_description=$_POST['forum-description'];
 
             $this->forum_model->createForum($forum_name, $forum_description);
-            header("Location: index.php?page=forum");
+            header("Location: /talent-portal/public/index.php?page=forum");
          }
 
         $fetched_forums=$this->forum_model->fetchAllForum();
@@ -69,7 +69,7 @@ class ForumController {
 
             $FPostID=$this->forum_model->createForumPost($ForumID, $forum_member_id, $forum_post_title, $forum_post);
 
-            header("Location: index.php?page=forum-post&id=".$FPostID."&action=view");
+            header("Location: /talent-portal/public/index.php?page=forum-post&id=".$FPostID."&action=view");
             // $forum=$this->forum_model->fetchForumByForumID($ForumID);
             // $forum_members=$this->forum_model->fetchForumMembers($ForumID);
             // $forum_posts=$this->forum_model->fetchAllForumPosts($ForumID);
@@ -91,7 +91,7 @@ class ForumController {
         $newLikeCount=$fetched_forum_post['FPostLikes']+1;
         $this->forum_model->updateLikeCount($FPostID, $newLikeCount);
         $forum_members=$this->forum_model->fetchForumMembers($fetched_forum_post['ForumID']);
-        header("Location: index.php?page=forum-post&id=".htmlspecialchars($FPostID)."&action=view");
+        header("Location: /talent-portal/public/index.php?page=forum-post&id=".htmlspecialchars($FPostID)."&action=view");
     }
 
     public function addComment($FPostID){
@@ -110,7 +110,7 @@ class ForumController {
 
             $this->forum_model->createComment($UserID, $FPostID, $FMemberID, $comment);
 
-            header("Location: index.php?page=forum-post&id=".htmlspecialchars($FPostID)."&action=view");
+            header("Location: /talent-portal/public/index.php?page=forum-post&id=".htmlspecialchars($FPostID)."&action=view");
             // $forum=$this->forum_model->fetchForumByForumID($ForumID);
             // $forum_members=$this->forum_model->fetchForumMembers($ForumID);
             // $forum_posts=$this->forum_model->fetchAllForumPosts($ForumID);

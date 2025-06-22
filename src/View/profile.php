@@ -19,8 +19,8 @@ require_once __DIR__ . '/../../public/header.php';
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" type="text/css" href="css/styles.css">
-    <link rel="stylesheet" type="text/css" href="/talent-portal/public/css/profile.css">
-    <script src="/talent-portal/public/js/profile.js"></script>   
+    <link rel="stylesheet" type="text/css" href="<?= BASE_URL ?>/css/profile.css">
+    <script src="<?= BASE_URL ?>js/profile.js"></script>   
     <title>Profile</title>
 </head>
 <body>
@@ -31,7 +31,7 @@ require_once __DIR__ . '/../../public/header.php';
 
         
         <div id="profile-field-div">
-            <form action="/talent-portal/public/index.php?page=profile" method="POST" enctype="multipart/form-data">
+            <form action="<?= BASE_URL ?>index.php?page=profile" method="POST" enctype="multipart/form-data">
 
                 <!-- pfp that takes a bit of the banner -->
 

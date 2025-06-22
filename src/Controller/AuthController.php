@@ -114,9 +114,9 @@ class UserController {
 
                 if ($user['Role'] === 'Admin') {
                     $_SESSION['is_admin'] = true;
-                    header("Location: index.php?page=admin_dashboard");
+                    header("Location: /talent-portal/public/index.php?page=admin_dashboard");
                 } else {
-                    header("Location: index.php?page=home");
+                    header("Location: /talent-portal/public/index.php?page=home");
                 }
                 exit;
 
@@ -166,9 +166,9 @@ class UserController {
         echo "executing followuser";
         $this->userModel->followUser($FollowerID, $FollowingID);
         if($TalentID===null){
-            $url="index.php?page=talent&id=".urlencode($FollowingID)."&action=portfolio";
+            $url="/talent-portal/public/index.php?page=talent&id=".urlencode($FollowingID)."&action=portfolio";
         }else {
-            $url="index.php?page=talent&id=".urlencode($TalentID);
+            $url="/talent-portal/public/index.php?page=talent&id=".urlencode($TalentID);
         }
         echo "executed followuser bye".$url ;
         header("Location: $url");

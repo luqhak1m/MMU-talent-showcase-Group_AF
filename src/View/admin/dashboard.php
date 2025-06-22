@@ -5,8 +5,8 @@
 <head>
     <meta charset="UTF-8">
     <title>Admin Dashboard</title>
-    <link rel="stylesheet" type="text/css" href="/talent-portal/public/css/styles.css">
-    <link rel="stylesheet" type="text/css" href="/talent-portal/public/css/home.css">
+    <link rel="stylesheet" type="text/css" href="<?= BASE_URL ?>css/styles.css">
+    <link rel="stylesheet" type="text/css" href="<?= BASE_URL ?>css/home.css">
 </head>
 
 <body class="index-body">

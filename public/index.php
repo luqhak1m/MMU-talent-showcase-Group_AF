@@ -259,7 +259,7 @@ switch ($page) {
 					$feedbackController->deleteAdminFeedback($feedback_id);
 				} else {
 					$_SESSION['error_message'] = "Feedback ID is missing for deletion.";
-					header("Location: /talent-portal/public/index.php?page=admin_manage_feedback");
+					header("Location: " . BASE_URL . "index.php?page=admin_manage_feedback");
 					exit;
 				}
 				break; 

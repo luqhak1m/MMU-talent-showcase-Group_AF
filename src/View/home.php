@@ -3,8 +3,8 @@
 <html>
     <head>
         <title>Welcome to My Website</title>
-        <link rel="stylesheet" type="text/css" href="/talent-portal/public/css/home.css?v=<?= time() ?>">
-        <script src="/talent-portal/public/js/home.js"></script>   
+        <link rel="stylesheet" type="text/css" href="<?= BASE_URL ?>css/home.css?v=<?= time() ?>">
+        <script src="<?= BASE_URL ?>/js/home.js"></script>   
     </head>
     <body class="index-body">
 
@@ -24,9 +24,9 @@
                         echo '<a href="?page=login" class="button">Login</a>';
                         echo '<a href="?page=register" class="button">Register</a>';
                     }else{
-                        echo '<a href="/talent-portal/public/index.php?page=logout" class="button">Log Out</a>';
+                        echo '<a href="' . BASE_URL . 'index.php?page=logout" class="button">Log Out</a>';
                     }
                 ?>
         </div>
-    </body>
+    </body>s
     </html>

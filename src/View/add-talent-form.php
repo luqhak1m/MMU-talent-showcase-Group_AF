@@ -14,7 +14,7 @@ $fetched_talent=$fetched_talent??[]; // handle if user is adding talent, not edi
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="/talent-portal/public/js/portfolio.js?v=<?= time() ?>"></script>
-    <link rel="stylesheet" type="text/css" href="/talent-portal/public/css/add-talent-form.css?v=<?= time() ?>">
+    <link rel="stylesheet" type="text/css" href="<?= BASE_URL ?>css/add-talent-form.css?v=<?= time() ?>">
 
     <title>Document</title>
 </head>

@@ -11,8 +11,8 @@ require_once __DIR__ . '/../../public/header.php';
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" type="text/css" href="/talent-portal/public/css/talent.css?v=<?= time() ?>">
-    <link rel="stylesheet" type="text/css" href="/talent-portal/public/css/forum-post-details.css?v=<?= time() ?>">
+    <link rel="stylesheet" type="text/css" href="<?= BASE_URL ?>/css/talent.css?v=<?= time() ?>">
+    <link rel="stylesheet" type="text/css" href="<?= BASE_URL ?>/css/forum-post-details.css?v=<?= time() ?>">
     <title>Document</title>
 </head>
 <body>
@@ -49,9 +49,9 @@ require_once __DIR__ . '/../../public/header.php';
             </div>
             <div id="likes-and-followers-div">
 
-                <img src="/talent-portal/public/images/likes_icon.png" alt="Like Icon" class="talent-icon">
+                <img src="<?= BASE_URL ?>images/likes_icon.png" alt="Like Icon" class="talent-icon">
                 <p><?php echo $post_likes; ?></p>
-                <img src="/talent-portal/public/images/followers_icon.png" alt="Like Icon" class="talent-icon">
+                <img src="<?= BASE_URL ?>images/images/followers_icon.png" alt="Like Icon" class="talent-icon">
                 <p><?php echo count($followers); ?></p>
 
             </div>
@@ -92,8 +92,8 @@ require_once __DIR__ . '/../../public/header.php';
                 </p>
             </div>
             <div id="offer-cart-button-div">
-                <a href="/talent-portal/public/index.php?page=offer&talent_id=<?= htmlspecialchars($talent['TalentID']) ?>" class="button">Make Offer</a>
-                <a href="/talent-portal/public/index.php?page=cart&action=add&talent_id=<?= htmlspecialchars($talent['TalentID']) ?>" class="button">Add to Cart</a>
+                <a href="<?= BASE_URL ?>index.php?page=offer&talent_id=<?= htmlspecialchars($talent['TalentID']) ?>" class="button">Make Offer</a>
+                <a href="<?= BASE_URL ?>index.php?page=cart&action=add&talent_id=<?= htmlspecialchars($talent['TalentID']) ?>" class="button">Add to Cart</a>
             </div>
             <div class="post-lower-section-container-div">
                 <div class="comment-count-div">

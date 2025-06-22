@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Admin Login</title>
-    <link rel="stylesheet" href="/talent-portal/public/css/styles.css"> </head>
+    <link rel="stylesheet" href="<?= BASE_URL ?>css/styles.css"> </head>
 <body>
     <div class="auth-container">
         <div class="auth-form-section">
@@ -12,7 +12,7 @@
                 <p style="color:red; text-align:center;"><?php echo htmlspecialchars($login_error); ?></p>
             <?php endif; ?>
             
-            <form action="/talent-portal/public/index.php?page=admin_login" method="POST">
+            <form action="<?= BASE_URL ?>index.php?page=admin_login" method="POST">
                 <div class="form-group">
                     <label for="email">Email</label>
                     <input type="email" id="email" name="email" required>

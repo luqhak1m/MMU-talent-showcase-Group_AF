@@ -33,7 +33,7 @@ class AnnouncementController {
 
                 $this->announcement_model->updateAnnouncement($AnnouncementID, $AnnouncementTitle, $Announcement);
 
-                header("Location: index.php?page=admin_manage_announcement");
+                header("Location: /talent-portal/public/index.php?page=admin_manage_announcement");
             }
             $announcement=$this->announcement_model->fetchAnnouncementByAnnouncementID($AnnouncementID);
         }else{
@@ -45,7 +45,7 @@ class AnnouncementController {
 
                 $this->announcement_model->createAnnouncement($AnnouncementTitle, $Announcement);            
 
-                header("Location: index.php?page=admin_manage_announcement");
+                header("Location: /talent-portal/public/index.php?page=admin_manage_announcement");
             }
         }
             

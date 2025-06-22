@@ -11,10 +11,10 @@ require_once __DIR__ . '/../../public/header.php';
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" type="text/css" href="/talent-portal/public/css/talent.css?v=<?= time() ?>">
-    <link rel="stylesheet" type="text/css" href="/talent-portal/public/css/portfolio.css?v=<?= time() ?>">
+    <link rel="stylesheet" type="text/css" href="<?= BASE_URL ?>/css/talent.css?v=<?= time() ?>">
+    <link rel="stylesheet" type="text/css" href="<?= BASE_URL ?>/css/portfolio.css?v=<?= time() ?>">
 
-    <script src="/talent-portal/public/js/portfolio.js?v=<?= time() ?>"></script>
+    <script src="<?= BASE_URL ?>/js/portfolio.js?v=<?= time() ?>"></script>
     <title>Portfolio</title>
 </head>
 <body>
@@ -43,9 +43,9 @@ require_once __DIR__ . '/../../public/header.php';
             </div>
             <div id="likes-and-followers-div">
 
-                <img src="/talent-portal/public/images/likes_icon.png" alt="Like Icon" class="talent-icon">
+                <img src="<?= BASE_URL ?>images/likes_icon.png" alt="Like Icon" class="talent-icon">
                 <p><?php echo $post_likes; ?></p>
-                <img src="/talent-portal/public/images/followers_icon.png" alt="Like Icon" class="talent-icon">
+                <img src="<?= BASE_URL ?>images/followers_icon.png" alt="Like Icon" class="talent-icon">
                 <p><?php echo count($followers); ?></p>
 
             </div>

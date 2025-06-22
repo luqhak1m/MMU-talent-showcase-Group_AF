@@ -10,7 +10,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Register - MMU Talent Showcase</title>
-    <link rel="stylesheet" href="/.../public/css/styles.css"> </head> </head>
+    <link rel="stylesheet" href="<?= BASE_URL ?>css/styles.css"> </head> </head>
 <body>
     <div class="auth-container">
         <div class="auth-image-section">
@@ -31,7 +31,7 @@
             }
             ?>
             <!-- route eeverything back to index.php?page=register with a POST request containing this form details-->
-            <form action="/talent-portal/public/index.php?page=register" method="POST" id="registerForm">
+            <form action="<?= BASE_URL ?>index.php?page=register" method="POST" id="registerForm">
                 <div class="form-group">
                     <label for="name">Name</label>
                     <input type="text" id="name" name="name" value="<?= htmlspecialchars($_POST['name'] ?? '') ?>" required>

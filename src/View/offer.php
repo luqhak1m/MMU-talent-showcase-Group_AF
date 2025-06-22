@@ -21,7 +21,7 @@ if (isset($talent['Content']) && !empty($talent['Content'])) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Make Offer for <?= htmlspecialchars($talent['TalentTitle'] ?? 'Talent') ?></title>
-    <link rel="stylesheet" href="/talent-portal/public/css/offer.css">
+    <link rel="stylesheet" href="<?= BASE_URL ?>/css/offer.css">
 
 </head>
 <body>

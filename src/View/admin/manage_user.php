@@ -3,7 +3,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Admin - Manage User</title>
+    <title>Admin - Manage Talents</title>
     <link rel="stylesheet" type="text/css" href="/talent-portal/public/css/styles.css">
 </head>
 <body class="index-body">
