@@ -96,7 +96,7 @@ require_once __DIR__ . '/../../public/header.php';
                 if(in_array($extension, $audio_extensions)){
                     echo '<img class="talent-img" src="images/audio_icon.png" alt="Audio File">';
                 }else{
-                    echo '<img class="talent-img" src="uploads/'.htmlspecialchars($talent_img_path).'"alt="'.htmlspecialchars($talent['TalentTitle']).'">';
+                    echo '<img class="talent-img" src="'.$talent_img_path.'" alt="'.htmlspecialchars($talent['TalentTitle']).'">';
                 }                
                 
                 echo '</div>';
