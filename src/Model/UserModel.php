@@ -153,22 +153,22 @@ class UserModel {
     }
 
    public function deleteUserById($userId) {
-    // Step 1: Delete profile entry
+    // Delete profile entry
     $stmt1 = $this->pdo->prepare("DELETE FROM profile WHERE UserID = :userId");
     $stmt1->bindParam(':userId', $userId, PDO::PARAM_STR);
     $stmt1->execute();
 
-    // Step 2: Delete catalogue entries
+    // Delete catalogue entries
     $stmt2 = $this->pdo->prepare("DELETE FROM catalogue WHERE UserID = :userId");
     $stmt2->bindParam(':userId', $userId, PDO::PARAM_STR);
     $stmt2->execute();
 
-    // Delete associated Feedback
+    // Delete feedback entries
         $stmtFeedback = $this->pdo->prepare("DELETE FROM `feedback` WHERE UserID = :userId");
         $stmtFeedback->bindParam(':userId', $userId);
         $stmtFeedback->execute();
 
-    // Step 3: Delete user
+    // Delete user
     $stmt3 = $this->pdo->prepare("DELETE FROM User WHERE UserID = :userId");
     $stmt3->bindParam(':userId', $userId, PDO::PARAM_STR);
     return $stmt3->execute();
