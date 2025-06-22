@@ -30,7 +30,7 @@
         </div>
         <div class="group-3">
             <figure>
-                <img src="images/profile.png" alt="Vaarindran A/L Nyanasegran">
+                <img src="images/vaari.jpeg" alt="Vaarindran A/L Nyanasegran">
             </figure>
             <p>Name: Vaarindran A/L Nyanasegran</p>
             <p>Student ID: 1211103144</p>
