@@ -38,14 +38,14 @@ if(isset($_SESSION['user_id'])){
 						<a href="<?= BASE_URL ?>index.php?page=home" class="website-title">
 							<h1>MMU Talent Portal</h1>
 						</a>
+						<a href="index.php?page=catalogue">Catalogue</a> 	
+						<a href="index.php?page=talent&id=<?php echo $user_id; ?>&action=portfolio">Portfolio</a> 	
+						<a href="index.php?page=forum&id=<?php echo $user_id; ?>&action=joined">Forum</a>
+						<a href="index.php?page=leaderboard">Leaderboard</a> 
+						<a href="index.php?page=feedback">Feedback</a>
+						<a href="index.php?page=announcement">Announcement</a> 
+						<a href="index.php?page=faq">FAQ</a>
 					<?php endif; ?>
-					<a href="index.php?page=catalogue">Catalogue</a> 	
-					<a href="index.php?page=talent&id=<?php echo $user_id; ?>&action=portfolio">Portfolio</a> 	
-					<a href="index.php?page=forum&id=<?php echo $user_id; ?>&action=joined">Forum</a>
-					<a href="index.php?page=leaderboard">Leaderboard</a> 
-					<a href="index.php?page=feedback">Feedback</a>
-					<a href="index.php?page=announcement">Announcement</a> 
-					<a href="index.php?page=faq">FAQ</a>
 				</div>
 
 				<div class="navbar-right">
