@@ -221,11 +221,11 @@ switch ($page) {
 
 		if(isset($_GET['action'])){ // index.php?page=X&action=Y
 			if($_GET['action']=="create"){
-				$announcementController->createAdminAnnouncement();
+				$announcementController->editAdminAnnouncement();
 				break;
 			}elseif($_GET['action']=="edit"){
 				$announcement_id=$_GET['id'];
-				$announcementController->createAdminAnnouncement($announcement_id);
+				$announcementController->editAdminAnnouncement($announcement_id);
 				break;
 			}elseif($_GET['action']=="delete"){
 				$announcement_id=$_GET['id'];

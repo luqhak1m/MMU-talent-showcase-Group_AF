@@ -4,7 +4,7 @@
 	<footer>
 		<div class="footer-container">
 			<div class="footer-left">
-				<p>TATAU NAK LETAK APA</p>
+				<p>MMU Talent Portal</p>
 			</div>
 			<div class="footer-right">
 				<a href="/catalogue">Catalogue</a> 
@@ -15,7 +15,7 @@
 				<a href="/faq">FAQ</a>
 			</div>
 		</div>
-		<p>&copy; <?= date('Y') ?> My App. All rights reserved.</p>
+		<p>&copy; <?= date('Y') ?> Group AF. All rights reserved.</p>
 	</footer>
 </body>
 </html>
