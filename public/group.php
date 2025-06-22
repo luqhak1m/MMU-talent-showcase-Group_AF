@@ -12,7 +12,7 @@
     <div class="group-container">
         <div class="group-1">
             <figure>
-                <img src="images/profile.png" alt="Luqman Hakim Bin Noorazmi">
+                <img src="images/luqman.jpg" alt="Luqman Hakim Bin Noorazmi">
             </figure>
             <p>Name: Luqman Hakim Bin Noorazmi</p>
             <p>Student ID: 1211101583</p>
