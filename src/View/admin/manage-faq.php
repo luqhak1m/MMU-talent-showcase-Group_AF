@@ -12,12 +12,10 @@
 <body>
 
     <div class="container-div" style="padding-top: 2em; height: auto; min-height: 100vh;">
-        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5em;">
-            <div style="width: 30px;"></div> <h1 class="page-title" style="flex-grow: 1; text-align: center; margin: 0;">FAQ Management</h1>
-            <div class="plus-button-div" style="width: 30px;">
-                <a href="index.php?page=admin_manage_faq&action=create" class="button" id="list-button">+</a>
+            <h1 style="text-align: center" class="page-title">FAQ Management</h1> 
+            <div style="text-align: right; margin-bottom: 1em;">
+                <a href="<?= BASE_URL ?>index.php?page=admin_manage_faq&action=create" class="button plus-button">+</a>
             </div>
-        </div>
 
         <?php if (isset($_SESSION['success_message'])): ?>
             <div class="success-message">

@@ -2,7 +2,7 @@
 ?>
 
 <div class="container-div" style="padding-top: 2em; height: auto; min-height: 100vh;">
-    <h1 class="page-title" id="feedback-header-div">Feedback Management</h1>
+    <h1 class="page-title" >Feedback Management</h1>
     
     <table border="1" style="width:90%; margin: 2em auto; border-collapse: collapse; background-color: #fff;">
         <thead>

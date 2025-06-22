@@ -3,7 +3,8 @@
 ?>
 
 <div class="container-div" style="padding-top: 2em; height: auto; min-height: 100vh;">
-    <h1 class="page-title">Announcement Management</h1> <div style="text-align: right; margin-bottom: 1em;">
+    <h1 style="text-align: center" class="page-title">Announcement Management</h1> 
+    <div style="text-align: right; margin-bottom: 1em;">
         <a href="<?= BASE_URL ?>index.php?page=admin_manage_announcement&action=create" class="button plus-button">+</a>
     </div>
     
