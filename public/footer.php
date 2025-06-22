@@ -4,7 +4,7 @@
 	<footer>
 		<div class="footer-container">
 			<div class="footer-left">
-				<p>MMU Talent Portal</p>
+				<p>Group AF</p>
 			</div>
 			<div class="footer-right">
 				<a href="/catalogue">Catalogue</a> 
