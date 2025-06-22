@@ -79,7 +79,7 @@ class UserController {
                         $_SESSION['role'] = $user['Role'];
 
                         // Redirect to dashboard or homepage
-                        header("Location: /index.php?page=home");
+                        header("Location: ". BASE_URL . "index.php?page=home");
                         exit;
                     }
                     exit;
@@ -141,7 +141,7 @@ class UserController {
         session_destroy();
 
         // Redirect the user to the homepage 
-        header("Location: index.php");
+        header("Location: ". BASE_URL . "index.php");
         exit;
     }
 

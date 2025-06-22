@@ -269,37 +269,37 @@ switch ($page) {
 		$feedbackController->viewAdminFeedback();
 		break;
 
-		case 'offer':
-    	    require_once __DIR__ . '/../src/Controller/OfferController.php';
-    	    $offerController = new OfferController($pdo);
-    	    $offerController->viewOfferForm(); 
-    	    break; 
+	case 'offer':
+		require_once __DIR__ . '/../src/Controller/OfferController.php';
+		$offerController = new OfferController($pdo);
+		$offerController->viewOfferForm(); 
+		break; 
 
-		case 'cart':
-    	    require_once __DIR__ . '/../src/Controller/CartController.php';
-    	    $cartController = new CartController($pdo);
-    	    if (isset($_GET['action'])) {
-    	        if ($_GET['action'] == 'add') {
-    	            $cartController->addToCart();
-    	        } elseif ($_GET['action'] == 'send_multiple_offers') {
-    	            $cartController->sendMultipleOffers();
-    	        } elseif ($_GET['action'] == 'delete_item') {
-    	            $cartController->deleteCartItem();
-    	        } elseif ($_GET['action'] == 'update_item_offer_details') { 
-    	            $cartController->updateCartItemOfferDetails();
-    	        }
-    	    } else {
-    	        $cartController->viewCart();
-    	    }
-    	    break;
-		
-		case 'leaderboard':
-			require_once __DIR__ . '/../src/Controller/LeaderboardController.php';
-			$leaderboardController = new LeaderboardController($pdo);
-			$leaderboardController->viewLeaderboard();
-			break;
+	case 'cart':
+		require_once __DIR__ . '/../src/Controller/CartController.php';
+		$cartController = new CartController($pdo);
+		if (isset($_GET['action'])) {
+			if ($_GET['action'] == 'add') {
+				$cartController->addToCart();
+			} elseif ($_GET['action'] == 'send_multiple_offers') {
+				$cartController->sendMultipleOffers();
+			} elseif ($_GET['action'] == 'delete_item') {
+				$cartController->deleteCartItem();
+			} elseif ($_GET['action'] == 'update_item_offer_details') { 
+				$cartController->updateCartItemOfferDetails();
+			}
+		} else {
+			$cartController->viewCart();
+		}
+		break;
+	
+	case 'leaderboard':
+		require_once __DIR__ . '/../src/Controller/LeaderboardController.php';
+		$leaderboardController = new LeaderboardController($pdo);
+		$leaderboardController->viewLeaderboard();
+		break;
 
-	case 'FAQ':
+	case 'faq':
 		require_once __DIR__ . '/../src/Controller/FAQController.php';
 		$FAQController=new FAQController($pdo);
 		$FAQController->viewFAQ();
