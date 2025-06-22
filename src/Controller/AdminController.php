@@ -45,7 +45,7 @@ class AdminController {
 
     public function dashboard() {
         if (!isset($_SESSION['is_admin']) || $_SESSION['is_admin'] !== true) {
-            header("Location: /talent-portal/public/index.php?page=admin_login");
+            header("Location: index.php?page=admin_login");
             exit;
         }
         include __DIR__ . '/../View/admin/dashboard.php';
@@ -53,7 +53,7 @@ class AdminController {
 
     public function viewUserProfile() {
         if (!isset($_SESSION['is_admin']) || $_SESSION['is_admin'] !== true) {
-            header("Location: /talent-portal/public/index.php?page=admin_login");
+            header("Location: index.php?page=admin_login");
             exit;
         }
         $userIdToView = $_GET['user_id'] ?? null;
@@ -66,7 +66,7 @@ class AdminController {
 
     public function editUserProfile() {
         if (!isset($_SESSION['is_admin']) || $_SESSION['is_admin'] !== true) {
-            header("Location: /talent-portal/public/index.php?page=admin_login");
+            header("Location: index.php?page=admin_login");
             exit;
         }
         
@@ -107,7 +107,7 @@ class AdminController {
     public function manageUser()
     {
         if (!isset($_SESSION['is_admin']) || $_SESSION['is_admin'] !== true) {
-            header("Location: talent-portal/public/index.php?page=admin_login");
+            header("Location: index.php?page=admin_login");
             exit;
         }
 
@@ -122,12 +122,12 @@ class AdminController {
 
     public function deleteUser($userId) {
     if (!isset($_SESSION['is_admin']) || $_SESSION['is_admin'] !== true) {
-        header("Location: talent-portal/public/index.php?page=admin_login");
+        header("Location: index.php?page=admin_login");
         exit;
     }
 
     $this->userModel->deleteUserById($userId);
-    header("Location: talent-portal/public/index.php?page=admin_manage_user&status=deleted");
+    header("Location: index.php?page=admin_manage_user&status=deleted");
     exit;
     }
 
