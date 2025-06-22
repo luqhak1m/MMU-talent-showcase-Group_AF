@@ -40,7 +40,6 @@ if(isset($_SESSION['user_id'])){
 						</a>
 					<?php endif; ?>	
 					
-						<?php if (isset($_SESSION['user_id']) && !(isset($_SESSION['is_admin']) && $_SESSION['is_admin'] === true)): ?>
 							
 							<a href="index.php?page=catalogue">Catalogue</a> 	
 							<a href="index.php?page=talent&id=<?php echo $user_id; ?>&action=portfolio">Portfolio</a> 	
@@ -58,7 +57,6 @@ if(isset($_SESSION['user_id'])){
 						echo '<a href="' . BASE_URL . 'index.php?page=profile"><img src="' . BASE_URL . $profilePicturePath . '" class="navbar-prof" alt="profile"></a>';
 						?>
 				</div>
-				<?php endif; ?>
 			</div>
 		</nav>
 	</header>
