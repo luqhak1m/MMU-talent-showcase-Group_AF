@@ -163,6 +163,11 @@ class UserModel {
     $stmt2->bindParam(':userId', $userId, PDO::PARAM_STR);
     $stmt2->execute();
 
+    // Delete associated Feedback
+        $stmtFeedback = $this->pdo->prepare("DELETE FROM `feedback` WHERE UserID = :userId");
+        $stmtFeedback->bindParam(':userId', $userId);
+        $stmtFeedback->execute();
+
     // Step 3: Delete user
     $stmt3 = $this->pdo->prepare("DELETE FROM User WHERE UserID = :userId");
     $stmt3->bindParam(':userId', $userId, PDO::PARAM_STR);
