@@ -120,7 +120,6 @@ switch ($page) {
 						break;
 					}
 					$user_id=$_GET['id'];
-					// echo "no post";
 					$talentController->viewTalent($user_id);
 					break;
 				}elseif($_GET['action']=="follow"){
@@ -140,6 +139,7 @@ switch ($page) {
 			$talentController->viewSpecificTalent($talent_id);
 			break;
 		}
+		break;
 
 	case 'forum':
 		require_once __DIR__ . '/../src/Controller/ForumController.php';

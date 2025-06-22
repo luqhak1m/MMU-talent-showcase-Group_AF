@@ -1,7 +1,16 @@
 <?php
 
+// echo "[DEBUG] \$_FILES contents:<br>";
+// echo "<pre>";
+// print_r($_FILES);
+// echo "</pre>";
+
+// if(isset($_FILES['Content'])) {
+//     echo "Upload error code: " . $_FILES['Content']['error'] . "<br>";
+// }
+
 function uploadMedia(string $user_id, ?string $input_name){ // params: user_id and htmp input id
-    echo "[INFO] Uploading file <br>";
+    // echo "[INFO] Uploading file <br>";
 
     if(!$input_name){
         echo "[INFO] No input name <br>";
@@ -15,7 +24,7 @@ function uploadMedia(string $user_id, ?string $input_name){ // params: user_id a
 
     $upload_dir=__DIR__.'/../public/uploads/';
     if(!is_dir($upload_dir)){
-        if(!mkdir($upload_dir, 0755, true)) {
+        if(!mkdir($upload_dir, 0777, true)) {
             echo "[ERROR] Failed to create upload directory: $upload_dir<br>";
             return null;
         }
@@ -31,10 +40,10 @@ function uploadMedia(string $user_id, ?string $input_name){ // params: user_id a
     $unique_name=$user_id.'_'.date('YmdHis').'.'.$extension;
     $target_file=$upload_dir.$unique_name;
 
-    echo $target_file."<br>";
+    // echo $target_file."<br>";
 
     if(move_uploaded_file($_FILES[$input_name]['tmp_name'], $target_file)){
-        echo "[INFO] File uploaded yeay <br>";
+        // echo "[INFO] File uploaded yeay <br>";
         return $unique_name;
     }else{
         echo "[ERROR] Failed to upload file: $filename for user: $user_id <br>";

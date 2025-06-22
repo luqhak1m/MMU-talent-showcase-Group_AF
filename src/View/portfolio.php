@@ -88,7 +88,17 @@ require_once __DIR__ . '/../../public/header.php';
                 >';
 
                 echo '<div class="talent-img-container-div">';
-                echo '<img src="'.$talent_img_path.'" alt="'.$talent['TalentTitle'].'">';
+                $filename=$talent['Content'];
+                $extension=strtolower(pathinfo($filename, PATHINFO_EXTENSION));
+
+                $audio_extensions=['mp3', 'wav', 'ogg', 'aac', 'flac'];
+
+                if(in_array($extension, $audio_extensions)){
+                    echo '<img class="talent-img" src="images/audio_icon.png" alt="Audio File">';
+                }else{
+                    echo '<img class="talent-img" src="uploads/'.htmlspecialchars($talent_img_path).'"alt="'.htmlspecialchars($talent['TalentTitle']).'">';
+                }                
+                
                 echo '</div>';
                 echo '<div class="talent-title-description-div">';
                 echo '<h2>'.$talent['TalentTitle'].'</h2>';

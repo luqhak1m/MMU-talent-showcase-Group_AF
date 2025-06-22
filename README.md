@@ -24,3 +24,29 @@ Dr. Mohana A/P Muniady
 ### 1211101069	TENGKU ALYSSA SABRINA BINTI TENGKU ERWIN
 ### 1211103144	VAARINDRAN A/L NYANASEGRAN
 ### 1211103222	ASYRANI SYAZWAN BIN YUHANIS
+
+
+## Important: Create Uploads folder in public
+
+### MacOS
+
+sudo mkdir -p /Applications/XAMPP/xamppfiles/htdocs/talent-portal/public/uploads
+sudo chmod -R 777 /Applications/XAMPP/xamppfiles/htdocs/talent-portal/public/uploads
+
+Ensure these commands are executed from the terminal to create an upload folder and permission for the website to store user media within this folder.
+
+Instructions:
+
+Open Terminal.
+Paste and run the above commands.
+Enter your Mac password when prompted.
+
+### Windows
+
+mkdir C:\xampp\htdocs\talent-portal\public\uploads
+icacls C:\xampp\htdocs\talent-portal\public\uploads /grant Everyone:(F) /T
+
+Instructions:
+
+Open Command Prompt as Administrator (Start → search for cmd → right-click → Run as Administrator).
+Paste and run the above commands.

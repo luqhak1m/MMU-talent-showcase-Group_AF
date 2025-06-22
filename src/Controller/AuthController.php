@@ -166,9 +166,9 @@ class UserController {
         echo "executing followuser";
         $this->userModel->followUser($FollowerID, $FollowingID);
         if($TalentID===null){
-            $url="/talent-portal/public/index.php?page=talent&id=".urlencode($FollowingID)."&action=portfolio";
+            $url="index.php?page=talent&id=".urlencode($FollowingID)."&action=portfolio";
         }else {
-            $url="/talent-portal/public/index.php?page=talent&id=".urlencode($TalentID);
+            $url="index.php?page=talent&id=".urlencode($TalentID);
         }
         echo "executed followuser bye".$url ;
         header("Location: $url");

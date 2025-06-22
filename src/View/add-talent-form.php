@@ -20,12 +20,17 @@ $fetched_talent=$fetched_talent??[]; // handle if user is adding talent, not edi
 </head>
 <body>
     <div id="talent-form-div">
+        <?php
+        $actionUrl='index.php?page=talent';
+        if(!empty($fetched_talent)){
+            $actionUrl.='&id='.urlencode($fetched_talent['TalentID']).'&action=edit';
+        }else{
+            $actionUrl.='&id='.urlencode($UserID).'&action=portfolio';
 
-    <form action="index.php?page=talent<?php 
-        if(!empty($fetched_talent)) { // if empty add talent, if not send post rrquest to editTalent()
-            echo '&id='.urlencode($fetched_talent['TalentID']).'&action=edit';
-        } 
-    ?>" method="POST" enctype="multipart/form-data">
+        }
+        // echo $actionUrl;
+        ?>
+    <form action="<?php echo $actionUrl; ?>" method="POST" enctype="multipart/form-data">
        
         <label for="TalentTitle">Talent Title:</label><br>
         <input type="text" id="TalentTitle" name="TalentTitle" maxlength="255" value="<?php echo htmlspecialchars($fetched_talent['TalentTitle'] ?? ''); ?>" required><br><br>
@@ -37,7 +42,7 @@ $fetched_talent=$fetched_talent??[]; // handle if user is adding talent, not edi
         <input type="number" id="Price" name="Price" step="0.01" min="0" value="<?php echo htmlspecialchars($fetched_talent['Price'] ?? ''); ?>" required><br><br>
 
         <label for="Content">Upload Media (Image, Video, or Audio):</label><br>
-        <input type="file" id="Content" name="Content" accept="image/*,video/*,audio/*"><br><br>
+        <input type="file" id="Content" name="Content" accept="image/*,video/*,audio/*" required><br><br>
         <div id="new-media-preview" style="margin-top: 10px;"></div>
         <?php if(!empty($fetched_talent['Content'])): ?>
         <div id="existing-media-preview">
