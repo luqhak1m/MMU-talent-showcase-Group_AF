@@ -21,7 +21,7 @@
         </div>
         <div class="group-2">
             <figure>
-                <img src="images/profile.png" alt="Tengku Alyssa Sabrina Binti Tengku Erwin">
+                <img src="images/Sabrina.jpeg" alt="Tengku Alyssa Sabrina Binti Tengku Erwin">
             </figure>
             <p>Name: Tengku Alyssa Sabrina Binti Tengku Erwin</p>
             <p>Student ID: 1211101069</p>
