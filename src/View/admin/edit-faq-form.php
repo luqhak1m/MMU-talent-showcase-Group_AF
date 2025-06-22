@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Edit FAQ</title>
     
-    <!-- Reuse all styles from FAQ Management -->
     <link rel="stylesheet" href="<?= BASE_URL ?>css/announcement.css?v=<?= time() ?>">
     <link rel="stylesheet" href="<?= BASE_URL ?>css/faq.css?v=<?= time() ?>">
     <link rel="stylesheet" href="<?= BASE_URL ?>css/forum-feed.css?v=<?= time() ?>">

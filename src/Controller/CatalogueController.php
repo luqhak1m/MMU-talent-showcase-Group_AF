@@ -27,9 +27,10 @@ class CatalogueController {
 	} 
 
     public function adminManageCatalogue() {
-        $catalogue = $this->catalogue_model->fetchAllCatalogue();
+        $catalogueItems = $this->catalogue_model->fetchAllCatalogue(); // match variable name
         require_once __DIR__ . '/../View/admin/manage-catalogue.php';
     }
+
 
     public function editCatalogue($catalogueID) {
         $item = $this->catalogue_model->getCatalogueByID($catalogueID);
@@ -38,7 +39,6 @@ class CatalogueController {
 
     public function deleteCatalogue($catalogueID) {
         $this->catalogue_model->deleteCatalogueByID($catalogueID);
-        $_SESSION['success_message'] = "Catalogue deleted successfully.";
         header("Location: index.php?page=admin_manage_catalogue");
         exit;
     }

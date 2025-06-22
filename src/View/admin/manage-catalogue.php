@@ -38,11 +38,14 @@
                     <!-- Talent Title -->
                     <td style="padding: 8px;"><?php echo htmlspecialchars($item['TalentTitle'] ?? ''); ?></td>
 
+                    <!-- Price -->
+                    <td style="padding: 8px;">RM <?php echo htmlspecialchars($item['Price'] ?? ''); ?></td>
+
                     <!-- Category -->
                     <td style="padding: 8px;"><?php echo htmlspecialchars($item['Category'] ?? ''); ?></td>
 
-                    <!-- Price -->
-                    <td style="padding: 8px;">RM <?php echo htmlspecialchars($item['Price'] ?? ''); ?></td>
+                    <!-- Description -->
+                    <td style="padding: 8px;"><?php echo htmlspecialchars($item['TalentDescription'] ?? ''); ?></td>
 
                     <!-- Actions -->
                     <td style="padding: 8px;">
