@@ -153,12 +153,12 @@ class UserModel {
     }
 
    public function deleteUserById($userId) {
-    // Step 1: Delete related profile entry
+    // Step 1: Delete profile entry
     $stmt1 = $this->pdo->prepare("DELETE FROM profile WHERE UserID = :userId");
     $stmt1->bindParam(':userId', $userId, PDO::PARAM_STR);
     $stmt1->execute();
 
-    // Step 2: Delete related catalogue entries
+    // Step 2: Delete catalogue entries
     $stmt2 = $this->pdo->prepare("DELETE FROM catalogue WHERE UserID = :userId");
     $stmt2->bindParam(':userId', $userId, PDO::PARAM_STR);
     $stmt2->execute();
