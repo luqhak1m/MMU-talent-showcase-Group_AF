@@ -310,7 +310,7 @@ switch ($page) {
 		$FAQController=new FAQController($pdo);
 
 		if(isset($_GET['action'])){ // index.php?page=X&action=Y
-			if($_GET['action']=="add"){
+			if($_GET['action']=="create"){
 				$FAQController->addFAQ();
 				break;
 			}elseif($_GET['action']=="update"){
