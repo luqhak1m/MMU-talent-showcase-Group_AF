@@ -325,7 +325,7 @@ switch ($page) {
         		$FAQController->createAdminFAQ(); // handle form
         		break;
 			}
-			elseif($_GET['action']=="update"){
+			elseif($_GET['action']=="edit"){
 				$faq_id=$_GET['id'];
 				$FAQController->UpdateAdminFAQ($faq_id);
 				break;

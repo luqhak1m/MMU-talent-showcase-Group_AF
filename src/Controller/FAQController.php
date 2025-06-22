@@ -35,16 +35,17 @@ class FAQController {
     }
 
 
-    public function UpdateAdminFAQ($FAQID=null){
-        if ($_SERVER['REQUEST_METHOD']==='POST'&&isset($FAQID)){
-            $Answer=$_POST['answer'];
-            $this->faq_model->updateFAQ($FAQID, $Answer);
-            header("Location: " . BASE_URL . "index.php?page=admin_manage_faq");
-            
-        }
-        $FAQs=$this->faq_model->fetchAllFAQ();
-        require_once __DIR__ . '/../View/admin/manage-faq.php';
+    public function UpdateAdminFAQ($FAQID = null) {
+    if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($FAQID)) {
+        $Answer = $_POST['answer'];
+        $this->faq_model->updateFAQ($FAQID, $Answer);
+        header("Location: " . BASE_URL . "index.php?page=admin_manage_faq");
+        exit;
     }
+
+    $faq = $this->faq_model->fetchFAQbFAQID($FAQID);
+    require_once __DIR__ . '/../View/admin/edit-faq-form.php';
+}
 
     public function deleteAdminFAQ($FAQID){
         if ($FAQID) {
