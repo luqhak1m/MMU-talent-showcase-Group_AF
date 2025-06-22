@@ -30,28 +30,14 @@ Dr. Mohana A/P Muniady
 
 ### MacOS
 
-sudo mkdir -p /Applications/XAMPP/xamppfiles/htdocs/talent-portal/public/uploads
-sudo chmod -R 777 /Applications/XAMPP/xamppfiles/htdocs/talent-portal/public/uploads
+mkdir -p public/uploads
+chmod 777 public/uploads
 
-Ensure these commands are executed from the terminal to create an upload folder and permission for the website to store user media within this folder.
+### Windows (Command Prompt as Admin)
 
-Instructions:
+mkdir public\uploads
+icacls public\uploads /grant Everyone:(F) /T
 
-Open Terminal.
-Paste and run the above commands.
-Enter your Mac password when prompted.
+## Add Feedback
 
-### Windows
-
-mkdir C:\xampp\htdocs\talent-portal\public\uploads
-icacls C:\xampp\htdocs\talent-portal\public\uploads /grant Everyone:(F) /T
-
-Instructions:
-
-Open Command Prompt as Administrator (Start → search for cmd → right-click → Run as Administrator).
-Paste and run the above commands.
-
-
-## 
-
-Add feedback must be done using User, admin cannot
+Add feedback must be done using User, Admin cannot
