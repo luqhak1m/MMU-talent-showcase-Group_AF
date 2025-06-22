@@ -45,5 +45,14 @@ class FeedbackModel {
         // echo "[INFO] FeedbackModel.updateFeedbackStatus(): Executed <br>";
     }
 
+    public function deleteFeedbackByID($FeedbackID){
+        // echo "[INFO] FeedbackModel.deleteFeedbackByID(): Executing <br>";
+        $sql="DELETE FROM Feedback WHERE FeedbackID=?";
+        $stmt=$this->pdo->prepare($sql);
+        $result=$stmt->execute([$FeedbackID]);
+        // echo "[INFO] FeedbackModel.deleteFeedbackByID(): Executed <br>";
+        return $result;
+    }
+
     
 }

@@ -121,3 +121,38 @@ CREATE TABLE IF NOT EXISTS FAQ(
     Question TEXT,
     Answer TEXT
 );
+
+CREATE TABLE IF NOT EXISTS Offer (
+    OfferID CHAR(8) PRIMARY KEY,
+    UserID CHAR(8) NOT NULL,
+    TalentID CHAR(8) NOT NULL,
+    OfferDetails TEXT,
+    DateCreated DATETIME DEFAULT CURRENT_TIMESTAMP,
+    Status VARCHAR(10) DEFAULT 'Pending',
+    FOREIGN KEY (UserID) REFERENCES User(UserID),
+    FOREIGN KEY (TalentID) REFERENCES Talent(TalentID)
+);
+
+CREATE TABLE IF NOT EXISTS Cart(
+    CartID CHAR(8) PRIMARY KEY,
+    UserID CHAR(8) NOT NULL,
+    FOREIGN KEY (UserID) REFERENCES User(UserID)
+);
+
+CREATE TABLE IF NOT EXISTS CartItem (
+    ItemID CHAR(8) PRIMARY KEY,
+    CartID CHAR(8) NOT NULL,
+    TalentID CHAR(8) NOT NULL,
+    Price DECIMAL(10,2),
+    Quantity INT,
+    Total DECIMAL(10,2),
+    FOREIGN KEY (CartID) REFERENCES Cart(CartID),
+    FOREIGN KEY (TalentID) REFERENCES Talent(TalentID)
+);
+
+CREATE TABLE IF NOT EXISTS Leaderboard (
+    LeaderboardID CHAR(8) PRIMARY KEY,
+    TalentID CHAR(8) NOT NULL,
+    Category VARCHAR(50) NOT NULL,
+    FOREIGN KEY (TalentID) REFERENCES Talent(TalentID)
+);

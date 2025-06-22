@@ -51,4 +51,12 @@ class AnnouncementModel {
         // echo "[INFO] AnnouncementModel.deleteAnnouncementByID(): Executed <br>";
         return $result;
     }
+
+    public function updateAnnouncement($AnnouncementID, $AnnouncementTitle, $Announcement){
+        echo "[INFO] AnnouncementModel.updateAnnouncement(): Executing <br>";
+        $sql = "UPDATE `Announcement` SET AnnouncementTitle=?, Announcement=? WHERE AnnouncementID=?";
+        $stmt=$this->pdo->prepare($sql);
+        $stmt->execute([$AnnouncementTitle, $Announcement, $AnnouncementID]);                
+        echo "[INFO] AnnouncementModel.updateAnnouncement(): Executed <br>";
+    }
 }

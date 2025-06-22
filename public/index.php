@@ -221,11 +221,11 @@ switch ($page) {
 
 		if(isset($_GET['action'])){ // index.php?page=X&action=Y
 			if($_GET['action']=="create"){
-				$announcementController->createAdminAnnouncement();
+				$announcementController->editAdminAnnouncement();
 				break;
 			}elseif($_GET['action']=="edit"){
 				$announcement_id=$_GET['id'];
-				$announcementController->createAdminAnnouncement($announcement_id);
+				$announcementController->editAdminAnnouncement($announcement_id);
 				break;
 			}elseif($_GET['action']=="delete"){
 				$announcement_id=$_GET['id'];
@@ -269,6 +269,35 @@ switch ($page) {
 		$feedbackController->viewAdminFeedback();
 		break;
 
+		case 'offer':
+    	    require_once __DIR__ . '/../src/Controller/OfferController.php';
+    	    $offerController = new OfferController($pdo);
+    	    $offerController->viewOfferForm(); 
+    	    break; 
+
+		case 'cart':
+    	    require_once __DIR__ . '/../src/Controller/CartController.php';
+    	    $cartController = new CartController($pdo);
+    	    if (isset($_GET['action'])) {
+    	        if ($_GET['action'] == 'add') {
+    	            $cartController->addToCart();
+    	        } elseif ($_GET['action'] == 'send_multiple_offers') {
+    	            $cartController->sendMultipleOffers();
+    	        } elseif ($_GET['action'] == 'delete_item') {
+    	            $cartController->deleteCartItem();
+    	        } elseif ($_GET['action'] == 'update_item_offer_details') { 
+    	            $cartController->updateCartItemOfferDetails();
+    	        }
+    	    } else {
+    	        $cartController->viewCart();
+    	    }
+    	    break;
+		
+		case 'leaderboard':
+			require_once __DIR__ . '/../src/Controller/LeaderboardController.php';
+			$leaderboardController = new LeaderboardController($pdo);
+			$leaderboardController->viewLeaderboard();
+			break;
 	
 	default:
 		if(file_exists($viewPath)) {
@@ -279,4 +308,4 @@ switch ($page) {
 		}
 }
 
-
+require_once __DIR__ ."/../public/footer.php";
