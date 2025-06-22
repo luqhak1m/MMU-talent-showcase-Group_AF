@@ -107,7 +107,7 @@ class AdminController {
     public function manageUser()
     {
         if (!isset($_SESSION['is_admin']) || $_SESSION['is_admin'] !== true) {
-            header("Location: talent-portal/public/index.php?page=admin_login");
+            header("Location: ". BASE_URL . "index.php?page=admin_login");
             exit;
         }
 
@@ -122,12 +122,12 @@ class AdminController {
 
     public function deleteUser($userId) {
     if (!isset($_SESSION['is_admin']) || $_SESSION['is_admin'] !== true) {
-        header("Location: talent-portal/public/index.php?page=admin_login");
+        header("Location: ". BASE_URL . "index.php?page=admin_login");
         exit;
     }
 
     $this->userModel->deleteUserById($userId);
-    header("Location: talent-portal/public/index.php?page=admin_manage_user&status=deleted");
+    header("Location: ". BASE_URL . "index.php?page=admin_manage_user&status=deleted");
     exit;
     }
 

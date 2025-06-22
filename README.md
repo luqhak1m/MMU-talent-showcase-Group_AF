@@ -50,3 +50,8 @@ Instructions:
 
 Open Command Prompt as Administrator (Start → search for cmd → right-click → Run as Administrator).
 Paste and run the above commands.
+
+
+## 
+
+Add feedback must be done using User, admin cannot

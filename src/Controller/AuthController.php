@@ -79,7 +79,7 @@ class UserController {
                         $_SESSION['role'] = $user['Role'];
 
                         // Redirect to dashboard or homepage
-                        header("Location: /index.php?page=home");
+                        header("Location: ". BASE_URL . "index.php?page=home");
                         exit;
                     }
                     exit;
@@ -114,9 +114,9 @@ class UserController {
 
                 if ($user['Role'] === 'Admin') {
                     $_SESSION['is_admin'] = true;
-                    header("Location: /talent-portal/public/index.php?page=admin_dashboard");
+                    header("Location: ". BASE_URL . "index.php?page=admin_dashboard");
                 } else {
-                    header("Location: /talent-portal/public/index.php?page=home");
+                    header("Location: ". BASE_URL . "index.php?page=home");
                 }
                 exit;
 
@@ -141,7 +141,7 @@ class UserController {
         session_destroy();
 
         // Redirect the user to the homepage 
-        header("Location: index.php");
+        header("Location: ". BASE_URL . "index.php");
         exit;
     }
 
@@ -166,9 +166,9 @@ class UserController {
         echo "executing followuser";
         $this->userModel->followUser($FollowerID, $FollowingID);
         if($TalentID===null){
-            $url="/talent-portal/public/index.php?page=talent&id=".urlencode($FollowingID)."&action=portfolio";
+            $url=BASE_URL . "index.php?page=talent&id=".urlencode($FollowingID)."&action=portfolio";
         }else {
-            $url="/talent-portal/public/index.php?page=talent&id=".urlencode($TalentID);
+            $url=BASE_URL . "index.php?page=talent&id=".urlencode($TalentID);
         }
         echo "executed followuser bye".$url ;
         header("Location: $url");
