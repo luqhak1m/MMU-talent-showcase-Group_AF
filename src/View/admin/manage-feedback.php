@@ -2,8 +2,10 @@
 ?>
 
 <div class="container-div" style="padding-top: 2em; height: auto; min-height: 100vh;">
-    <h1 class="page-title" >Feedback Management</h1>
-    
+    <h1 style="text-align: center" class="page-title">Feedback Management</h1> 
+            <div style="text-align: right; margin-bottom: 1em;">
+                <a href="<?= BASE_URL ?>index.php?page=admin_manage_faq&action=create" class="button plus-button">+</a>
+            </div>
     <table border="1" style="width:90%; margin: 2em auto; border-collapse: collapse; background-color: #fff;">
         <thead>
             <tr style="background-color: #E7E6F2;">

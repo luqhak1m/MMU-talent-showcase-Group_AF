@@ -9,7 +9,7 @@
 <body class="index-body">
     
     <div class="container-div" style="padding-top: 2em; height: auto; min-height: 100vh;">
-        <h1>Manage User</h1>
+        <h1>User Management</h1>
         
         <table border="1" style="width:90%; margin: 2em auto; border-collapse: collapse; background-color: #fff;">
             <thead>
