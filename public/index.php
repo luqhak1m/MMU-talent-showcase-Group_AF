@@ -300,9 +300,9 @@ switch ($page) {
 			break;
 
 	case 'FAQ':
-		require_once __DIR__ . '/../src/Controller/AnnouncementController.php';
-		$announcementController=new FAQController($pdo);
-		$announcementController->viewFAQ();
+		require_once __DIR__ . '/../src/Controller/FAQController.php';
+		$FAQController=new FAQController($pdo);
+		$FAQController->viewFAQ();
 		break;
 
 	case 'admin_manage_faq':
