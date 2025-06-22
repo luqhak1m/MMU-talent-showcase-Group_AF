@@ -30,7 +30,7 @@
                     }else{
                         echo '<a href="/talent-portal/public/index.php?page=logout" class="button">Log Out</a>';
                     }
-                ?>
+        ?>
     </div>
 
 </body>

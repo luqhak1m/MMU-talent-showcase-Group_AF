@@ -152,6 +152,23 @@ class UserModel {
         return $this->getUsersByRole('User'); 
     }
 
+   public function deleteUserById($userId) {
+    // Step 1: Delete related profile entry
+    $stmt1 = $this->pdo->prepare("DELETE FROM profile WHERE UserID = :userId");
+    $stmt1->bindParam(':userId', $userId, PDO::PARAM_STR);
+    $stmt1->execute();
+
+    // Step 2: Delete related catalogue entries
+    $stmt2 = $this->pdo->prepare("DELETE FROM catalogue WHERE UserID = :userId");
+    $stmt2->bindParam(':userId', $userId, PDO::PARAM_STR);
+    $stmt2->execute();
+
+    // Step 3: Delete user
+    $stmt3 = $this->pdo->prepare("DELETE FROM User WHERE UserID = :userId");
+    $stmt3->bindParam(':userId', $userId, PDO::PARAM_STR);
+    return $stmt3->execute();
+}
+
 
 }
 
