@@ -16,23 +16,16 @@ require_once __DIR__ . '/../../public/header.php';
 </head>
 <body>
     <div class="upper-section-div">
-        <div class="search-filter-container-div">
-            <div class="search-wrapper-div">
-                <div class="search-field-div">
-                    <input type="text" placeholder="Search for talent..." class="search-input" />
+        <form method="POST" action="<?= BASE_URL ?>index.php?page=forum&id=<?php echo $UserID; ?>&action=search">
+            <div class="search-filter-container-div" style="display: flex; align-items: center; gap: 10px;">
+                <div class="search-wrapper-div">
+                    <div class="search-field-div">
+                        <input type="text" name="search" placeholder="Search for forum..." class="search-input" />
+                    </div>
                 </div>
+                <button type="submit" class="button" id="search-button">Search</button>
             </div>
-            <div class="filter-wrapper-div">
-                <div class="filter-div">
-                    <select class="filter-dropdown">
-                    <option value="">Filter By</option>
-                    <option value="design">Art</option>
-                    <option value="development">Music</option>
-                    <option value="marketing">Video</option>
-                    </select>
-                </div>
-            </div>
-        </div>
+        </form>
         <div class="text-div">
             <div clas="joined-forum-text-div">
                 <h2>Joined Forums</h2>    

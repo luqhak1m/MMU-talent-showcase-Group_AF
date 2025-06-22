@@ -9,8 +9,9 @@ body{
   gap: 1em;
   margin-top: 2em;
   justify-content: center;
-}
+  align-items: center;
 
+}
 .search-wrapper-div{
   display: flex;
   align-items: center;
@@ -62,14 +63,14 @@ body{
 }
 
 .forum-listing{
-  background-color: #f9f9f9;
   border: 1px solid #e7e7e7;
   border-radius: 16px;
   padding: 1em 1.5em;
   margin: 1.5em auto;
   max-width: 40em;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
-  
+  background-color: #F9F9FF ;
+
 }
 
 .forum-listing h3{

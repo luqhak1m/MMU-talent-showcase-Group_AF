@@ -33,6 +33,22 @@ class ForumModel {
         return $result;
     }
 
+    public function fetchNotJoinedForum($UserID){
+        // echo "[INFO] ForumModel.fetchNotJoinedForum(): Executing <br>";
+        $sql="SELECT * 
+                FROM Forum
+                WHERE ForumID NOT IN (
+                    SELECT ForumID 
+                    FROM ForumMember 
+                    WHERE UserID=?
+                )";
+        $stmt = $this->pdo->query($sql);
+        $stmt->execute([$UserID]);
+        $result=$stmt->fetchAll(PDO::FETCH_ASSOC);
+        // echo "[INFO] ForumModel.fetchNotJoinedForum(): Executed <br>";
+        return $result;
+    }
+
     public function addUserToForum($ForumID){
         // echo "[INFO] ForumModel.createForum(): Executing <br>";
         $FMemberID = generateID();
@@ -46,8 +62,10 @@ class ForumModel {
         $exists=$checkStmt->fetchColumn();
 
         if($exists) {
-            echo "user already exists";
+            echo "<script>alert('You have already joined this forum.');</script>";
             return false; // user already exists
+        }else{
+            echo "<script>alert('Forum Joined');</script>";
         }
 
         $sql = "INSERT INTO ForumMember (FMemberID, UserID, ForumID) VALUES (?, ?, ?)";
@@ -202,4 +220,23 @@ class ForumModel {
         // echo "[INFO] ForumModel.fetchAllCommentsByForumPostID(): Executed <br>";
     }
 
+    public function searchForum($search){
+        $sql="SELECT * FROM Forum WHERE ForumName LIKE ?";
+        $stmt=$this->pdo->prepare($sql);
+        $stmt->execute([$search]);
+        $result=$stmt->fetchAll(PDO::FETCH_ASSOC);
+        return $result;
+    }
+
+    public function searchJoinedForum($UserID, $search){
+        $sql="SELECT Forum.* 
+                FROM Forum
+                JOIN ForumMember ON Forum.ForumID=ForumMember.ForumID
+                WHERE ForumMember.UserID=? 
+                AND Forum.ForumName LIKE ?";
+        $stmt=$this->pdo->prepare($sql);
+        $stmt->execute([$UserID, '%' . $search . '%']);
+        $result=$stmt->fetchAll(PDO::FETCH_ASSOC);
+        return $result;
+    }
 }

@@ -14,19 +14,27 @@ class ForumController {
     public function __construct($pdo){ // takes pdo instance as param to avoid reconnecting for every new model, no need to modify
         $this->forum_model=new ForumModel($pdo);
     }
-	public function browseForum() {
+	public function browseForum($search=null) {
 
-         if($_SERVER['REQUEST_METHOD']==='POST'){
-            echo "[INFO] POST received:<br>";
+        $fetched_forums=$this->forum_model->fetchAllForum();
+         if($_SERVER['REQUEST_METHOD']==='POST'&&$search==null){
+
+            // echo "[INFO] POST received:<br>";
             $forum_name=$_POST['forum-name'];
             $forum_description=$_POST['forum-description'];
 
             $this->forum_model->createForum($forum_name, $forum_description);
             header("Location: " . BASE_URL . "index.php?page=forum");
+         }elseif($_SERVER['REQUEST_METHOD']==='POST'){
+            // echo "[INFO] POST received without search:<br>";
+
+            $search=$_POST['search'];
+            $fetched_forums=$this->forum_model->searchForum($search);
+            // var_dump($fetched_forums);
+            // header("Location: " . BASE_URL . "index.php?page=forum");
          }
 
-        $fetched_forums=$this->forum_model->fetchAllForum();
-        var_dump($fetched_forums);
+        // var_dump($fetched_forums);
         include __DIR__ . '/../View/forum.php';
 	} 
 
@@ -48,6 +56,15 @@ class ForumController {
 
     public function viewJoinedForums($UserID){
         $fetched_forums=$this->forum_model->fetchForumByUserID($UserID);
+        if($_SERVER['REQUEST_METHOD']==='POST'){
+            // echo "[INFO] POST received without search:<br>";
+
+            $search=$_POST['search'];
+
+            $fetched_forums=$this->forum_model->searchJoinedForum($UserID, $search);
+            // var_dump($fetched_forums);
+            // header("Location: " . BASE_URL . "index.php?page=forum");
+         }
         include __DIR__ . '/../View/forum-joined.php';
     }
     
