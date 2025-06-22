@@ -1,0 +1,138 @@
+    body {
+            background: linear-gradient(to right, white 67%, #E7E6F2 67%);
+        }
+
+        header {
+            background-color: white;
+        }
+
+        .offer-page-container {
+            max-width: 1200px;
+            margin: 50px auto;
+            padding: 30px;
+            background-color:rgba(255, 255, 255, 0);;
+            border-radius: 15px;
+            font-family: 'Inter', sans-serif;
+            display: grid;
+            grid-template-columns: 1fr; 
+            gap: 30px; 
+            align-items: start; 
+        }
+
+        @media (min-width: 768px) {
+            .offer-page-container {
+                grid-template-columns: 0.8fr 1fr; 
+            }
+        }
+ 
+        .offer-form-column {
+            padding-right: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .offer-form-column h2 {
+            font-size: 2em;
+            color: #5D5A88;
+            margin-bottom: 20px;
+            text-align: left;
+        }
+
+        .seller-info-card {
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 25px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .seller-profile-picture {
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+
+        .seller-details-text {
+            flex-grow: 1;
+        }
+
+        .seller-details-text p {
+            margin: 0;
+            color:rgb(162, 162, 168);
+        }
+
+        .seller-details-text .talent-title {
+            font-size: 1.2em;
+            font-weight: bold;
+            margin-bottom: 5px;
+            color: #5D5A88;
+        }
+        .seller-details-text .talent-price {
+            font-size: 1.1em;
+            color: #5D5A88;
+            font-weight: bold;
+        }
+
+
+        .talent-image-column {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+            border-radius: 15px; 
+            min-height: 100%;
+        }
+
+        .talent-image-column img {
+            width: 100%;
+            height: 100%;
+            display: block; 
+            border-radius: 15px;
+            object-fit: cover; 
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+            color: #555;
+        }
+        .form-group input[type="number"],
+        .form-group input[type="text"],
+        .form-group textarea {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            box-sizing: border-box;
+            font-size: 16px;
+            background-color: rgb(162, 162, 168);
+        }
+        .form-group textarea {
+            resize: vertical;
+            min-height: 100px;
+            background-color: #F9F9FF;
+        }
+        .btn-submit-offer {
+            background-color: #5D5A88;
+            color: white;
+            padding: 14px 20px;
+            border: none;
+            border-radius: 30px;
+            cursor: pointer;
+            font-weight: bold;
+            font-size: 16px;
+            width: 30%;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+        .btn-submit-offer:hover {
+            background-color:rgb(63, 61, 92);
+            transform: translateY(-2px);
+        }
