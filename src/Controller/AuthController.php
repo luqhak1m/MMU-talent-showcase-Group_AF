@@ -116,7 +116,7 @@ class UserController {
                     $_SESSION['is_admin'] = true;
                     header("Location: index.php?page=admin_dashboard");
                 } else {
-                    header("Location: /talent-portal/public/index.php?page=home");
+                    header("Location: index.php?page=home");
                 }
                 exit;
 
@@ -141,7 +141,7 @@ class UserController {
         session_destroy();
 
         // Redirect the user to the homepage 
-        header("Location: " . BASE_URL . "index.php");
+        header("Location: index.php");
         exit;
     }
 

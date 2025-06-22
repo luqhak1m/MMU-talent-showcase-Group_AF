@@ -298,6 +298,33 @@ switch ($page) {
 			$leaderboardController = new LeaderboardController($pdo);
 			$leaderboardController->viewLeaderboard();
 			break;
+
+	case 'FAQ':
+		require_once __DIR__ . '/../src/Controller/AnnouncementController.php';
+		$announcementController=new FAQController($pdo);
+		$announcementController->viewFAQ();
+		break;
+
+	case 'admin_manage_faq':
+		require_once __DIR__ . '/../src/Controller/FAQController.php';
+		$FAQController=new FAQController($pdo);
+
+		if(isset($_GET['action'])){ // index.php?page=X&action=Y
+			if($_GET['action']=="add"){
+				$FAQController->addFAQ();
+				break;
+			}elseif($_GET['action']=="update"){
+				$faq_id=$_GET['id'];
+				$FAQController->UpdateAdminFAQ($faq_id);
+				break;
+			}elseif($_GET['action']=="delete"){
+				$faq_id=$_GET['id'];
+				$FAQController->deleteAdminFAQ($faq_id);
+				break;
+			}
+		}
+		$FAQController->viewAdminFAQ();
+		break;
 	
 	default:
 		if(file_exists($viewPath)) {
