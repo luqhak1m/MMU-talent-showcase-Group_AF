@@ -13,10 +13,6 @@
 
     <div class="container-div" style="padding-top: 2em; height: auto; min-height: 100vh;">
             <h1 style="text-align: center" class="page-title">FAQ Management</h1> 
-            <div style="text-align: right; margin-bottom: 1em;">
-                <a href="<?= BASE_URL ?>index.php?page=admin_manage_faq&action=create" class="button plus-button">+</a>
-            </div>
-
         <?php if (isset($_SESSION['success_message'])): ?>
             <div class="success-message">
                 <?php echo htmlspecialchars($_SESSION['success_message']); unset($_SESSION['success_message']); ?>

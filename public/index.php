@@ -337,6 +337,23 @@ switch ($page) {
 		}
 		$FAQController->viewAdminFAQ();
 		break;
+
+	case 'admin_manage_catalogue':
+    require_once __DIR__ . '/../src/Controller/CatalogueController.php';
+    $catalogueController = new CatalogueController($pdo);
+
+    if (isset($_GET['action'])) {
+        if ($_GET['action'] == 'edit' && isset($_GET['id'])) {
+            $catalogueController->editCatalogue($_GET['id']);
+            break;
+        } elseif ($_GET['action'] == 'delete' && isset($_GET['id'])) {
+            $catalogueController->deleteCatalogue($_GET['id']);
+            break;
+        }
+    }
+
+    $catalogueController->adminManageCatalogue(); // default view
+    break;
 	
 	default:
 		if(file_exists($viewPath)) {
