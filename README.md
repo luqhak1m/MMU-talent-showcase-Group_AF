@@ -73,3 +73,26 @@ Check and ensure the DB credentials match your local MySQL config
 
 6. Run the Web App
 Open your browser and go to: http://localhost/MMU-talent-showcase-Group_AF/public/index.php
+
+
+The MMU Talent Showcase Portal is a web-based application developed to
+provide a centralized platform for Multimedia University (MMU) students to
+showcase their talents in areas such as music, arts, writing, programming, and
+more. The platform aims to connect talented students across faculties,
+allowing them to build online profiles, upload their creative works, and interact
+with the MMU community.
+
+The primary intention of this web application is to highlight and promote the
+diverse talents of MMU students. It functions as both a digital gallery and
+community hub, encouraging collaboration and recognition among students
+from different faculties.
+Target Users:
+
+● MMU students
+● Admin users
+
+Additional Features
+● Like system that help boost morales and publicity for Talents
+● Leaderboard page that will showcase the top Talents in MMU
+● Comment system with linked user IDs and timestamps
+● Followers and following features to keep track of user’s favourite talents
