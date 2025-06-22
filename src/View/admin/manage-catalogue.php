@@ -49,7 +49,7 @@
 
                     <!-- Actions -->
                     <td style="padding: 8px;">
-                        <a href="index.php?page=admin_manage_catalogue&action=edit&id=<?php echo htmlspecialchars($item['TalentID']); ?>" class="button" id="list-button">Edit</a>
+                        <a href="index.php?page=talent&id=<?php echo htmlspecialchars($item['TalentID']); ?>&action=edit" class="button" id="list-button">Edit</a>
                         <a href="index.php?page=admin_manage_catalogue&action=delete&id=<?php echo htmlspecialchars($item['TalentID']); ?>" class="button" id="list-button" onclick="return confirm('Are you sure you want to delete this item?');">Delete</a>
                     </td>
                 </tr>
